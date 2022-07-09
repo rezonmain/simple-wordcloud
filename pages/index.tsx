@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import FileInput from '../components/FileInput/FileDropper';
+import FileInput from '../components/FileDropper/FileDropper';
 import styles from '../styles/Home.module.css';
 
 const Home: NextPage = () => {

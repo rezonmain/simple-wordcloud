@@ -13,7 +13,7 @@ const FileInput = () => {
 		<form>
 			<input
 				type='file'
-				accept='.txt,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf'
+				accept={TextParser.acceptedString}
 				onChange={(e) => handleChange(e)}
 			/>
 		</form>
