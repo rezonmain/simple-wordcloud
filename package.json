@@ -9,7 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "mammoth": "^1.4.21",
     "next": "12.2.1",
+    "pdfjs-dist": "^2.14.305",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
