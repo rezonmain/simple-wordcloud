@@ -6,14 +6,16 @@ const FileInput = () => {
 		const t = new TextParser();
 		const input = e.target as HTMLInputElement;
 		const file = input.files![0];
-		console.log(await t.getTextFromFile(file));
+		const words = await t.getWordsFromFile(file);
+		// const wordocunt = t.countWordInstance(words);
+		console.log(words);
 	};
 
 	return (
 		<form>
 			<input
 				type='file'
-				accept={TextParser.acceptedString}
+				accept={TextParser.acceptedStr}
 				onChange={(e) => handleChange(e)}
 			/>
 		</form>

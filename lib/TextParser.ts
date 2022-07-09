@@ -2,7 +2,7 @@ import mammoth from 'mammoth';
 import * as pdfjs from 'pdfjs-dist';
 
 class TextParser {
-	static readonly acceptedString =
+	static readonly acceptedStr =
 		'.txt,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf';
 
 	readonly supported = {
@@ -11,25 +11,47 @@ class TextParser {
 		pdf: 'application/pdf',
 	};
 
-	async getTextFromFile(f: Blob): Promise<String> {
+	countWordInstance(
+		text: string,
+		options?: { removeStopWords: boolean; lang: string }
+	): { [name: string]: number } {
+		let wordInstance: { [name: string]: number } = {};
+		text.split(' ').forEach((word) => {
+			wordInstance[word] = wordInstance[word] ? wordInstance[word]++ : 1;
+		});
+		return wordInstance;
+	}
+
+	async getWordsFromFile(f: Blob, raw: boolean = false): Promise<string> {
 		return new Promise(async (resolve, reject) => {
 			try {
 				switch (f.type) {
 					case this.supported.docx:
-						resolve(await this._parseDocx(f));
+						resolve(
+							raw
+								? await this._parseDocx(f)
+								: this._trim(await this._parseDocx(f))
+						);
 						break;
 					case this.supported.txt:
-						resolve(await this._parseTxt(f));
+						resolve(
+							raw
+								? await this._parseTxt(f)
+								: this._trim(await this._parseTxt(f))
+						);
 						break;
 					case this.supported.pdf:
-						resolve(await this._parsePdf(f));
+						resolve(
+							raw
+								? await this._parsePdf(f)
+								: this._trim(await this._parsePdf(f))
+						);
 						break;
 					default:
 						reject('Unsopported file');
 						break;
 				}
 			} catch (err) {
-				// FIXME: Just for debug
 				reject('File unsupported or corrupted');
 			}
 		});
@@ -42,7 +64,8 @@ class TextParser {
 	}
 
 	async _parseTxt(f: Blob) {
-		return await f.text();
+		const text = await f.text();
+		return text;
 	}
 
 	async _parsePdf(f: Blob) {
@@ -66,6 +89,23 @@ class TextParser {
 		// FIXME: Get correct type here (textItem.str)
 		// @ts-ignore
 		return tokenText.items.map((textItem) => textItem.str).join('');
+	}
+
+	_trim(text: string) {
+		// Returns a space seperated string of alphabetic words or dashed words
+		return (
+			text
+				/* Split words in anything that is NOT alphabetic 
+        ex: "123hello" => "123", "hello" or "©nomad" => "©" "nomad" */
+				// TODO: Maybe add split check for camelcase
+				.split(/[^a-z]/gi)
+				/* Just keep alphabetic words or dashed words */
+				.filter((word) => word.match(/[a-z -]/gi))
+				/* Trim whitespace around words, lowercase all words */
+				.map((word) => word.trim().toLowerCase())
+				/* Join everything into a space seperated string */
+				.join(' ')
+		);
 	}
 }
 
