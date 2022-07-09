@@ -7,8 +7,7 @@ const FileInput = () => {
 		const input = e.target as HTMLInputElement;
 		const file = input.files![0];
 		const words = await t.getWordsFromFile(file);
-		// const wordocunt = t.countWordInstance(words);
-		console.log(words);
+		const wordCount = t.countWordInstance(words);
 	};
 
 	return (

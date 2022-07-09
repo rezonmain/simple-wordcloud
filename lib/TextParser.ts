@@ -13,11 +13,17 @@ class TextParser {
 
 	countWordInstance(
 		text: string,
-		options?: { removeStopWords: boolean; lang: string }
+		options = { stopWords: false, lang: 'en' }
 	): { [name: string]: number } {
 		let wordInstance: { [name: string]: number } = {};
+		const { removeStopwords } = require('stopword');
+		// TODO: Let user specify what to langauge use for stop words
+		text = options.stopWords
+			? text
+			: removeStopwords(text.split(' ')).join(' ');
+
 		text.split(' ').forEach((word) => {
-			wordInstance[word] = wordInstance[word] ? wordInstance[word]++ : 1;
+			wordInstance[word] = wordInstance[word] ? ++wordInstance[word] : 1;
 		});
 		return wordInstance;
 	}
@@ -95,14 +101,19 @@ class TextParser {
 		// Returns a space seperated string of alphabetic words or dashed words
 		return (
 			text
-				/* Split words in anything that is NOT alphabetic 
+				/* Split words in anything that is NOT alphabetic or has contraction (')
         ex: "123hello" => "123", "hello" or "©nomad" => "©" "nomad" */
 				// TODO: Maybe add split check for camelcase
-				.split(/[^a-z]/gi)
-				/* Just keep alphabetic words or dashed words */
-				.filter((word) => word.match(/[a-z -]/gi))
+				.split(/[^a-z']/gi)
+				/* Just keep alphabetic words (and contractions ') */
+				.filter((word) => word.match(/[a-z']/gi))
 				/* Trim whitespace around words, lowercase all words */
-				.map((word) => word.trim().toLowerCase())
+				.map((word) =>
+					word
+						.trim()
+						.toLowerCase()
+						.replace(/[^a-z]/gi, '')
+				)
 				/* Join everything into a space seperated string */
 				.join(' ')
 		);
