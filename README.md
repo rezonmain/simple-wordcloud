@@ -8,8 +8,8 @@ Generate simple wordclouds from text file or text input. It uses D3.js to genera
 
 - [ ] Get MVP with basic functionality done:
   - [x] Parse text from .txt, .pdf (and maybe .docx) files
-  - [ ] Write text proccessing module to get object for D3 chart:
-    - [ ] Use text processing library to give option to ignore stop words and calculate word count
+  - [x] Write text proccessing module to get object for D3 chart:
+    - [x] Use text processing library to give option to ignore stop words and calculate word count
   - [ ] Write wordcloud component that generates chart from given data
 - [ ] Make 'create' page
 - [ ] Make landing page
