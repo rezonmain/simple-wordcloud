@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import FileInput from '../components/FileDropper/FileDropper';
+import FileDropper from '../components/FileDropper/FileDropper';
 import styles from '../styles/Home.module.css';
 
 const Home: NextPage = () => {
@@ -16,7 +16,7 @@ const Home: NextPage = () => {
 			</Head>
 
 			<main className={styles.main}>
-				<FileInput />
+				<FileDropper />
 			</main>
 
 			<footer className={styles.footer}></footer>

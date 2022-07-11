@@ -25,6 +25,7 @@ class TextParser {
 		text.split(' ').forEach((word) => {
 			wordInstance[word] = wordInstance[word] ? ++wordInstance[word] : 1;
 		});
+
 		return wordInstance;
 	}
 
@@ -105,14 +106,14 @@ class TextParser {
         ex: "123hello" => "123", "hello" or "©nomad" => "©" "nomad" */
 				// TODO: Maybe add split check for camelcase
 				.split(/[^a-z']/gi)
-				/* Just keep alphabetic words (and contractions ') */
-				.filter((word) => word.match(/[a-z']/gi))
+				/* Just keep alphabetic words, min length of 2 */
+				.filter((word) => word.match(/[a-z']{2,}/gi))
 				/* Trim whitespace around words, lowercase all words */
 				.map((word) =>
 					word
+						.replace(/[^a-z]/gi, '')
 						.trim()
 						.toLowerCase()
-						.replace(/[^a-z]/gi, '')
 				)
 				/* Join everything into a space seperated string */
 				.join(' ')
