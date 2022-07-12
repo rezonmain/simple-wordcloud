@@ -3,7 +3,7 @@ import TextParser from '../../lib/TextParser';
 import WordCloud from '../WordCloud/WordCloud';
 
 const FileDropper = () => {
-	const [data, setData] = useState<{ word: string; value: number }[]>();
+	const [data, setData] = useState<{ text: string; size: number }[]>();
 
 	const handleChange = async (e: ChangeEvent) => {
 		const t = new TextParser();
@@ -12,8 +12,8 @@ const FileDropper = () => {
 		const words = await t.getWordsFromFile(file);
 		const wordCount = t.countWordInstance(words);
 		const dataObject = Object.entries(wordCount).map((entry) => ({
-			word: entry[0],
-			value: entry[1],
+			text: entry[0],
+			size: entry[1],
 		}));
 		setData(dataObject);
 	};

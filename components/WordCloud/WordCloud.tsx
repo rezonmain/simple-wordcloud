@@ -1,28 +1,47 @@
+import { useEffect, useState } from 'react';
 import * as d3 from 'd3';
-import { useEffect } from 'react';
+import d3Cloud from 'd3-cloud';
+import getLayout from './Layout';
 
 interface WordCloudProps {
-	data: { word: string; value: number }[];
+	data: { text: string; size: number }[];
 }
 
 const WordCloud = ({ data }: WordCloudProps) => {
-	useEffect(() => {
-		d3.select('#cloud')
+	const config = { w: 1000, h: 1000, font: 'impact', limit: 100 };
+	const [layout, setLayout] = useState(getLayout(config, data, draw));
+
+	function draw(words: d3Cloud.Word) {
+		d3.select('#cloud-wrapper')
+			.append('svg')
+			.attr('width', layout.size()[0])
+			.attr('height', layout.size()[1])
+			.append('g')
+			.attr(
+				'transform',
+				'translate(' + layout.size()[0] / 2 + ',' + layout.size()[1] / 2 + ')'
+			)
 			.selectAll('text')
-			.data(data)
+			.data(words as d3Cloud.Word[])
 			.enter()
 			.append('text')
-			.style('font-family', 'Roboto')
+			.style('font-size', (d) => d.size + 'px')
+			.style('font-family', 'Impact')
 			.style('fill', '#000000')
-			.style('font-size', (d) => d.value + 'px')
-			.text((d) => d.word);
-	}, [data]);
+			.attr('text-anchor', 'middle')
+			.attr('transform', function (d) {
+				return 'translate(' + [d.x, d.y] + ')rotate(' + d.rotate + ')';
+			})
+			// @ts-ignore
+			.text((d) => d.text);
+	}
 
-	return (
-		<div id='cloud-wrapper'>
-			<svg id='cloud'></svg>
-		</div>
-	);
+	useEffect(() => {
+		// Calls draw after calculating the words layout
+		layout.start();
+	}, []);
+
+	return <div id='cloud-wrapper'></div>;
 };
 
 export default WordCloud;

@@ -13,7 +13,7 @@ class TextParser {
 
 	countWordInstance(
 		text: string,
-		options = { stopWords: false, lang: 'en' }
+		options = { stopWords: false, lang: 'eng' }
 	): { [name: string]: number } {
 		let wordInstance: { [name: string]: number } = {};
 		const { removeStopwords } = require('stopword');
