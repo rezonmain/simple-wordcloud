@@ -1,26 +1,28 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
+import useWindowSize from '../../lib/hooks/useWindow';
 import TextParser from '../../lib/TextParser';
 import WordCloud from '../WordCloud/WordCloud';
 
 const FileDropper = () => {
-	const [data, setData] = useState<{ text: string; size: number }[]>();
+	const [wordsArray, setWordsArray] =
+		useState<{ text: string; size: number }[]>();
+	const [cloud, setCloud] = useState<JSX.Element | undefined>();
+	const windowSize = useWindowSize();
 
 	const handleChange = async (e: ChangeEvent) => {
 		const t = new TextParser();
-		const input = e.target as HTMLInputElement;
-		const file = input.files![0];
-		const words = await t.getWordsFromFile(file);
-		const wordCount = t.countWordInstance(words);
-		const dataObject = Object.entries(wordCount).map((entry) => ({
-			text: entry[0],
-			size: entry[1],
-		}));
-		setData(dataObject);
+		const wordsArray = await t.getDataFromEvent(e);
+		setWordsArray(wordsArray);
 	};
+
+	useEffect(() => {
+		wordsArray &&
+			setCloud(<WordCloud size={windowSize} wordsArray={wordsArray} />);
+	}, [wordsArray, windowSize]);
 
 	return (
 		<>
-			{data && <WordCloud data={data} />}
+			{cloud && cloud}
 			<form>
 				<input
 					type='file'

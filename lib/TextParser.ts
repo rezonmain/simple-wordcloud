@@ -1,5 +1,6 @@
 import mammoth from 'mammoth';
 import * as pdfjs from 'pdfjs-dist';
+import { ChangeEvent } from 'react';
 
 class TextParser {
 	static readonly acceptedStr =
@@ -10,6 +11,17 @@ class TextParser {
 		txt: 'text/plain',
 		pdf: 'application/pdf',
 	};
+
+	async getDataFromEvent(e: ChangeEvent) {
+		const target = e.target as HTMLInputElement;
+		const file = target.files![0];
+		const words = await this.getWordsFromFile(file);
+		const wordCount = this.countWordInstance(words);
+		return Object.entries(wordCount).map((entry) => ({
+			text: entry[0],
+			size: entry[1],
+		}));
+	}
 
 	countWordInstance(
 		text: string,
