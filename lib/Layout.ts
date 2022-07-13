@@ -21,10 +21,10 @@ class Layout {
 	constructor(
 		size: { w: number; h: number },
 		wordsArray: { text: string; size: number }[],
-		onWord: (draw: d3Cloud.Word) => void,
+		onWord: (draw: d3Cloud.Word[]) => void,
 		config?: LayoutConfig
 	) {
-		this.size = { w: size.w, h: 500 };
+		this.size = { w: size.w, h: 1000 };
 		this.onWord = onWord;
 		// If config object is provided override the default configuration parameters
 		this.config = {
@@ -56,7 +56,7 @@ class Layout {
 				.rotate(() => Math.floor(Math.random() * 2) * 90)
 				.font('Impact')
 				// @ts-ignore
-				.fontSize((d) => this.scale(d.value) + 'px')
+				.fontSize((d) => this.scale(d.size))
 				.on('end', this.onWord)
 		);
 	};
@@ -75,9 +75,9 @@ class Layout {
 
 		switch (this.config.scaling) {
 			case 'log':
-				return d3.scaleLog().domain([min, max]).range([10, this.size.w]);
+				return d3.scaleLog().domain([min, max]).range([1, this.size.w / 10]);
 			case 'linear':
-				return d3.scaleLinear().domain([min, max]).range([10, this.size.w]);
+				return d3.scaleLinear().domain([min, max]).range([1, this.size.w]);
 		}
 	};
 }

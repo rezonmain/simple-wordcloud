@@ -10,7 +10,7 @@ interface WordCloudProps {
 }
 
 const WordCloud = ({ size, config, wordsArray }: WordCloudProps) => {
-	const draw = (words: d3Cloud.Word) => {
+	const draw = (words: d3Cloud.Word[]) => {
 		d3.select('#cloud-wrapper')
 			.append('svg')
 			.attr('width', layout.size.w)
@@ -24,7 +24,7 @@ const WordCloud = ({ size, config, wordsArray }: WordCloudProps) => {
 			.data(words as d3Cloud.Word[])
 			.enter()
 			.append('text')
-			.style('font-size', (d) => d.size + 'px')
+			.style('font-size', (d) => d.size +'px')
 			.style('font-family', 'Impact')
 			.style('fill', '#000000')
 			.attr('text-anchor', 'middle')
