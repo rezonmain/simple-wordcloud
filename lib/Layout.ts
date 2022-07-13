@@ -4,7 +4,7 @@ import * as d3 from 'd3';
 export type LayoutConfig = {
 	font: string;
 	limit: number;
-	lang: 'eng' | 'fra' | 'esp';
+	lang: 'eng' | 'fra' | 'esp' | null;
 	includeStopWords: boolean;
 	inclusePronouns: boolean;
 	scaling: 'log' | 'linear';
