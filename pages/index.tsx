@@ -5,7 +5,7 @@ import styles from '../styles/Home.module.css';
 
 const Home: NextPage = () => {
 	return (
-		<div className={styles.container}>
+		<>
 			<Head>
 				<title>Simple Word Cloud</title>
 				<meta
@@ -15,12 +15,10 @@ const Home: NextPage = () => {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 
-			<main className={styles.main}>
+			<main>
 				<FileDropper />
 			</main>
-
-			<footer className={styles.footer}></footer>
-		</div>
+		</>
 	);
 };
 

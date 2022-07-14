@@ -1,16 +1,18 @@
 import Layout, { LayoutConfig } from '../../lib/Layout';
 import * as d3 from 'd3';
 import d3Cloud from 'd3-cloud';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
+import useWindowSize from '../../lib/hooks/useWindow';
 
 interface WordCloudProps {
-	size: { w: number; h: number };
 	wordsArray: { text: string; size: number }[];
 	config?: LayoutConfig;
 }
 
-const WordCloud = ({ size, config, wordsArray }: WordCloudProps) => {
-	const draw = (words: d3Cloud.Word[]) => {
+const WordCloud = ({ wordsArray, config }: WordCloudProps) => {
+	const sizeRef = useRef(null);
+
+	const draw = (word: d3Cloud.Word) => {
 		d3.select('#cloud-wrapper')
 			.append('svg')
 			.attr('width', layout.size.w)
@@ -21,11 +23,11 @@ const WordCloud = ({ size, config, wordsArray }: WordCloudProps) => {
 				'translate(' + layout.size.w / 2 + ',' + layout.size.h / 2 + ')'
 			)
 			.selectAll('text')
-			.data(words as d3Cloud.Word[])
+			.data(word as d3Cloud.Word[])
 			.enter()
 			.append('text')
-			.style('font-size', (d) => d.size +'px')
-			.style('font-family', 'Impact')
+			.style('font-size', (d) => d.size + 'px')
+			.style('font-family', config?.font || 'Helvetica')
 			.style('fill', '#000000')
 			.attr('text-anchor', 'middle')
 			.attr('transform', function (d) {
@@ -39,15 +41,21 @@ const WordCloud = ({ size, config, wordsArray }: WordCloudProps) => {
 		d3.select('#cloud-wrapper').selectAll('*').remove();
 	};
 
-	const layout = new Layout(size, wordsArray, draw);
-	console.log(layout.wordsArray);
+	const size = useWindowSize({ w: 900, h: 600 });
+	const layout = new Layout(size, wordsArray, draw, config || Layout.DEFAULT);
 
 	useEffect(() => {
 		removeCloud();
 		layout.start();
-	});
+	}, [size, wordsArray]);
 
-	return <div id='cloud-wrapper' className='border'></div>;
+	return (
+		<div
+			ref={sizeRef}
+			id='cloud-wrapper'
+			className='border w-full aspect-[1.5] max-w-[900px] max-h-[600px] mx-auto my-0'
+		></div>
+	);
 };
 
 export default WordCloud;

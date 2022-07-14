@@ -1,5 +1,3 @@
-Nextjs app case study.
-
 # Simple wordcloud generator
 
 Generate simple wordclouds from text file or text input. It uses D3.js to generate the cloud.
@@ -15,10 +13,11 @@ Generate simple wordclouds from text file or text input. It uses D3.js to genera
 
 - [ ] Advanced functionality:
 
-  - [ ] Responsive layout
+  - [x] Responsive layout
   - [ ] Autorange layout of words
   - [ ] Changing configuration updates cloud real-time
   - [ ] Allow user to download cloud as image or svg
+  - [ ] Allow user to remove words from list
   - [ ] Mouse over shows value of word
   - [ ] Populate animation
   - [ ] OPTIONAL: flaoting word animation
@@ -26,10 +25,10 @@ Generate simple wordclouds from text file or text input. It uses D3.js to genera
 - [ ] Add configurability:
 
   - [ ] Word angles
-  - [ ] Word fonts
+  - [x] Word fonts
   - [x] Word limits
   - [ ] Word colors and fading
-  - [ ] Option to keep stop wourds and pronouns (eng, fre, esp)
+  - [ ] Option to keep stop words and pronouns (eng, fre, esp)
 
 - [ ] Make 'create' page
 - [ ] Make landing page

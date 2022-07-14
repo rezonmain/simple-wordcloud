@@ -1,13 +1,10 @@
 import { ChangeEvent, useEffect, useState } from 'react';
-import useWindowSize from '../../lib/hooks/useWindow';
 import TextParser from '../../lib/TextParser';
 import WordCloud from '../WordCloud/WordCloud';
 
 const FileDropper = () => {
 	const [wordsArray, setWordsArray] =
 		useState<{ text: string; size: number }[]>();
-	const [cloud, setCloud] = useState<JSX.Element | undefined>();
-	const windowSize = useWindowSize();
 
 	const handleChange = async (e: ChangeEvent) => {
 		const t = new TextParser();
@@ -15,14 +12,11 @@ const FileDropper = () => {
 		setWordsArray(wordsArray);
 	};
 
-	useEffect(() => {
-		wordsArray &&
-			setCloud(<WordCloud size={windowSize} wordsArray={wordsArray} />);
-	}, [wordsArray, windowSize]);
-
 	return (
 		<>
-			{cloud && cloud}
+			{wordsArray && (
+				<WordCloud wordsArray={wordsArray} config={{ scaling: 'linear' }} />
+			)}
 			<form>
 				<input
 					type='file'

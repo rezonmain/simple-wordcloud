@@ -2,13 +2,13 @@ import d3Cloud from 'd3-cloud';
 import * as d3 from 'd3';
 
 export type LayoutConfig = {
-	font: string;
-	limit: number;
-	lang: 'eng' | 'fra' | 'esp';
-	includeStopWords: boolean;
-	inclusePronouns: boolean;
-	scaling: 'log' | 'linear';
-	padding: number;
+	font?: string;
+	limit?: number;
+	lang?: 'eng' | 'fra' | 'esp';
+	includeStopWords?: boolean;
+	inclusePronouns?: boolean;
+	scaling?: 'log' | 'linear' | 'sq';
+	padding?: number;
 };
 
 class Layout {
@@ -18,26 +18,30 @@ class Layout {
 	onWord;
 	scale;
 
+	static DEFAULT: LayoutConfig = {
+		limit: 150,
+		lang: 'eng',
+		includeStopWords: false,
+		inclusePronouns: false,
+		scaling: 'log',
+		padding: 1,
+		font: 'Helvetica',
+	};
+
 	constructor(
 		size: { w: number; h: number },
 		wordsArray: { text: string; size: number }[],
-		onWord: (draw: d3Cloud.Word[]) => void,
+		onWord: (draw: d3Cloud.Word) => void,
 		config?: LayoutConfig
 	) {
-		this.size = { w: size.w, h: 1000 };
+		this.size = this._bound(size);
 		this.onWord = onWord;
 		// If config object is provided override the default configuration parameters
 		this.config = {
-			font: 'serif',
-			limit: 150,
-			lang: 'eng',
-			includeStopWords: false,
-			inclusePronouns: false,
-			scaling: 'log',
-			padding: 1,
+			...Layout.DEFAULT,
 			...config,
 		};
-		this.wordsArray = this._limit(wordsArray, this.config.limit);
+		this.wordsArray = this._limit(wordsArray, this.config.limit as number);
 		this.scale = this._getScalefn(this.wordsArray);
 	}
 
@@ -46,15 +50,18 @@ class Layout {
 	start = () => this._layout().start();
 
 	_layout = () => {
-		const limitedWords = this._limit(this.wordsArray, this.config.limit);
+		const limitedWords = this._limit(
+			this.wordsArray,
+			this.config.limit as number
+		);
 		return (
 			d3Cloud()
 				.size([this.size.w, this.size.h])
 				.words(limitedWords)
-				.padding(this.config.padding)
+				.padding(this.config.padding as number)
 				// 0 or 90
 				.rotate(() => Math.floor(Math.random() * 2) * 90)
-				.font('Impact')
+				.font(this.config.font as string)
 				// @ts-ignore
 				.fontSize((d) => this.scale(d.size))
 				.on('end', this.onWord)
@@ -67,6 +74,15 @@ class Layout {
 		return words.sort((a, b) => b.size - a.size).slice(0, limit);
 	};
 
+	_bound(windowSize: { w: number; h: number }) {
+		const maxH = 600;
+		const maxW = 900;
+		return {
+			w: windowSize.w > maxW ? maxW : windowSize.w,
+			h: windowSize.h > maxH ? maxH : windowSize.h,
+		};
+	}
+
 	_getScalefn = (wordsArray: { text: string; size: number }[]) => {
 		// WORDS MUST BE SORTED
 		/* Make sure biggest word always fits inside given viewbox */
@@ -75,9 +91,11 @@ class Layout {
 
 		switch (this.config.scaling) {
 			case 'log':
-				return d3.scaleLog().domain([min, max]).range([1, this.size.w / 10]);
+				return d3.scaleLog().domain([min, max]).range([1, 100]);
 			case 'linear':
-				return d3.scaleLinear().domain([min, max]).range([1, this.size.w]);
+				return d3.scaleLinear().domain([min, max]).range([10, 200]);
+			case 'sq':
+				return d3.scalePow().exponent(2).domain([min, max]).range([20, 200]);
 		}
 	};
 }
