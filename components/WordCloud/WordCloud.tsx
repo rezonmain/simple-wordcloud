@@ -18,11 +18,9 @@ const WordCloud = ({ wordsArray, config }: WordCloudProps) => {
 			.select('#cloud-wrapper')
 			.append('svg')
 			.attr('width', l.size.w)
-			.attr('height', l.size.h);
-
-		// Append group and center it
-		container
+			.attr('height', l.size.h)
 			.append('g')
+			.style('position', 'relative')
 			.attr('transform', `translate(${l.size.w / 2},${l.size.h / 2})`);
 
 		// Create the text from data array
@@ -34,7 +32,7 @@ const WordCloud = ({ wordsArray, config }: WordCloudProps) => {
 		wordContainer
 			.transition()
 			.duration(500)
-			.attr('transfrom', (d) => `translate(${[d.x, d.y]}) rotate(${d.rotate})`)
+			.attr('transfrom', (d) => `translate(${[d.x, d.y]})rotate(${d.rotate})`)
 			.style('font-size', (d) => d.size + 'px');
 
 		// Apend the new text svg element and sets its rotation
