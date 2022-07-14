@@ -23,7 +23,7 @@ class Layout {
 		lang: 'eng',
 		includeStopWords: false,
 		inclusePronouns: false,
-		scaling: 'log',
+		scaling: 'linear',
 		padding: 1,
 		font: 'Helvetica',
 	};
