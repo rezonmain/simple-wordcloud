@@ -9,8 +9,6 @@ interface WordCloudProps {
 	config?: LayoutConfig;
 }
 
-// TODO: FIX CLOUD POSITIONING
-
 const WordCloud = ({ wordsArray, config }: WordCloudProps) => {
 	const draw = (word: d3Cloud.Word) => {
 		// Create svg with given size

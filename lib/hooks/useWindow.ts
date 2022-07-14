@@ -1,17 +1,27 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 /* Returns window size on window resize end */
 
-// TODO: trigger when window grows to bound
+// TODO: trigger when window grows beyond bound
 const useWindowSize = (bounds: { w: number; h: number }) => {
+	let triggerChange = useRef(false);
 	const [windowSize, setWindowSize] = useState({
 		w: globalThis.innerWidth,
 		h: globalThis.innerHeight,
 	});
 	useEffect(() => {
 		const handleResizeEnd = () => {
-			// Only trigger change when width is smaller than bound
 			if (globalThis.innerWidth < bounds.w) {
 				setWindowSize({ w: globalThis.innerWidth, h: globalThis.innerHeight });
+				triggerChange.current = true;
+			}
+
+			if (globalThis.innerWidth > bounds.w) {
+				triggerChange.current &&
+					setWindowSize({
+						w: globalThis.innerWidth,
+						h: globalThis.innerHeight,
+					});
+				triggerChange.current = false;
 			}
 		};
 		let resizeEnd: NodeJS.Timeout;
