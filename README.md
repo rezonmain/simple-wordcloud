@@ -19,7 +19,7 @@ Generate simple wordclouds from text file or text input. It uses D3.js to genera
   - [ ] Allow user to download cloud as image or svg
   - [ ] Allow user to remove words from list
   - [ ] Mouse over shows value of word
-  - [ ] Populate animation
+  - [x] Populate animation
   - [ ] OPTIONAL: flaoting word animation
 
 - [ ] Add configurability:

@@ -14,9 +14,7 @@ const FileDropper = () => {
 
 	return (
 		<>
-			{wordsArray && (
-				<WordCloud wordsArray={wordsArray} config={{ scaling: 'linear' }} />
-			)}
+			{wordsArray && <WordCloud wordsArray={wordsArray} />}
 			<form>
 				<input
 					type='file'

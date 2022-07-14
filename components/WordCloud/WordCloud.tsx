@@ -9,32 +9,45 @@ interface WordCloudProps {
 	config?: LayoutConfig;
 }
 
-const WordCloud = ({ wordsArray, config }: WordCloudProps) => {
-	const sizeRef = useRef(null);
+// TODO: FIX CLOUD POSITIONING
 
+const WordCloud = ({ wordsArray, config }: WordCloudProps) => {
 	const draw = (word: d3Cloud.Word) => {
-		d3.select('#cloud-wrapper')
+		// Create svg with given size
+		const container = d3
+			.select('#cloud-wrapper')
 			.append('svg')
-			.attr('width', layout.size.w)
-			.attr('height', layout.size.h)
+			.attr('width', l.size.w)
+			.attr('height', l.size.h)
 			.append('g')
-			.attr(
-				'transform',
-				'translate(' + layout.size.w / 2 + ',' + layout.size.h / 2 + ')'
-			)
+			.style('position', 'relative')
+			.attr('transform', `translate(${l.size.w / 2},${l.size.h / 2})`);
+
+		// Create the text from data array
+		const wordContainer = container
 			.selectAll('text')
-			.data(word as d3Cloud.Word[])
+			.data(word as d3Cloud.Word[]);
+
+		// Set its transition properties
+		wordContainer
+			.transition()
+			.duration(500)
+			.attr('transfrom', (d) => `translate(${[d.x, d.y]})rotate(${d.rotate})`)
+			.style('font-size', (d) => d.size + 'px');
+
+		// Apend the new text svg element and sets its rotation
+		wordContainer
 			.enter()
 			.append('text')
-			.style('font-size', (d) => d.size + 'px')
-			.style('font-family', config?.font || 'Helvetica')
-			.style('fill', '#000000')
 			.attr('text-anchor', 'middle')
-			.attr('transform', function (d) {
-				return 'translate(' + [d.x, d.y] + ')rotate(' + d.rotate + ')';
-			})
-			// @ts-ignore
-			.text((d) => d.text);
+			.attr('transform', (d) => `translate(${[d.x, d.y]})rotate(${d.rotate})`)
+			.style('font-size', '1px')
+			.transition()
+			.duration(500)
+			.style('font-size', (d) => d.size + 'px')
+			.style('font-family', (d) => d.font as string)
+			.style('fill', '#000000')
+			.text((d) => d.text as string);
 	};
 
 	const removeCloud = () => {
@@ -42,16 +55,15 @@ const WordCloud = ({ wordsArray, config }: WordCloudProps) => {
 	};
 
 	const size = useWindowSize({ w: 900, h: 600 });
-	const layout = new Layout(size, wordsArray, draw, config || Layout.DEFAULT);
+	let l = new Layout(size, wordsArray, draw, config || Layout.DEFAULT);
 
 	useEffect(() => {
 		removeCloud();
-		layout.start();
+		l.start();
 	}, [size, wordsArray]);
 
 	return (
 		<div
-			ref={sizeRef}
 			id='cloud-wrapper'
 			className='border w-full aspect-[1.5] max-w-[900px] max-h-[600px] mx-auto my-0'
 		></div>
