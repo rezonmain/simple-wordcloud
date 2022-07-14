@@ -58,7 +58,7 @@ const WordCloud = ({ wordsArray, config }: WordCloudProps) => {
 	useEffect(() => {
 		removeCloud();
 		l.start();
-	}, [size, wordsArray]);
+	}, [size, wordsArray, config]);
 
 	return (
 		<div

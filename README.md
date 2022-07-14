@@ -20,11 +20,12 @@ Generate simple wordclouds from text file or text input. It uses D3.js to genera
   - [ ] Allow user to remove words from list
   - [ ] Mouse over shows value of word
   - [x] Populate animation
+  - [ ] Rotate animation
   - [ ] OPTIONAL: flaoting word animation
 
 - [ ] Add configurability:
 
-  - [ ] Word angles
+  - [x] Word angles
   - [x] Word fonts
   - [x] Word limits
   - [ ] Word colors and fading

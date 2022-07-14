@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-/* Returns window size on window resize end */
 
-// TODO: trigger when window grows beyond bound
+/* Returns window size on window resize end */
 const useWindowSize = (bounds: { w: number; h: number }) => {
 	let triggerChange = useRef(false);
 	const [windowSize, setWindowSize] = useState({
@@ -14,7 +13,6 @@ const useWindowSize = (bounds: { w: number; h: number }) => {
 				setWindowSize({ w: globalThis.innerWidth, h: globalThis.innerHeight });
 				triggerChange.current = true;
 			}
-
 			if (globalThis.innerWidth > bounds.w) {
 				triggerChange.current &&
 					setWindowSize({

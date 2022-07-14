@@ -1,5 +1,6 @@
 import d3Cloud from 'd3-cloud';
 import * as d3 from 'd3';
+import { Numeric } from 'd3';
 
 export type LayoutConfig = {
 	font?: string;
@@ -9,6 +10,10 @@ export type LayoutConfig = {
 	inclusePronouns?: boolean;
 	scaling?: 'log' | 'linear' | 'sq';
 	padding?: number;
+	rotation?: {
+		angle?: { to: number; from: number };
+		rotations?: number;
+	};
 };
 
 class Layout {
@@ -17,6 +22,7 @@ class Layout {
 	wordsArray;
 	onWord;
 	scale;
+	angles;
 
 	static DEFAULT: LayoutConfig = {
 		limit: 150,
@@ -26,6 +32,7 @@ class Layout {
 		scaling: 'linear',
 		padding: 1,
 		font: 'Helvetica',
+		rotation: { angle: { from: 0, to: 90 }, rotations: 2 },
 	};
 
 	constructor(
@@ -40,9 +47,14 @@ class Layout {
 		this.config = {
 			...Layout.DEFAULT,
 			...config,
+			rotation: {
+				...Layout.DEFAULT.rotation,
+				...config?.rotation,
+			},
 		};
 		this.wordsArray = this._limit(wordsArray, this.config.limit as number);
 		this.scale = this._getScalefn(this.wordsArray);
+		this.angles = this._getQuantizedAngles();
 	}
 
 	/* Returns the d3Cloud layout object and runs start method on it,
@@ -60,7 +72,7 @@ class Layout {
 				.words(limitedWords)
 				.padding(this.config.padding as number)
 				// 0 or 90
-				.rotate(() => Math.floor(Math.random() * 2) * 90)
+				.rotate(this._getRotation)
 				.font(this.config.font as string)
 				// @ts-ignore
 				.fontSize((d) => this.scale(d.size))
@@ -97,6 +109,32 @@ class Layout {
 			case 'sq':
 				return d3.scalePow().exponent(2).domain([min, max]).range([20, 200]);
 		}
+	};
+
+	_getRotation = () => {
+		const number = this.config.rotation?.rotations as number;
+		const from = this.config.rotation?.angle?.from as number;
+		if (number === 1) return from;
+		return this.angles[this._rand(number - 1)];
+	};
+
+	_rand = (max: number, min = 0) => {
+		min = Math.ceil(min);
+		max = Math.floor(max);
+		return Math.floor(Math.random() * (max - min + 1) + min);
+	};
+
+	_getQuantizedAngles = () => {
+		const number = this.config.rotation?.rotations as number;
+		const from = this.config.rotation?.angle?.from as number;
+		const to = this.config.rotation?.angle?.to as number;
+		const distance = Math.abs(to - from);
+		const step = distance / (number - 1);
+		const offset = 90 - to;
+		// Formula to equal divide angle and return corresponding word orientation
+		return Array.from({ length: number }, (_, i) => {
+			return 90 - ((number - i - 1) * step + offset);
+		});
 	};
 }
 
