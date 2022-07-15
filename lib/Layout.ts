@@ -83,11 +83,12 @@ class Layout {
 	};
 
 	_bound(windowSize: { w: number; h: number }) {
-		const maxH = 600;
-		const maxW = 900;
+		const maxH = 700;
+		const maxW = 700;
+		const w = windowSize.w > maxW ? maxW : windowSize.w;
 		return {
-			w: windowSize.w > maxW ? maxW : windowSize.w,
-			h: windowSize.h > maxH ? maxH : windowSize.h,
+			w,
+			h: w,
 		};
 	}
 
@@ -101,10 +102,23 @@ class Layout {
 			case 'log':
 				return d3.scaleLog().domain([min, max]).range([1, 100]);
 			case 'linear':
-				return d3.scaleLinear().domain([min, max]).range([10, 200]);
+				return d3
+					.scaleLinear()
+					.domain([min, max])
+					.range([10, this._widthToFSize()]);
 			case 'sq':
-				return d3.scalePow().exponent(2).domain([min, max]).range([20, 200]);
+				return d3
+					.scalePow()
+					.exponent(2)
+					.domain([min, max])
+					.range([20, this._widthToFSize()]);
 		}
+	};
+
+	_widthToFSize = () => {
+		// This functions scales the font size with the width
+		// Makes sure the biggest word always renders
+		return this.size.w * (5 / 17) - 100 / 17;
 	};
 
 	_getRotation = () => {
