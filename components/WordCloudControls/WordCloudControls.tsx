@@ -11,6 +11,8 @@ const WordCloudControls = ({ onChange, values }: WordCloudControlsProps) => {
 		<form>
 			<label htmlFor='limit'>Word Limit:</label>
 			<input
+				min='1'
+				max='300'
 				onChange={onChange}
 				name='limit'
 				type='number'
@@ -25,48 +27,48 @@ const WordCloudControls = ({ onChange, values }: WordCloudControlsProps) => {
 			<select onChange={onChange} name='scaling' value={values.scaling}>
 				<option value='linear'>Linear</option>
 				<option value='log'>Logarithmic</option>
-				<option value='sq'>
-					n^<sup>2</sup>
-				</option>
+				<option value='sq'>n2</option>
 			</select>
 			<label htmlFor='padding'>Word spacing:</label>
 			<input
+				min='1'
+				max='5'
 				type='number'
 				onChange={onChange}
 				name='padding'
 				value={values.padding}
 			></input>
 			<fieldset>
-				<label htmlFor='values.rotation.rotations'>Rotations:</label>
+				<label htmlFor='rotations'>Rotations:</label>
 				<input
+					min='1'
+					max='100'
 					onChange={onChange}
-					name='values.rotation.rotations'
+					name='rotations'
 					type='number'
-					value={values.rotation?.rotations}
+					value={values.rotations}
 				></input>
-				<label htmlFor='rotation.angle.from'>
-					From: {values.rotation?.angle?.from}
+				<label htmlFor='angleFrom'>
+					From: {values.angleFrom}
 					<sup>o</sup>
 				</label>
 				<input
-					name='rotation.angle.from'
+					name='angleFrom'
 					onChange={onChange}
 					type='range'
 					min='-90'
-					max='90'
-					value={values.rotation?.angle?.from}
+					max={values.angleTo}
+					value={values.angleFrom}
 				></input>
 
-				<label htmlFor='rotation.angle.to'>
-					To: {values.rotation?.angle?.to}
-				</label>
+				<label htmlFor='angleTo'>To: {values.angleTo}</label>
 				<input
-					name='rotation.angle.to'
+					name='angleTo'
 					onChange={onChange}
 					type='range'
-					min='-90'
+					min={values.angleFrom}
 					max='90'
-					value={values.rotation?.angle?.to}
+					value={values.angleTo}
 				/>
 			</fieldset>
 

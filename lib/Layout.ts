@@ -9,10 +9,9 @@ export type LayoutConfig = {
 	includePronouns?: boolean;
 	scaling?: 'log' | 'linear' | 'sq';
 	padding?: number;
-	rotation?: {
-		angle?: { to: number; from: number };
-		rotations?: number;
-	};
+	angleTo?: number;
+	angleFrom?: number;
+	rotations?: number;
 };
 
 class Layout {
@@ -31,7 +30,9 @@ class Layout {
 		scaling: 'linear',
 		padding: 1,
 		font: 'Helvetica',
-		rotation: { angle: { from: 0, to: 90 }, rotations: 2 },
+		angleTo: 90,
+		angleFrom: 0,
+		rotations: 2,
 	};
 
 	constructor(
@@ -46,10 +47,6 @@ class Layout {
 		this.config = {
 			...Layout.DEFAULT,
 			...config,
-			rotation: {
-				...Layout.DEFAULT.rotation,
-				...config?.rotation,
-			},
 		};
 		this.wordsArray = this._limit(wordsArray, this.config.limit as number);
 		this.scale = this._getScalefn(this.wordsArray);
@@ -111,8 +108,8 @@ class Layout {
 	};
 
 	_getRotation = () => {
-		const number = this.config.rotation?.rotations as number;
-		const from = this.config.rotation?.angle?.from as number;
+		const number = this.config.rotations as number;
+		const from = this.config.angleFrom as number;
 		if (number === 1) return from;
 		return this.angles[this._rand(number - 1)];
 	};
@@ -124,9 +121,9 @@ class Layout {
 	};
 
 	_getQuantizedAngles = () => {
-		const number = this.config.rotation?.rotations as number;
-		const from = this.config.rotation?.angle?.from as number;
-		const to = this.config.rotation?.angle?.to as number;
+		const number = this.config.rotations as number;
+		const from = this.config.angleFrom as number;
+		const to = this.config.angleTo as number;
 		const distance = Math.abs(to - from);
 		const step = distance / (number - 1);
 		const offset = 90 - to;
