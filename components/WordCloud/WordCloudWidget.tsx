@@ -5,7 +5,9 @@ import WordCloudControls from '../WordCloudControls/WordCloudControls';
 const WordCloudWidget = () => {
 	const [config, setConfig] = useState(Layout.DEFAULT);
 
-	const onFormChange = (e: ChangeEvent<HTMLInputElement>) => {
+	const onFormChange = (
+		e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+	) => {
 		console.log(e);
 	};
 

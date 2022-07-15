@@ -6,7 +6,7 @@ export type LayoutConfig = {
 	limit?: number;
 	lang?: 'eng' | 'fra' | 'esp';
 	includeStopWords?: boolean;
-	inclusePronouns?: boolean;
+	includePronouns?: boolean;
 	scaling?: 'log' | 'linear' | 'sq';
 	padding?: number;
 	rotation?: {
@@ -27,7 +27,7 @@ class Layout {
 		limit: 150,
 		lang: 'eng',
 		includeStopWords: false,
-		inclusePronouns: false,
+		includePronouns: false,
 		scaling: 'linear',
 		padding: 1,
 		font: 'Helvetica',

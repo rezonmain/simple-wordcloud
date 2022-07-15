@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import FileDropper from '../components/FileDropper/FileDropper';
+import WordCloudWidget from '../components/WordCloud/WordCloudWidget';
 import styles from '../styles/Home.module.css';
 
 const Home: NextPage = () => {
@@ -16,7 +17,7 @@ const Home: NextPage = () => {
 			</Head>
 
 			<main>
-				<FileDropper />
+				<WordCloudWidget />
 			</main>
 		</>
 	);
