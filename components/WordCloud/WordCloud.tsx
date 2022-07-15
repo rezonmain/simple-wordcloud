@@ -1,7 +1,7 @@
 import Layout, { LayoutConfig } from '../../lib/Layout';
 import * as d3 from 'd3';
 import d3Cloud from 'd3-cloud';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import useWindowSize from '../../lib/hooks/useWindow';
 
 interface WordCloudProps {

@@ -14,14 +14,13 @@ Generate simple wordclouds from text file or text input. It uses D3.js to genera
 - [ ] Advanced functionality:
 
   - [x] Responsive layout
-  - [ ] Autorange layout of words
-  - [ ] Changing configuration updates cloud real-time
+  - [x] Autorange layout of words
+  - [x] Changing configuration updates cloud real-time
   - [ ] Allow user to download cloud as image or svg
   - [ ] Allow user to remove words from list
   - [ ] Mouse over shows value of word
   - [x] Populate animation
   - [ ] Rotate animation
-  - [ ] OPTIONAL: flaoting word animation
 
 - [ ] Add configurability:
 

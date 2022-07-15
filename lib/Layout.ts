@@ -1,6 +1,5 @@
 import d3Cloud from 'd3-cloud';
 import * as d3 from 'd3';
-import { Numeric } from 'd3';
 
 export type LayoutConfig = {
 	font?: string;
