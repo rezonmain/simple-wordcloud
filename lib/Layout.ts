@@ -67,7 +67,6 @@ class Layout {
 				.size([this.size.w, this.size.h])
 				.words(limitedWords)
 				.padding(this.config.padding as number)
-				// 0 or 90
 				.rotate(this._getRotation)
 				.font(this.config.font as string)
 				// @ts-ignore
@@ -100,7 +99,10 @@ class Layout {
 
 		switch (this.config.scaling) {
 			case 'log':
-				return d3.scaleLog().domain([min, max]).range([1, 100]);
+				return d3
+					.scaleLog()
+					.domain([min, max])
+					.range([1, this._widthToFSize()]);
 			case 'linear':
 				return d3
 					.scaleLinear()
@@ -111,7 +113,7 @@ class Layout {
 					.scalePow()
 					.exponent(2)
 					.domain([min, max])
-					.range([20, this._widthToFSize()]);
+					.range([15, this._widthToFSize()]);
 		}
 	};
 
@@ -122,7 +124,8 @@ class Layout {
 	};
 
 	_getRotation = () => {
-		const number = this.config.rotations as number;
+		// @ts-ignore
+		const number = parseInt(this.config.rotations) as number;
 		const from = this.config.angleFrom as number;
 		if (number === 1) return from;
 		return this.angles[this._rand(number - 1)];

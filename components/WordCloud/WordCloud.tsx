@@ -1,7 +1,7 @@
 import Layout, { LayoutConfig } from '../../lib/Layout';
 import * as d3 from 'd3';
 import d3Cloud from 'd3-cloud';
-import { RefObject, useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import useWindowSize from '../../lib/hooks/useWindow';
 
 interface WordCloudProps {
@@ -10,7 +10,6 @@ interface WordCloudProps {
 }
 
 const WordCloud = ({ wordsArray, config }: WordCloudProps) => {
-	const svgRef = useRef<RefObject<SVGAElement>>();
 	const draw = (word: d3Cloud.Word) => {
 		// Create svg with given size
 		const container = d3

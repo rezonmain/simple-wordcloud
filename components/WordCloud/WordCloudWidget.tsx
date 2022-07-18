@@ -1,5 +1,4 @@
-import { prepareServerlessUrl } from 'next/dist/server/base-server';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import Layout from '../../lib/Layout';
 import TextParser from '../../lib/TextParser';
 import FileDropper from '../FileDropper/FileDropper';
@@ -7,11 +6,17 @@ import WordCloudControls from '../WordCloudControls/WordCloudControls';
 import WordCloud from './WordCloud';
 
 /* FIXME: 
-	1. Bug where app crashes when limit is set to nothing
-	2. Bug where words stack on eachother when rotations is set to 1 and angleTo 0
+	[~] 1. Bug where app crashes when limit is set to nothing
+	[x] 2. Bug where words stack on eachother when rotations is set to 1 and angleTo 0
 	3. Fix bug where words sometimes start stacking on eachother
 	4. Sliders are kind of annoying for changing word rotation
    */
+
+/* TODO:
+	[ ] Update the d3 elements themselves when configuration is updated
+	[ ] Just scale the wordcloud when resizing window, don't regenerate wordcloud
+	[ ] Trigger word limit update after the user finishes moving the slider
+ */
 
 const WordCloudWidget = () => {
 	const [config, setConfig] = useState(Layout.DEFAULT);
@@ -19,7 +24,7 @@ const WordCloudWidget = () => {
 	const onFormChange = (
 		e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
 	) => {
-		const { name, value, type } = e.target;
+		const { name, type, value } = e.target;
 		const { checked } = e.target as HTMLInputElement;
 		setConfig((prev) => ({
 			...prev,

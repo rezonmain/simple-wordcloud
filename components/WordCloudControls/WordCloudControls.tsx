@@ -10,14 +10,7 @@ const WordCloudControls = ({ onChange, values }: WordCloudControlsProps) => {
 	return (
 		<form>
 			<label htmlFor='limit'>Word Limit:</label>
-			<input
-				min='1'
-				max='300'
-				onChange={onChange}
-				name='limit'
-				type='number'
-				value={values.limit}
-			/>
+			<input min='1' max='300' onChange={onChange} name='limit' type='number' />
 			<label htmlFor='font'>Font:</label>
 			<select onChange={onChange} name='font' value={values.font}>
 				<option value='Helvetica'>Helvetica</option>
@@ -32,7 +25,7 @@ const WordCloudControls = ({ onChange, values }: WordCloudControlsProps) => {
 			<label htmlFor='padding'>Word spacing:</label>
 			<input
 				min='1'
-				max='5'
+				max='10'
 				type='number'
 				onChange={onChange}
 				name='padding'
