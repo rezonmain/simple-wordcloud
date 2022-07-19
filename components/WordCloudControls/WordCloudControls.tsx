@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { ChangeEvent, useState } from 'react';
 import { LayoutConfig } from '../../lib/Layout';
+import { RiArrowDownSLine } from 'react-icons/ri';
 
 interface WordCloudControlsProps {
 	onChange: (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
@@ -9,20 +10,38 @@ interface WordCloudControlsProps {
 
 const WordCloudControls = ({ onChange, values }: WordCloudControlsProps) => {
 	const [show, setShow] = useState(false);
-	const animateState = {
+	const controlsAnimateState = {
 		hide: { height: '0px' },
 		show: { height: '100%' },
 	};
 
+	const arrowAnimateState = {
+		hide: { rotate: 0 },
+		show: { rotate: -180 },
+	};
+
 	return (
-		<>
-			<p className='cursor-pointer' onClick={() => setShow((prev) => !prev)}>
-				{show ? 'Hide' : 'Show'} controls
-			</p>
+		<div id='controls-container' className='border'>
+			<div
+				id='showcontrols-container'
+				className='flex flex-row items-center gap-2'
+			>
+				<p className='cursor-pointer' onClick={() => setShow((prev) => !prev)}>
+					{show ? 'Hide' : 'Show'} controls
+				</p>
+				<motion.div
+					id='arrow-container'
+					className='w-fit h-fit'
+					animate={show ? 'show' : 'hide'}
+					variants={arrowAnimateState}
+				>
+					<RiArrowDownSLine></RiArrowDownSLine>
+				</motion.div>
+			</div>
 			<motion.div
-				className='overflow-hidden border'
+				className='overflow-hidden'
 				animate={show ? 'show' : 'hide'}
-				variants={animateState}
+				variants={controlsAnimateState}
 			>
 				<form>
 					<label htmlFor='limit'>Word Limit:</label>
@@ -111,7 +130,7 @@ const WordCloudControls = ({ onChange, values }: WordCloudControlsProps) => {
 					</fieldset>
 				</form>
 			</motion.div>
-		</>
+		</div>
 	);
 };
 
