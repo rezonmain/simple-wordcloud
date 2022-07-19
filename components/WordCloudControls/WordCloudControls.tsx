@@ -23,12 +23,11 @@ const WordCloudControls = ({ onChange, values }: WordCloudControlsProps) => {
 	return (
 		<div id='controls-container' className='border'>
 			<div
+				onClick={() => setShow((prev) => !prev)}
 				id='showcontrols-container'
-				className='flex flex-row items-center gap-2'
+				className='flex flex-row items-center gap-2 cursor-pointer'
 			>
-				<p className='cursor-pointer' onClick={() => setShow((prev) => !prev)}>
-					{show ? 'Hide' : 'Show'} controls
-				</p>
+				<p>{show ? 'Hide' : 'Show'} controls</p>
 				<motion.div
 					id='arrow-container'
 					className='w-fit h-fit'
