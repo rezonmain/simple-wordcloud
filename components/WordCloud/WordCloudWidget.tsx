@@ -1,4 +1,5 @@
 import { ChangeEvent, useState } from 'react';
+import { motion } from 'framer-motion';
 import Layout from '../../lib/Layout';
 import TextParser from '../../lib/TextParser';
 import FileDropper from '../FileDropper/FileDropper';
@@ -13,14 +14,13 @@ import WordCloud from './WordCloud';
    */
 
 /* TODO:
-	[ ] Update the d3 elements themselves when configuration is updated
 	[ ] Just scale the wordcloud when resizing window, don't regenerate wordcloud
-	[ ] Trigger word limit update after the user finishes moving the slider
  */
 
 const WordCloudWidget = () => {
 	const [config, setConfig] = useState(Layout.DEFAULT);
 	const [words, setWords] = useState<{ text: string; size: number }[]>();
+	const [showContols, setShowControls] = useState(false);
 	const onFormChange = (
 		e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
 	) => {

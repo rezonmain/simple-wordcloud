@@ -32,7 +32,7 @@ class Layout {
 		font: 'Helvetica',
 		angleTo: 90,
 		angleFrom: 0,
-		rotations: 2,
+		rotations: 1,
 	};
 
 	constructor(
