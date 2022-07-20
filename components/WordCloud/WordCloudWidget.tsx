@@ -1,7 +1,6 @@
-import { ChangeEvent, useState } from 'react';
-import { motion } from 'framer-motion';
-import Layout from '../../lib/Layout';
+import { ChangeEvent, createContext, useContext, useState } from 'react';
 import TextParser from '../../lib/TextParser';
+import ControlsProvider, { ControlsContext } from '../context/ControlsContext';
 import FileDropper from '../FileDropper/FileDropper';
 import WordCloudControls from '../WordCloudControls/WordCloudControls';
 import WordCloud from './WordCloud';
@@ -18,19 +17,8 @@ import WordCloud from './WordCloud';
  */
 
 const WordCloudWidget = () => {
-	const [config, setConfig] = useState(Layout.DEFAULT);
 	const [words, setWords] = useState<{ text: string; size: number }[]>();
-	const [showContols, setShowControls] = useState(false);
-	const onFormChange = (
-		e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
-	) => {
-		const { name, type, value } = e.target;
-		const { checked } = e.target as HTMLInputElement;
-		setConfig((prev) => ({
-			...prev,
-			[name]: type === 'checkbox' ? checked : value,
-		}));
-	};
+	const { config } = useContext(ControlsContext) as ControlsContext;
 
 	const onFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
 		const t = new TextParser();
@@ -41,7 +29,9 @@ const WordCloudWidget = () => {
 	return (
 		<>
 			{words && <WordCloud wordsArray={words} config={config} />}
-			<WordCloudControls onChange={onFormChange} values={config} />
+			<ControlsProvider>
+				<WordCloudControls />
+			</ControlsProvider>
 			<FileDropper handleChange={onFileChange} />
 		</>
 	);
