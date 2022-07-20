@@ -10,6 +10,7 @@ interface WordCloudProps {
 }
 
 const WordCloud = ({ wordsArray, config }: WordCloudProps) => {
+	console.log(config);
 	const draw = (word: d3Cloud.Word) => {
 		// Create svg with given size
 		const container = d3
