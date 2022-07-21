@@ -1,25 +1,24 @@
-import { ChangeEvent, useCallback } from 'react';
+import { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
-import TextParser from '../../lib/TextParser';
 
-const FileDropper = ({
-	handleChange,
-}: {
-	handleChange: (file: Blob) => void;
-}) => {
+/*TODO: 
+	[ ] Style component
+	[ ] Interface error handling
+ */
+
+const FileDropper = ({ onFile }: { onFile: (file: Blob) => void }) => {
 	const onDrop = useCallback((acceptedFiles: File[]) => {
-		handleChange(acceptedFiles[0]);
+		onFile(acceptedFiles[0]);
 	}, []);
 
 	const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 	return (
-		<div {...getRootProps()}>
+		<div
+			className='border-4 border-gray-400 bg-gray-200 border-dashed w-screen h-[100vw] max-w-[700px] max-h-[700px] mx-auto flex items-center justify-center p-2'
+			{...getRootProps()}
+		>
 			<input {...getInputProps()} />
-			{isDragActive ? (
-				<p>Drop the files here ...</p>
-			) : (
-				<p>Drag 'n' drop some files here, or click to select files</p>
-			)}
+			<div>{'Drop your file here (.pdf, .txt, .docx).'}</div>
 		</div>
 	);
 };

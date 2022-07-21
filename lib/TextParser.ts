@@ -1,6 +1,5 @@
 import mammoth from 'mammoth';
 import * as pdfjs from 'pdfjs-dist';
-import { ChangeEvent } from 'react';
 
 class TextParser {
 	static readonly acceptedStr =
@@ -12,7 +11,7 @@ class TextParser {
 		pdf: 'application/pdf',
 	};
 
-	async getDataFromDropper(file: Blob) {
+	async getDataFromFile(file: Blob) {
 		const words = await this.getWordsFromFile(file);
 		const wordCount = this.countWordInstance(words);
 		return Object.entries(wordCount).map((entry) => ({
@@ -65,7 +64,7 @@ class TextParser {
 						);
 						break;
 					default:
-						reject('Unsopported file');
+						reject('Unsupported file');
 						break;
 				}
 			} catch (err) {

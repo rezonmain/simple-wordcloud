@@ -2,7 +2,7 @@ import { ChangeEvent, createContext, useContext, useState } from 'react';
 import Layout, { LayoutConfig } from '../../lib/Layout';
 import TextParser from '../../lib/TextParser';
 import FileDropper from '../FileDropper/FileDropper';
-import WordCloudControls from '../WordCloudControls/WordCloudControls';
+import Controls from '../Controls/Controls';
 import WordCloud from './WordCloud';
 
 /* FIXME: 
@@ -40,19 +40,19 @@ const WordCloudWidget = () => {
 
 	const onFileChange = async (file: Blob) => {
 		const t = new TextParser();
-		const wordsArray = await t.getDataFromDropper(file);
+		const wordsArray = await t.getDataFromFile(file);
 		setWords(wordsArray);
 	};
 
 	return (
 		<>
+			{!words && <FileDropper onFile={onFileChange} />}
 			{words && <WordCloud config={config} wordsArray={words} />}
 			<ControlsContext.Provider
 				value={{ values: config, onChange: onFormChange }}
 			>
-				<WordCloudControls />
+				<Controls />
 			</ControlsContext.Provider>
-			<FileDropper handleChange={onFileChange} />
 		</>
 	);
 };

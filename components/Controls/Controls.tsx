@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { RiArrowDownSLine } from 'react-icons/ri';
 import WordControls from './WordControls';
 
-const WordCloudControls = () => {
+const Controls = () => {
 	const [show, setShow] = useState(false);
 
 	return (
@@ -13,7 +13,7 @@ const WordCloudControls = () => {
 				onClick={() => setShow((prev) => !prev)}
 				className='flex flex-row items-center gap-2 cursor-pointer'
 			>
-				<p>{show ? 'Hide' : 'Show'} controls</p>
+				<p>{show ? 'Hide' : 'Show'} options</p>
 				<motion.div
 					id='arrow-container'
 					className='w-fit h-fit'
@@ -37,4 +37,4 @@ const WordCloudControls = () => {
 	);
 };
 
-export default WordCloudControls;
+export default Controls;
