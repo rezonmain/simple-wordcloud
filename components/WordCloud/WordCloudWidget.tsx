@@ -38,9 +38,9 @@ const WordCloudWidget = () => {
 		}));
 	};
 
-	const onFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
+	const onFileChange = async (file: Blob) => {
 		const t = new TextParser();
-		const wordsArray = await t.getDataFromEvent(e);
+		const wordsArray = await t.getDataFromDropper(file);
 		setWords(wordsArray);
 	};
 

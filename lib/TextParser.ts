@@ -12,9 +12,7 @@ class TextParser {
 		pdf: 'application/pdf',
 	};
 
-	async getDataFromEvent(e: ChangeEvent) {
-		const target = e.target as HTMLInputElement;
-		const file = target.files![0];
+	async getDataFromDropper(file: Blob) {
 		const words = await this.getWordsFromFile(file);
 		const wordCount = this.countWordInstance(words);
 		return Object.entries(wordCount).map((entry) => ({
