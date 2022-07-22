@@ -2,21 +2,21 @@ import Layout, { LayoutConfig } from '../../lib/Layout';
 import * as d3 from 'd3';
 import d3Cloud from 'd3-cloud';
 import { useEffect } from 'react';
-import useWindowSize from '../../lib/hooks/useWindow';
 
 interface WordCloudProps {
 	wordsArray: { text: string; size: number }[];
+	size: { w: number; h: number };
 	config?: LayoutConfig;
 }
 
-const WordCloud = ({ wordsArray, config }: WordCloudProps) => {
+const WordCloud = ({ wordsArray, size, config }: WordCloudProps) => {
 	const draw = (word: d3Cloud.Word) => {
 		// Create svg with given size
 		const container = d3
 			.select('#cloud-wrapper')
 			.append('svg')
-			.attr('width', '100%')
-			.attr('height', '100%')
+			.attr('width', l.size.w)
+			.attr('height', l.size.h)
 			.append('g')
 			.style('position', 'relative')
 			.attr('transform', `translate(${l.size.w / 2},${l.size.h / 2})`);
@@ -51,8 +51,6 @@ const WordCloud = ({ wordsArray, config }: WordCloudProps) => {
 	const removeCloud = () => {
 		d3.select('#cloud-wrapper').selectAll('*').remove();
 	};
-
-	const size = useWindowSize({ w: 700, h: 700 });
 
 	let l = new Layout(size, wordsArray, draw, config || Layout.DEFAULT);
 

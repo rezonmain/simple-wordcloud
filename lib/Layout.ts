@@ -41,7 +41,7 @@ class Layout {
 		onWord: (draw: d3Cloud.Word) => void,
 		config?: LayoutConfig
 	) {
-		this.size = this._bound(size);
+		this.size = size;
 		this.onWord = onWord;
 		// If config object is provided override the default configuration parameters
 		this.config = {
@@ -80,16 +80,6 @@ class Layout {
     so bigger words show on cloud when limiting array, slice to limit */
 		return words.sort((a, b) => b.size - a.size).slice(0, limit);
 	};
-
-	_bound(windowSize: { w: number; h: number }) {
-		const maxH = 700;
-		const maxW = 700;
-		const w = windowSize.w > maxW ? maxW : windowSize.w;
-		return {
-			w,
-			h: w,
-		};
-	}
 
 	_getScalefn = (wordsArray: { text: string; size: number }[]) => {
 		// WORDS MUST BE SORTED
