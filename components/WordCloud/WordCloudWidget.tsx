@@ -41,6 +41,7 @@ const WordCloudWidget = () => {
 	const onFileChange = async (file: Blob) => {
 		const t = new TextParser();
 		const wordsArray = await t.getDataFromFile(file);
+		console.log(wordsArray);
 		setWords(wordsArray);
 	};
 

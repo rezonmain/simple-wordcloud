@@ -7,7 +7,7 @@ const Controls = () => {
 	const [show, setShow] = useState(false);
 
 	return (
-		<div id='controls-container' className='border'>
+		<div id='controls-container' className='border font-serif'>
 			<div
 				id='showControls-container'
 				onClick={() => setShow((prev) => !prev)}

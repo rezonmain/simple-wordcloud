@@ -1,8 +1,9 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import FileDropper from '../components/FileDropper/FileDropper';
-import WordCloudWidget from '../components/WordCloud/WordCloudWidget';
-import styles from '../styles/Home.module.css';
+import Header from '../components/Header/Header';
+import Hero from '../components/Hero/Hero';
+import WordCloud from '../components/WordCloud/WordCloud';
+import demoArray from '../lib/data';
 
 const Home: NextPage = () => {
 	return (
@@ -15,9 +16,13 @@ const Home: NextPage = () => {
 				/>
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
-
-			<main>
-				<WordCloudWidget />
+			<Header />
+			<main
+				style={{ width: 'clamp(330px, 90vw, 418px' }}
+				className='flex flex-col items-center justify-center mx-auto'
+			>
+				<Hero />
+				<WordCloud wordsArray={demoArray} />
 			</main>
 		</>
 	);

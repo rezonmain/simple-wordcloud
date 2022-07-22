@@ -15,8 +15,8 @@ const WordCloud = ({ wordsArray, config }: WordCloudProps) => {
 		const container = d3
 			.select('#cloud-wrapper')
 			.append('svg')
-			.attr('width', l.size.w)
-			.attr('height', l.size.h)
+			.attr('width', '100%')
+			.attr('height', '100%')
 			.append('g')
 			.style('position', 'relative')
 			.attr('transform', `translate(${l.size.w / 2},${l.size.h / 2})`);
@@ -64,7 +64,7 @@ const WordCloud = ({ wordsArray, config }: WordCloudProps) => {
 	return (
 		<div
 			id='cloud-wrapper'
-			className='w-screen aspect-square max-w-[700px] max-h-[700px] mx-auto'
+			className='w-full aspect-square max-w-[700px] max-h-[700px] mx-auto'
 		></div>
 	);
 };

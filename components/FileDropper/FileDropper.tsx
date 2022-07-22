@@ -14,11 +14,13 @@ const FileDropper = ({ onFile }: { onFile: (file: Blob) => void }) => {
 	const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 	return (
 		<div
-			className='border-4 border-gray-400 bg-gray-200 border-dashed w-screen h-[100vw] max-w-[700px] max-h-[700px] mx-auto flex items-center justify-center p-2'
+			className='border-4 border-gray-400 bg-gray-200 border-dashed w-screen h-[100vw] max-w-[700px] max-h-[700px] mx-auto flex items-center justify-center p-2 font-serif text-lg'
 			{...getRootProps()}
 		>
 			<input {...getInputProps()} />
-			<div>{'Drop your file here (.pdf, .txt, .docx).'}</div>
+			<div className=' max-w-[20ch] text-center'>
+				{'Drag and drop your file here (.pdf, .txt, .docx).'}
+			</div>
 		</div>
 	);
 };
