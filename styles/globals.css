@@ -25,3 +25,9 @@ a {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+	.button-base {
+		@apply rounded-lg py-1 px-7 font-serif text-xl drop-shadow-noBlur filter hover:scale-[1.03] transition-transform duration-200;
+	}
+}

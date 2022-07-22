@@ -1,13 +1,15 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { LegacyRef, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useMeasure } from 'react-use';
+import Button from '../components/Button/Button';
 import Header from '../components/Header/Header';
 import Hero from '../components/Hero/Hero';
 import WordCloud from '../components/WordCloud/WordCloud';
 import demoArray from '../lib/data';
 
 const Home: NextPage = () => {
+	// Allows wordclout to get correct ref after first render
 	const [firstRender, setFirstRender] = useState(false);
 	const [ref, { width }] = useMeasure();
 
@@ -33,8 +35,15 @@ const Home: NextPage = () => {
 			>
 				<Hero />
 				{firstRender && (
-					<WordCloud wordsArray={demoArray} size={{ w: width, h: width }} />
+					<div id='word-cloud'>
+						<WordCloud wordsArray={demoArray} size={{ w: width, h: width }} />
+					</div>
 				)}
+				<div id='button-group' className='flex flex-row gap-2 items-center'>
+					<Button type='action' text='Create New' />
+					<span className='font-serif'>or</span>
+					<Button type='upload' text='Upload'></Button>
+				</div>
 			</main>
 		</>
 	);
