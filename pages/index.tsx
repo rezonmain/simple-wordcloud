@@ -31,7 +31,7 @@ const Home: NextPage = () => {
 				// @ts-ignore
 				ref={ref}
 				style={{ width: 'clamp(330px, 90vw, 418px' }}
-				className='flex flex-col items-center justify-center mx-auto'
+				className='flex flex-col items-center justify-center mx-auto gap-10'
 			>
 				<Hero />
 				{firstRender && (

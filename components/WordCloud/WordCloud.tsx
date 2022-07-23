@@ -62,7 +62,7 @@ const WordCloud = ({ wordsArray, size, config }: WordCloudProps) => {
 	return (
 		<div
 			id='cloud-wrapper'
-			className='w-full aspect-square max-w-[700px] max-h-[700px] mx-auto'
+			className={`w-[${l.size.w}px] h-[${l.size.h}]`}
 		></div>
 	);
 };

@@ -4,6 +4,7 @@ import TextParser from '../../lib/TextParser';
 import FileDropper from '../FileDropper/FileDropper';
 import Controls from '../Controls/Controls';
 import WordCloud from './WordCloud';
+import { useMeasure } from 'react-use';
 
 /* FIXME: 
 	[~] 1. Bug where app crashes when limit is set to nothing
@@ -27,6 +28,8 @@ const WordCloudWidget = () => {
 	const [words, setWords] = useState<{ text: string; size: number }[]>();
 	const [config, setConfig] = useState(Layout.DEFAULT);
 
+	const [ref, { width }] = useMeasure();
+
 	const onFormChange = (
 		e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
 	) => {
@@ -47,8 +50,17 @@ const WordCloudWidget = () => {
 
 	return (
 		<>
-			{!words && <FileDropper onFile={onFileChange} />}
-			{words && <WordCloud config={config} wordsArray={words} />}
+			{/* @ts-ignore */}
+			<div ref={ref} className='w-full aspect-square'>
+				{!words && <FileDropper onFile={onFileChange} />}
+				{words && (
+					<WordCloud
+						config={config}
+						wordsArray={words}
+						size={{ w: width, h: width }}
+					/>
+				)}
+			</div>
 			<ControlsContext.Provider
 				value={{ values: config, onChange: onFormChange }}
 			>
