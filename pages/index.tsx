@@ -34,11 +34,13 @@ const Home: NextPage = () => {
 				className='flex flex-col items-center justify-center mx-auto gap-10'
 			>
 				<Hero />
-				{firstRender && (
-					<div id='word-cloud'>
+				{/*Height set to avoid popping before rendering cloud */}
+				<div id='word-cloud' style={{ height: 'clamp(330px, 90vw, 418px' }}>
+					{firstRender && (
 						<WordCloud wordsArray={demoArray} size={{ w: width, h: width }} />
-					</div>
-				)}
+					)}
+				</div>
+
 				<div id='button-group' className='flex flex-row gap-2 items-center'>
 					<Button type='action' text='Create New' />
 					<span className='font-serif'>or</span>
