@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import { useMeasure } from 'react-use';
 import Button from '../components/Button/Button';
+import Footer from '../components/Footer/Footer';
 import Header from '../components/Header/Header';
 import Hero from '../components/Hero/Hero';
 import Table from '../components/Table/Table';
@@ -32,7 +33,7 @@ const Home: NextPage = () => {
 				// @ts-ignore
 				ref={ref}
 				style={{ width: 'clamp(330px, 90vw, 418px' }}
-				className='flex flex-col items-center justify-center mx-auto gap-10'
+				className='flex flex-col items-center justify-center mx-auto gap-14'
 			>
 				<Hero />
 				{/*Height set to avoid popping before rendering cloud */}
@@ -49,6 +50,7 @@ const Home: NextPage = () => {
 				</div>
 				<Table />
 			</main>
+			<Footer />
 		</>
 	);
 };
