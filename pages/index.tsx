@@ -5,6 +5,7 @@ import { useMeasure } from 'react-use';
 import Button from '../components/Button/Button';
 import Header from '../components/Header/Header';
 import Hero from '../components/Hero/Hero';
+import Table from '../components/Table/Table';
 import WordCloud from '../components/WordCloud/WordCloud';
 import demoArray from '../lib/data';
 
@@ -46,6 +47,7 @@ const Home: NextPage = () => {
 					<span className='font-serif'>or</span>
 					<Button type='upload' text='Upload'></Button>
 				</div>
+				<Table />
 			</main>
 		</>
 	);
