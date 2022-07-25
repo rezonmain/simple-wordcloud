@@ -3,7 +3,7 @@ import Divider from '../Divider/Divider';
 const Hero = () => {
 	return (
 		<div id='hero' className='flex flex-col gap-3 justify-center'>
-			<h1 className='font-serif text-4xl leading-[56px] max-w-[416px]'>
+			<h1 className='font-serif text-4xl text-justify leading-[56px]'>
 				Create, nice & <b>S</b>imple <b>W</b>ord <b>C</b>louds
 			</h1>
 			<Divider />

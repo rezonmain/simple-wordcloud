@@ -1,4 +1,5 @@
 import { Html, Head, Main, NextScript } from 'next/document';
+import Footer from '../components/Footer/Footer';
 
 const Document = () => {
 	return (
@@ -19,6 +20,7 @@ const Document = () => {
 				<Main />
 				<NextScript />
 			</body>
+			<Footer />
 		</Html>
 	);
 };

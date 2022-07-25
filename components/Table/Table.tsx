@@ -1,9 +1,13 @@
 import { BsPlusCircleFill } from 'react-icons/bs';
 import { SavedCloud } from '../../lib/types';
 import TableRow from './TableRow';
+import Link from 'next/link';
+
 const Table = ({ savedClouds }: { savedClouds: SavedCloud[] }) => {
 	const rows = savedClouds.map((cloud) => {
-		return <TableRow name={cloud.name} date={prettyDate(cloud.ts)} />;
+		return (
+			<TableRow key={cloud.id} name={cloud.name} date={prettyDate(cloud.ts)} />
+		);
 	});
 	return (
 		<div className='font-serif w-full flex flex-col border border-black max-h-80'>
@@ -18,7 +22,9 @@ const Table = ({ savedClouds }: { savedClouds: SavedCloud[] }) => {
 				<tbody>{rows}</tbody>
 			</table>
 			<div id='add-icon' className='flex justify-end p-4'>
-				<BsPlusCircleFill size={'2.25rem'} />
+				<Link href={'/create'}>
+					<BsPlusCircleFill size={'2.25rem'} className='control' />
+				</Link>
 			</div>
 		</div>
 	);

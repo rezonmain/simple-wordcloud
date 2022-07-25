@@ -8,6 +8,7 @@ import Hero from '../Hero/Hero';
 import Table from '../Table/Table';
 import WordCloud from '../WordCloud/WordCloud';
 import demo from '../../lib/data';
+import Link from 'next/link';
 
 const HomePage = () => {
 	// Allows wordcloud to get correct ref after first render
@@ -28,7 +29,7 @@ const HomePage = () => {
 			<main
 				// @ts-ignore
 				ref={ref}
-				style={{ width: 'clamp(330px, 90vw, 418px' }}
+				style={{ width: 'clamp(320px, 90vw, 480px' }}
 				className='flex flex-col items-center justify-center mx-auto gap-14 my-4'
 			>
 				<Hero />
@@ -43,13 +44,14 @@ const HomePage = () => {
 				</div>
 
 				<div id='button-group' className='flex flex-row gap-2 items-center'>
-					<Button type='action' text='Create New' />
+					<Link href={'/create'}>
+						<Button type='action' text='Create New' />
+					</Link>
 					<span className='font-serif'>or</span>
 					<Button type='upload' text='Upload'></Button>
 				</div>
 				<Table savedClouds={demo} />
 			</main>
-			<Footer />
 		</>
 	);
 };
