@@ -36,7 +36,7 @@ const HomePage = () => {
 				<div id='word-cloud' style={{ height: 'clamp(330px, 90vw, 418px' }}>
 					{firstRender && (
 						<WordCloud
-							wordsArray={demo.wordArray}
+							wordsArray={demo[0].wordArray}
 							size={{ w: width, h: width }}
 						/>
 					)}
@@ -47,7 +47,7 @@ const HomePage = () => {
 					<span className='font-serif'>or</span>
 					<Button type='upload' text='Upload'></Button>
 				</div>
-				<Table />
+				<Table savedClouds={demo} />
 			</main>
 			<Footer />
 		</>
