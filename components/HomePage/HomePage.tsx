@@ -7,7 +7,7 @@ import Header from '../Header/Header';
 import Hero from '../Hero/Hero';
 import Table from '../Table/Table';
 import WordCloud from '../WordCloud/WordCloud';
-import demoArray from '../../lib/data';
+import demo from '../../lib/data';
 
 const HomePage = () => {
 	// Allows wordcloud to get correct ref after first render
@@ -29,13 +29,16 @@ const HomePage = () => {
 				// @ts-ignore
 				ref={ref}
 				style={{ width: 'clamp(330px, 90vw, 418px' }}
-				className='flex flex-col items-center justify-center mx-auto gap-14'
+				className='flex flex-col items-center justify-center mx-auto gap-14 my-4'
 			>
 				<Hero />
 				{/*Height set to avoid popping before rendering cloud */}
 				<div id='word-cloud' style={{ height: 'clamp(330px, 90vw, 418px' }}>
 					{firstRender && (
-						<WordCloud wordsArray={demoArray} size={{ w: width, h: width }} />
+						<WordCloud
+							wordsArray={demo.wordArray}
+							size={{ w: width, h: width }}
+						/>
 					)}
 				</div>
 
