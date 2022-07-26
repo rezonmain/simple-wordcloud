@@ -17,11 +17,11 @@ const Button = React.forwardRef(
 				ref={ref as LegacyRef<HTMLAnchorElement>}
 			>
 				{type === 'action' ? (
-					<button className='button-base control bg-neutral-800 text-neutral-100'>
+					<button className='button-base control bg-neutral-800 text-neutral-100 text-2xl'>
 						{text}
 					</button>
 				) : (
-					<button className='button-base control bg-neutral-300 text-neutral-800 flex flex-row items-center gap-1 px-4'>
+					<button className='button-base control bg-neutral-300 text-neutral-800 text-2xl flex flex-row items-center gap-1 px-4'>
 						<BsFileEarmarkArrowUp />
 						{text}
 					</button>

@@ -8,7 +8,6 @@ import Table from '../Table/Table';
 import WordCloud from '../WordCloud/WordCloud';
 import demo from '../../lib/data';
 import Link from 'next/link';
-import useDownload from '../../lib/hooks/useDownload';
 
 const HomePage = () => {
 	// Allows wordcloud to get correct ref after first render

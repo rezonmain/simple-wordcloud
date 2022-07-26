@@ -14,7 +14,7 @@ const Hero = () => {
 		<div
 			ref={ref as LegacyRef<HTMLDivElement>}
 			id='hero'
-			className='flex flex-col gap-10 justify-center items-center w-full'
+			className='flex flex-col gap-8 justify-center items-center w-full'
 		>
 			<div
 				id='wordcloud-title'
@@ -29,19 +29,19 @@ const Hero = () => {
 				id='hero-card'
 				className='font-serif font-semibold flex flex-col items-center text-xl gap-2 w-full justify-center'
 			>
-				<div className='flex flex-row gap-10 text-center items-center bg-neutral-300 rounded-xl p-4 w-full'>
+				<div className='flex flex-row gap-3 text-center items-center bg-neutral-300 rounded-xl p-4 w-full'>
 					<BsFileEarmarkArrowUp size={60} />
 					<h3 className='w-[20ch]'>Upload file (.pdf, .txt, .docx)</h3>
 				</div>
 
 				<VLine height={40} />
-				<div className='flex flex-row gap-10 text-center items-center bg-neutral-300 rounded-xl p-4 w-full'>
+				<div className='flex flex-row gap-3 text-center items-center bg-neutral-300 rounded-xl p-4 w-full'>
 					<BsPencilSquare size={60} />
 					<h3 className='w-[20ch]'>Generate cloud & make it your own</h3>
 				</div>
 
 				<VLine height={40} />
-				<div className='flex flex-row gap-10 text-center items-center bg-neutral-300 rounded-xl p-4 w-full'>
+				<div className='flex flex-row gap-3 text-center items-center bg-neutral-300 rounded-xl p-4 w-full'>
 					<BsCloudDownload size={60} />
 					<h3 className='w-[20ch]'>Download & share</h3>
 				</div>
