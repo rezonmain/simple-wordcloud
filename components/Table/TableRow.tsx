@@ -8,10 +8,10 @@ interface TableRowProps {
 const TableRow = ({ id, name, date }: TableRowProps) => {
 	return (
 		<tr className='border-b border-b-black h-10'>
-			<td className='text-sm'>{name}</td>
+			<td className='text-sm px-4'>{name}</td>
 			<td className='text-sm'>{date}</td>
 			<td width='8%'>
-				<div id='table-icons' className='flex flex-row gap-4 px-2'>
+				<div id='table-icons' className='flex flex-row gap-4 px-4'>
 					<BsTrashFill size={'1.7rem'} className='control' />
 					<BsFillArrowRightSquareFill size={'1.7rem'} className='control' />
 				</div>

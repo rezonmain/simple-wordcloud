@@ -2,7 +2,6 @@ import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import { useMeasure } from 'react-use';
 import Button from '../Button/Button';
-import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import Hero from '../Hero/Hero';
 import Table from '../Table/Table';
@@ -14,6 +13,10 @@ const HomePage = () => {
 	// Allows wordcloud to get correct ref after first render
 	const [firstRender, setFirstRender] = useState(false);
 	const [ref, { width }] = useMeasure();
+
+	const demoWordCloud = firstRender && (
+		<WordCloud wordsArray={demo[0].wordArray} size={{ w: width, h: width }} />
+	);
 
 	useEffect(() => {
 		setFirstRender(true);
@@ -35,12 +38,7 @@ const HomePage = () => {
 				<Hero />
 				{/*Height set to avoid popping before rendering cloud */}
 				<div id='word-cloud' style={{ height: 'clamp(330px, 90vw, 418px' }}>
-					{firstRender && (
-						<WordCloud
-							wordsArray={demo[0].wordArray}
-							size={{ w: width, h: width }}
-						/>
-					)}
+					{demoWordCloud}
 				</div>
 
 				<div id='button-group' className='flex flex-row gap-2 items-center'>

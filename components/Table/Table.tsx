@@ -12,9 +12,9 @@ const Table = ({ savedClouds }: { savedClouds: SavedCloud[] }) => {
 	return (
 		<div className='font-serif w-full flex flex-col border border-black max-h-80'>
 			<table>
-				<thead className='bg-neutral-800 text-neutral-100'>
+				<thead className='bg-neutral-800 text-neutral-100 text-lg'>
 					<tr>
-						<th colSpan={3} className='font-normal'>
+						<th colSpan={3} className='font-normal p-2'>
 							Your previous word clouds
 						</th>
 					</tr>
