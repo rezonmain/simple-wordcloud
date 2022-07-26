@@ -1,4 +1,4 @@
-const SVG = () => {
+const SVG = ({ factor }: { factor: number }) => {
 	return (
 		<svg
 			width='320.8349'
@@ -6,6 +6,7 @@ const SVG = () => {
 			id='wc-svg'
 			version='1.1'
 			xmlns='http://www.w3.org/2000/svg'
+			style={{ transform: `scale(${factor})` }}
 		>
 			<g transform='translate(165.36681,141.90164)'>
 				<text
