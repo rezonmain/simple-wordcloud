@@ -8,6 +8,7 @@ import Table from '../Table/Table';
 import WordCloud from '../WordCloud/WordCloud';
 import demo from '../../lib/data';
 import Link from 'next/link';
+import useDownload from '../../lib/hooks/useDownload';
 
 const HomePage = () => {
 	// Allows wordcloud to get correct ref after first render
@@ -36,10 +37,6 @@ const HomePage = () => {
 				className='flex flex-col items-center justify-center mx-auto gap-14 my-4'
 			>
 				<Hero />
-				{/*Height set to avoid popping before rendering cloud */}
-				<div id='word-cloud' style={{ height: 'clamp(330px, 90vw, 418px' }}>
-					{demoWordCloud}
-				</div>
 
 				<div id='button-group' className='flex flex-row gap-2 items-center'>
 					<Link href={'/create'}>

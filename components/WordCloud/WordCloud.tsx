@@ -17,8 +17,8 @@ const WordCloud = ({ wordsArray, size, config }: WordCloudProps) => {
 			.append('svg')
 			.attr('width', l.size.w)
 			.attr('height', l.size.h)
+			.attr('id', 'wc-svg')
 			.append('g')
-			.style('position', 'relative')
 			.attr('transform', `translate(${l.size.w / 2},${l.size.h / 2})`);
 
 		// Create the text from data array
@@ -44,7 +44,7 @@ const WordCloud = ({ wordsArray, size, config }: WordCloudProps) => {
 			.duration(500)
 			.style('font-size', (d) => d.size + 'px')
 			.style('font-family', (d) => d.font as string)
-			.style('fill', '#000000')
+			.style('fill', '#262626')
 			.text((d) => d.text as string);
 	};
 
