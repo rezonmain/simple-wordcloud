@@ -1,7 +1,7 @@
 import { LegacyRef } from 'react';
 import { useMeasure } from 'react-use';
 import Divider from '../Divider/Divider';
-import SVG from './svg';
+import SVG from './SVG';
 const Hero = () => {
 	const [ref, { width }] = useMeasure();
 	return (
