@@ -1,4 +1,5 @@
-const SVG = ({ factor }: { factor: number }) => {
+import { animate, motion } from 'framer-motion';
+const SVG = ({ size }: { size: number }) => {
 	return (
 		<svg
 			width='321'
@@ -6,10 +7,10 @@ const SVG = ({ factor }: { factor: number }) => {
 			id='wc-svg'
 			version='1.1'
 			xmlns='http://www.w3.org/2000/svg'
-			style={{ transform: `scale(${factor})` }}
+			style={{ transform: `scale(${size / 321})` }}
 		>
 			<g transform='translate(165.36681,141.90164)'>
-				<text
+				<motion.text
 					textAnchor='middle'
 					transform='scale(1.0363149,0.96495767)'
 					fontFamily='Helvetica'
@@ -20,8 +21,8 @@ const SVG = ({ factor }: { factor: number }) => {
 					y='-74.191521'
 				>
 					nice
-				</text>
-				<text
+				</motion.text>
+				<motion.text
 					textAnchor='middle'
 					transform='scale(1.0363149,0.96495767)'
 					fontFamily='Helvetica'
@@ -32,8 +33,8 @@ const SVG = ({ factor }: { factor: number }) => {
 					y='-0.45052755'
 				>
 					simple
-				</text>
-				<text
+				</motion.text>
+				<motion.text
 					textAnchor='middle'
 					transform='scale(1.0363149,0.96495767)'
 					fontFamily='Helvetica'
@@ -44,8 +45,8 @@ const SVG = ({ factor }: { factor: number }) => {
 					y='65.013412'
 				>
 					word
-				</text>
-				<text
+				</motion.text>
+				<motion.text
 					textAnchor='middle'
 					transform='scale(1.0363149,0.96495767)'
 					fontFamily='Helvetica'
@@ -56,7 +57,7 @@ const SVG = ({ factor }: { factor: number }) => {
 					y='114.67571'
 				>
 					clouds
-				</text>
+				</motion.text>
 				<text
 					textAnchor='middle'
 					transform='scale(1.0363149,0.96495767)'

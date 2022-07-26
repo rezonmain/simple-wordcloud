@@ -1,4 +1,4 @@
-import { MdOutlineUploadFile } from 'react-icons/md';
+import { BsFileEarmarkArrowUp } from 'react-icons/bs';
 import React, { LegacyRef } from 'react';
 
 interface ButtonProp {
@@ -22,7 +22,7 @@ const Button = React.forwardRef(
 					</button>
 				) : (
 					<button className='button-base control bg-neutral-300 text-neutral-800 flex flex-row items-center gap-1 px-4'>
-						<MdOutlineUploadFile />
+						<BsFileEarmarkArrowUp />
 						{text}
 					</button>
 				)}
