@@ -23,7 +23,11 @@ const Table = ({ savedClouds }: { savedClouds: SavedCloud[] }) => {
 			</table>
 			<div id='add-icon' className='flex justify-end p-4'>
 				<Link href={'/create'}>
-					<BsPlusCircleFill size={'2.25rem'} className='control' />
+					<BsPlusCircleFill
+						size={'2.25rem'}
+						className='control'
+						color='#262626'
+					/>
 				</Link>
 			</div>
 		</div>

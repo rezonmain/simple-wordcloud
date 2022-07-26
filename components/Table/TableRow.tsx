@@ -12,8 +12,12 @@ const TableRow = ({ id, name, date }: TableRowProps) => {
 			<td className='text-sm'>{date}</td>
 			<td width='8%'>
 				<div id='table-icons' className='flex flex-row gap-4 px-4'>
-					<BsTrashFill size={'1.7rem'} className='control' />
-					<BsFillArrowRightSquareFill size={'1.7rem'} className='control' />
+					<BsTrashFill size={'1.7rem'} className='control' color='#262626' />
+					<BsFillArrowRightSquareFill
+						size={'1.7rem'}
+						className='control'
+						color='#262626'
+					/>
 				</div>
 			</td>
 		</tr>
