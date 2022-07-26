@@ -1,8 +1,8 @@
 const SVG = ({ factor }: { factor: number }) => {
 	return (
 		<svg
-			width='320.8349'
-			height='280.21201'
+			width='321'
+			height='290'
 			id='wc-svg'
 			version='1.1'
 			xmlns='http://www.w3.org/2000/svg'

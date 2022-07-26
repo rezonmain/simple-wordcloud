@@ -12,10 +12,10 @@ const Hero = () => {
 		>
 			<div
 				id='wordcloud-title'
-				style={{ height: width }}
+				style={{ height: width - 30 }}
 				className='flex justify-center items-center'
 			>
-				<SVG factor={width / 320.849} />
+				<SVG factor={width / 321} />
 			</div>
 			<Divider />
 

@@ -34,7 +34,7 @@ const HomePage = () => {
 				// @ts-ignore
 				ref={ref}
 				style={{ width: 'clamp(320px, 90vw, 480px' }}
-				className='flex flex-col items-center justify-center mx-auto gap-14 my-4'
+				className='flex flex-col items-center justify-center mx-auto gap-14 my-10'
 			>
 				<Hero />
 
