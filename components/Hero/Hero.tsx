@@ -14,7 +14,7 @@ const Hero = () => {
 		<div
 			ref={ref as LegacyRef<HTMLDivElement>}
 			id='hero'
-			className='flex flex-col gap-3 justify-center items-center w-full'
+			className='flex flex-col gap-10 justify-center items-center w-full'
 		>
 			<div
 				id='wordcloud-title'
@@ -27,7 +27,7 @@ const Hero = () => {
 
 			<div
 				id='hero-card'
-				className='font-serif font-semibold flex flex-col items-center text-xl py-6 gap-2 w-full justify-center'
+				className='font-serif font-semibold flex flex-col items-center text-xl gap-2 w-full justify-center'
 			>
 				<div className='flex flex-row gap-10 text-center items-center bg-neutral-300 rounded-xl p-4 w-full'>
 					<BsFileEarmarkArrowUp size={60} />
