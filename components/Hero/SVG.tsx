@@ -7,7 +7,7 @@ const SVG = ({ size }: { size: number }) => {
 			id='wc-svg'
 			version='1.1'
 			xmlns='http://www.w3.org/2000/svg'
-			style={{ transform: `scale(${size / 321})` }}
+			style={{ transform: `scale(${size / 321})`, position: 'relative' }}
 		>
 			<g transform='translate(165.36681,141.90164)'>
 				<motion.text

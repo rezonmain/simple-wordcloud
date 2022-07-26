@@ -1,8 +1,7 @@
-const VLine = ({ height }: { height: number }) => {
+const VLine = ({ className }: { className: string }) => {
 	return (
 		<span
-			style={{ height }}
-			className='block rounded-lg w-[5px] bg-neutral-800'
+			className={'block rounded-lg w-[5px] bg-neutral-800' + ' ' + className}
 		></span>
 	);
 };
