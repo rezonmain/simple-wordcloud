@@ -1,11 +1,11 @@
 import Divider from '../Divider/Divider';
-
+import SVG from './svg';
 const Hero = () => {
 	return (
 		<div id='hero' className='flex flex-col gap-3 justify-center'>
-			<h1 className='font-serif text-4xl text-justify leading-[56px]'>
-				Create, nice & <b>S</b>imple <b>W</b>ord <b>C</b>louds
-			</h1>
+			<div id='wordcloud-title' className='flex justify-center'>
+				<SVG />
+			</div>
 			<Divider />
 
 			<h4 className='font-serif text-xl font-normal'>
