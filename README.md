@@ -31,7 +31,7 @@ Generate simple wordclouds from text file or text input. It uses D3.js to genera
   - [ ] Option to keep stop words and pronouns (eng, fre, esp)
 
 - [ ] Make 'create' page
-- [ ] Make landing page
+- [x] Make landing page
 - [ ] Implement chart saving to LS functionality
 - [ ] Style pages according to desgin
 - [ ] Add user friendly animations

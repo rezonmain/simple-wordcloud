@@ -1,5 +1,16 @@
 import { animate, motion } from 'framer-motion';
 const SVG = ({ size }: { size: number }) => {
+	const floating = {
+		x: [0, 0.1, 0.4, 0.7, 1, 1.1, 1.4, 1.7, 1.4, 1.1, 0.7, 0.4, 0.1, 0],
+		y: [
+			0, 0.1, 0.2, 0.2, 0.5, 0.6, 0.9, 1.2, 1.3, 1.5, 1.7, 2, 1.7, 1.2, 0.9,
+			0.5, 0.2, 0,
+		],
+	};
+	const transition = {
+		ease: 'easeInOut',
+		repeat: Infinity,
+	};
 	return (
 		<svg
 			width='321'
@@ -19,6 +30,12 @@ const SVG = ({ size }: { size: number }) => {
 					id='text2'
 					x='18.909632'
 					y='-74.191521'
+					animate={floating}
+					transition={{
+						...transition,
+						duration: 5,
+						repeatDelay: 2,
+					}}
 				>
 					nice
 				</motion.text>
@@ -31,6 +48,12 @@ const SVG = ({ size }: { size: number }) => {
 					id='text4'
 					x='4.6129112'
 					y='-0.45052755'
+					animate={floating}
+					transition={{
+						...transition,
+						duration: 3,
+						repeatDelay: 3,
+					}}
 				>
 					simple
 				</motion.text>
@@ -43,6 +66,12 @@ const SVG = ({ size }: { size: number }) => {
 					id='text6'
 					x='-34.514961'
 					y='65.013412'
+					animate={floating}
+					transition={{
+						...transition,
+						duration: 6,
+						repeatDelay: 0,
+					}}
 				>
 					word
 				</motion.text>
@@ -55,6 +84,12 @@ const SVG = ({ size }: { size: number }) => {
 					id='text8'
 					x='-1.4067614'
 					y='114.67571'
+					animate={floating}
+					transition={{
+						...transition,
+						duration: 4,
+						repeatDelay: 0,
+					}}
 				>
 					clouds
 				</motion.text>

@@ -21,7 +21,7 @@ const Button = React.forwardRef(
 						{text}
 					</button>
 				) : type === 'upload' ? (
-					<button className='button-base control bg-neutral-300 text-neutral-800 text-2xl flex flex-row items-center gap-1 px-4'>
+					<button className='button-base control bg-neutral-300 text-neutral-800 text-2xl flex flex-row items-center gap-2 px-4'>
 						<BsFileEarmarkArrowUp />
 						{text}
 					</button>

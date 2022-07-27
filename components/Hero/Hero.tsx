@@ -38,12 +38,12 @@ const Hero = () => {
 					text='Upload file (.pdf, .txt, .docx)'
 					icon={<BsFileEarmarkArrowUp size={stepIconSize} />}
 				/>
-				<VLine className='h-8 lg:h-4' />
+				<VLine className='h-6 lg:h-4' />
 				<Step
 					text='Generate cloud & make it your own'
 					icon={<BsPencilSquare size={stepIconSize} />}
 				/>
-				<VLine className='h-8 lg:h-4' />
+				<VLine className='h-6 lg:h-4' />
 				<Step
 					text='Download & share'
 					icon={<BsCloudDownload size={stepIconSize} />}
