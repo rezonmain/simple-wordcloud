@@ -1,21 +1,19 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
-import WordCloudWidget from '../components/WordCloud/WordCloudWidget';
+import CreatePage from '../components/CreatePage/CreatePage';
 
 const Create: NextPage = () => {
 	return (
 		<>
 			<Head>
-				<title>Simple Word Cloud</title>
+				<title>Create Cloud</title>
 				<meta
-					name='description'
-					content='Generate simple word clouds from text input or files'
+					name='Create word cloud'
+					content='Create page for simple word cloud'
 				/>
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
-			<main>
-				<WordCloudWidget />
-			</main>
+			<CreatePage />
 		</>
 	);
 };
