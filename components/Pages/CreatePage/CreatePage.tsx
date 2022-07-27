@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import TextControls from '../TextControls/TextControls';
-import Toolbar from '../Toolbar/Toolbar';
+import TextControls from '../../TextControls/TextControls';
+import Toolbar from '../../Toolbar/Toolbar';
 
 const CreatePage = () => {
 	const [textOrFile, setTextOrFile] = useState(false);

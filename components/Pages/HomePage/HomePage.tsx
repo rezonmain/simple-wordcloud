@@ -1,12 +1,12 @@
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import { useMeasure } from 'react-use';
-import Button from '../Button/Button';
-import Header from '../Header/Header';
-import Hero from '../Hero/Hero';
-import Table from '../Table/Table';
-import WordCloud from '../WordCloud/WordCloud';
-import demo from '../../lib/data';
+import Button from '../../Button/Button';
+import Header from '../../Header/Header';
+import Hero from '../../Hero/Hero';
+import Table from '../../Table/Table';
+import WordCloud from '../../WordCloud/WordCloud';
+import demo from '../../../lib/data';
 import Link from 'next/link';
 
 const HomePage = () => {
