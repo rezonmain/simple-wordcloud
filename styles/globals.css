@@ -36,4 +36,9 @@ a {
 		@apply filter hover:scale-[1.04] transition-transform duration-200 cursor-pointer;
 		-webkit-tap-highlight-color: transparent;
 	}
+
+	.control-base {
+		@apply cursor-pointer;
+		-webkit-tap-highlight-color: transparent;
+	}
 }

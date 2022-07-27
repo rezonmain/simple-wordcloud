@@ -3,10 +3,10 @@ import { IoMenuSharp } from 'react-icons/io5';
 
 const Toolbar = ({ title }: { title: string }) => {
 	return (
-		<header className='font-serif bg-neutral-800 text-neutral-100 flex flex-row justify-between items-center h-14 px-4'>
+		<header className='font-serif bg-neutral-800 text-neutral-100 flex flex-row justify-between items-center h-14 px-4 gap-2'>
 			<div
 				id='burger-button'
-				className='py-1 px-2 bg-neutral-700 rounded-lg cursor-pointer active:brightness-75'
+				className='control-base py-1 px-2 bg-neutral-700 rounded-lg active:brightness-75'
 			>
 				<IoMenuSharp size={'1.50rem'} />
 			</div>
