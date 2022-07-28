@@ -16,6 +16,7 @@ import {
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import { IoChevronForward } from 'react-icons/io5';
+import useMedia from '../../lib/hooks/useMedia';
 import MyDivider from '../Divider/Divider';
 import Footer from '../Footer/Footer';
 

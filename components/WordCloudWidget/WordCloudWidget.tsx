@@ -6,6 +6,7 @@ import { MutableRefObject, useMemo, useRef, useState } from 'react';
 const WordCloudWidget = () => {
 	const [zoom, setZoom] = useState(1);
 	const divRef = useRef() as MutableRefObject<HTMLDivElement>;
+	// Use memo is to control the WordCloud rendering
 	const wordCloud = useMemo(
 		() => (
 			<WordCloud size={{ w: 900, h: 900 }} wordsArray={demo[0].wordArray} />

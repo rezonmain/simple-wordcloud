@@ -12,9 +12,8 @@ const Toolbar = ({
 	btnRef: MutableRefObject<HTMLDivElement>;
 	onOpen: () => void;
 }) => {
-	const sizeRef = useRef() as MutableRefObject<HTMLDivElement>;
 	return (
-		<header className='font-serif bg-neutral-800 text-neutral-100 flex flex-row justify-between items-center h-14 px-4 gap-2'>
+		<header className='sticky top-0 z-10 font-serif bg-neutral-800 text-neutral-100 flex flex-row justify-between items-center h-14 px-4 gap-2'>
 			<ToolbarMenu />
 			<div
 				onClick={onOpen}
