@@ -11,7 +11,7 @@ const Footer = () => {
 					<BsTwitter size='2rem' fill='#f5f5f5' />
 				</a>
 			</div>
-			<span className='=text-sm'>&copy; 2022 rezonmain</span>
+			<span className='text-md text-center'>&copy; 2022 rezonmain</span>
 		</footer>
 	);
 };

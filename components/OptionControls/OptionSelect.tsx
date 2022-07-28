@@ -6,6 +6,7 @@ const OptionSelect = () => {
 			<Select
 				size={'lg'}
 				fontFamily={'Maitree'}
+				fontSize={'1rem'}
 				placeholder='Font'
 				variant={'filled'}
 				bg='#f5f5f5'
