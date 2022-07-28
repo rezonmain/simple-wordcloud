@@ -7,10 +7,10 @@ const OptionControls = () => {
 		<section className='flex flex-col'>
 			<div
 				id='section-title'
-				className='flex flex-row gap-2 font-serif text-xl bg-neutral-300 items-center p-2 w-fit'
+				className='flex flex-row gap-2 font-serif text-xl bg-neutral-300 items-center p-3 w-fit'
 			>
 				<BsGear />
-				<span className=' font-semibold'>Options</span>
+				<span className='font-semibold'>Options</span>
 			</div>
 			<form>
 				<div

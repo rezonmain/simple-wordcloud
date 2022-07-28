@@ -7,7 +7,7 @@ const CreatePage = () => {
 	return (
 		<>
 			<Toolbar title={'untitled-1'} />
-			<main className='w-[97vw] mx-auto my-3 flex flex-col gap-2'>
+			<main className='w-[97vw] mx-auto my-3 flex flex-col gap-3'>
 				<TextControls />
 				<OptionControls />
 			</main>
