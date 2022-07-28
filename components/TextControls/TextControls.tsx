@@ -6,7 +6,7 @@ import Switch from '../Switch/Switch';
 const TextControls = () => {
 	const [textOrFile, setTextOrFile] = useState(false);
 	return (
-		<section className='flex flex-col gap-1'>
+		<section className='flex flex-col'>
 			<div className='flex flex-row gap-2 font-serif text-xl bg-neutral-300 items-center p-2 w-fit'>
 				<span>Text</span>
 				<Switch
