@@ -20,9 +20,7 @@ const ToolbarMenu = () => {
 		rightIcon: <IoChevronDown size={14} />,
 	};
 
-	const menuListStylesProps = {
-		bg: '#f5f5f5',
-	};
+	const menuListStylesProps = {};
 
 	const menuItemStylesProps = {
 		_hover: { backgroundColor: '#d4d4d4' },
@@ -30,10 +28,10 @@ const ToolbarMenu = () => {
 		_focus: { backgroundColor: 'inherit' },
 	};
 	return (
-		<div className='hidden lg:flex font-serif text-neutral-800 flex-row items-center gap-4'>
+		<div className='hidden lg:flex font-serif text-neutral-800 flex-row items-center gap-6'>
 			<Link href={'/'}>
-				<a>
-					<span className='block text-neutral-100'>SWC</span>
+				<a className=' ml-6'>
+					<span className='block text-neutral-100 text-xl'>SWC</span>
 					<MyDivider color='bg-neutral-100' />
 				</a>
 			</Link>
@@ -48,7 +46,7 @@ const ToolbarMenu = () => {
 				</Menu>
 				<Menu isLazy={true}>
 					<MenuButton {...buttonStylesProps}>Download</MenuButton>
-					<MenuList>
+					<MenuList {...menuListStylesProps}>
 						<MenuItem {...menuItemStylesProps}>as SVG</MenuItem>
 						<MenuItem {...menuItemStylesProps}>as JPEG</MenuItem>
 						<MenuItem {...menuItemStylesProps}>as PNG</MenuItem>
@@ -56,7 +54,7 @@ const ToolbarMenu = () => {
 				</Menu>
 				<Menu isLazy={true}>
 					<MenuButton {...buttonStylesProps}>Adv. Options</MenuButton>
-					<MenuList>
+					<MenuList {...menuListStylesProps}>
 						<MenuItem {...menuItemStylesProps}>Word scaling...</MenuItem>
 						<MenuItem {...menuItemStylesProps}>Word spacing...</MenuItem>
 					</MenuList>
