@@ -14,6 +14,7 @@ import {
 	Flex,
 	Divider,
 } from '@chakra-ui/react';
+import Link from 'next/link';
 import { IoChevronForward } from 'react-icons/io5';
 import MyDivider from '../Divider/Divider';
 import Footer from '../Footer/Footer';
@@ -54,7 +55,12 @@ const SideBar = ({
 					<DrawerCloseButton color={'#f5f5f5'} />
 					<DrawerHeader>
 						<div className='text-neutral-100 font-serif text-2xl'>
-							<span className='block'>SWC</span>
+							<Link href={'/'}>
+								<a>
+									<span className='block'>SWC</span>
+								</a>
+							</Link>
+
 							<MyDivider color='bg-neutral-100' />
 						</div>
 					</DrawerHeader>
