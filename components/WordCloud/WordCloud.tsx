@@ -64,7 +64,7 @@ const WordCloud = ({ wordsArray, size, config }: WordCloudProps) => {
 		cl.start();
 	});
 
-	return <div id='cloud-wrapper'></div>;
+	return <div id='cloud-wrapper' className='select-none'></div>;
 };
 
 export default WordCloud;

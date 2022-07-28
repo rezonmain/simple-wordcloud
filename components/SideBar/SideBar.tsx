@@ -54,7 +54,7 @@ const SideBar = ({
 				<DrawerOverlay />
 				<DrawerContent bg={'#262626'}>
 					<DrawerCloseButton color={'#f5f5f5'} />
-					<DrawerHeader>
+					<DrawerHeader paddingLeft={'0.5rem'}>
 						<div className='text-neutral-100 font-serif text-2xl'>
 							<Link href={'/'}>
 								<a>
