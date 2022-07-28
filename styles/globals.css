@@ -13,6 +13,7 @@ a {
 
 * {
 	box-sizing: border-box;
+	-webkit-tap-highlight-color: transparent;
 }
 
 .centered {
@@ -29,16 +30,13 @@ a {
 @layer components {
 	.button-base {
 		@apply rounded-lg py-1 px-7 font-serif text-xl drop-shadow-noBlur;
-		-webkit-tap-highlight-color: transparent;
 	}
 
 	.control {
 		@apply filter hover:scale-[1.04] transition-transform duration-200 cursor-pointer;
-		-webkit-tap-highlight-color: transparent;
 	}
 
 	.control-base {
 		@apply cursor-pointer;
-		-webkit-tap-highlight-color: transparent;
 	}
 }
