@@ -13,7 +13,7 @@ const CreatePage = () => {
 		<>
 			<Toolbar btnRef={btnRef} onOpen={onOpen} title={'untitled-1'} />
 			<SideBar isOpen={isOpen} onClose={onClose} />
-			<main className='w-[97vw] mx-auto my-3 flex flex-col gap-3'>
+			<main className='w-[97vw] mx-auto my-3 flex flex-col justify-center  gap-3 min-w-[330px] max-w-[510px] xl:flex-row xl:max-w-[880px] xl:w-full'>
 				<TextControls />
 				<OptionControls />
 			</main>

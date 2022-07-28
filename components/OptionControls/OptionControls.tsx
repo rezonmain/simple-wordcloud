@@ -4,7 +4,7 @@ import OptionSelect from './OptionSelect';
 import OptionSlider from './OptionsSlider';
 const OptionControls = () => {
 	return (
-		<section className='flex flex-col'>
+		<section className='flex flex-col w-full'>
 			<div
 				id='section-title'
 				className='flex flex-row gap-2 font-serif text-xl bg-neutral-300 items-center p-3 w-fit'
