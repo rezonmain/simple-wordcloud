@@ -1,7 +1,7 @@
-import Layout, { LayoutConfig } from '../../lib/Layout';
+import CloudLayout, { LayoutConfig } from '../../lib/CloudLayout';
 import * as d3 from 'd3';
 import d3Cloud from 'd3-cloud';
-import { useEffect } from 'react';
+import { useEffect, memo } from 'react';
 
 interface WordCloudProps {
 	wordsArray: { text: string; size: number }[];
@@ -15,11 +15,11 @@ const WordCloud = ({ wordsArray, size, config }: WordCloudProps) => {
 		const container = d3
 			.select('#cloud-wrapper')
 			.append('svg')
-			.attr('width', l.size.w)
-			.attr('height', l.size.h)
+			.attr('width', cl.size.w)
+			.attr('height', cl.size.h)
 			.attr('id', 'wc-svg')
 			.append('g')
-			.attr('transform', `translate(${l.size.w / 2},${l.size.h / 2})`);
+			.attr('transform', `translate(${cl.size.w / 2},${cl.size.h / 2})`);
 
 		// Create the text from data array
 		const wordContainer = container
@@ -52,12 +52,17 @@ const WordCloud = ({ wordsArray, size, config }: WordCloudProps) => {
 		d3.select('#cloud-wrapper').selectAll('*').remove();
 	};
 
-	let l = new Layout(size, wordsArray, draw, config || Layout.DEFAULT);
+	let cl = new CloudLayout(
+		size,
+		wordsArray,
+		draw,
+		config || CloudLayout.DEFAULT
+	);
 
 	useEffect(() => {
 		removeCloud();
-		l.start();
-	}, [size, wordsArray, config]);
+		cl.start();
+	});
 
 	return <div id='cloud-wrapper'></div>;
 };

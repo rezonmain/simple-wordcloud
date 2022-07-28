@@ -14,7 +14,7 @@ export type LayoutConfig = {
 	rotations?: number;
 };
 
-class Layout {
+class CloudLayout {
 	size;
 	config: LayoutConfig;
 	wordsArray;
@@ -45,7 +45,7 @@ class Layout {
 		this.onWord = onWord;
 		// If config object is provided override the default configuration parameters
 		this.config = {
-			...Layout.DEFAULT,
+			...CloudLayout.DEFAULT,
 			...config,
 		};
 		this.wordsArray = this._limit(wordsArray, this.config.limit as number);
@@ -141,4 +141,4 @@ class Layout {
 	};
 }
 
-export default Layout;
+export default CloudLayout;
