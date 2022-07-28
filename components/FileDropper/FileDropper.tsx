@@ -15,7 +15,7 @@ const FileDropper = ({ onFile }: { onFile: (file: Blob) => void }) => {
 	const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 	return (
 		<div
-			className={`cursor-pointer rounded-lg border-dashed mx-auto flex items-center justify-center p-2 font-serif text-lg transition-colors h-full ${
+			className={`cursor-pointer rounded-lg border-dashed mx-auto flex items-center justify-center p-2 font-serif text-lg transition-colors h-[180px] ${
 				isDragActive
 					? 'bg-neutral-100 text-neutral-800'
 					: 'bg-neutral-800 text-neutral-100'

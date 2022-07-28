@@ -15,11 +15,16 @@ const TextControls = () => {
 				/>
 				<span>File</span>
 			</div>
-			<div className='h-[200px] bg-neutral-300 p-3'>
+			<div className='bg-neutral-300 p-3'>
 				{textOrFile ? (
 					<FileDropper onFile={() => {}} />
 				) : (
-					<Textarea height={'100%'} bgColor={'#f5f5f5'}></Textarea>
+					<Textarea
+						height={180}
+						bgColor={'#f5f5f5'}
+						resize={'vertical'}
+						maxHeight={300}
+					></Textarea>
 				)}
 			</div>
 		</section>

@@ -1,15 +1,15 @@
 import { useState } from 'react';
+import OptionControls from '../../OptionControls/OptionControls';
 import TextControls from '../../TextControls/TextControls';
 import Toolbar from '../../Toolbar/Toolbar';
 
 const CreatePage = () => {
-	const [textOrFile, setTextOrFile] = useState(false);
 	return (
 		<>
 			<Toolbar title={'untitled-1'} />
-			<main className='w-[97vw] mx-auto my-3'>
+			<main className='w-[97vw] mx-auto my-3 flex flex-col gap-2'>
 				<TextControls />
-				<div className='h-12'></div>
+				<OptionControls />
 			</main>
 		</>
 	);
