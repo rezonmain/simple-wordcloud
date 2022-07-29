@@ -26,7 +26,6 @@ const CreatePage = () => {
 					<TextControls />
 					<OptionControls />
 				</div>
-
 				<WordCloudWidget />
 			</main>
 		</>

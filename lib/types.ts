@@ -1,6 +1,9 @@
-export interface SavedCloud {
+import { LayoutConfig } from './CloudLayout';
+
+export type Cloud = {
 	id: string;
-	name: string;
+	title: string;
 	ts: number;
-	wordArray: { text: string; size: number }[];
-}
+	wordArray: { text: string; size: number; enabled: boolean }[];
+	layout: LayoutConfig;
+};

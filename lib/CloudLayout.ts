@@ -23,13 +23,13 @@ class CloudLayout {
 	angles;
 
 	static DEFAULT: LayoutConfig = {
+		font: 'Helvetica',
 		limit: 150,
 		lang: 'eng',
 		includeStopWords: false,
 		includePronouns: false,
 		scaling: 'linear',
 		padding: 1,
-		font: 'Helvetica',
 		angleTo: 90,
 		angleFrom: 0,
 		rotations: 1,

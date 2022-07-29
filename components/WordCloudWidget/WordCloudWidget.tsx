@@ -1,12 +1,20 @@
 import WordCloud from '../WordCloud/WordCloud';
 import demo from '../../lib/data';
-import { useGesture, usePinch } from '@use-gesture/react';
-import { MutableRefObject, useMemo, useRef, useState } from 'react';
+import { useGesture } from '@use-gesture/react';
+import { useMemo, useState } from 'react';
+import { useMedia } from 'react-use';
+
+/* 
+	TODO:
+	[ ] Make the zoom-in/out from the pinch origin or mouse position
+	[ ] Allow zoom-in/out with scroll wheel
+*/
 
 const WordCloudWidget = () => {
 	const [pan, setPan] = useState({ x: 0, y: 0, scale: 1 });
-	const divRef = useRef() as MutableRefObject<HTMLDivElement>;
-	// Use memo is to control the WordCloud rendering
+	const isTouch = useMedia('(hover: none) and (pointer: coarse)');
+
+	// useMemo is to control the WordCloud rendering
 	const wordCloud = useMemo(
 		() => (
 			<WordCloud size={{ w: 1000, h: 1000 }} wordsArray={demo[0].wordArray} />
@@ -14,6 +22,7 @@ const WordCloudWidget = () => {
 		[demo[0].wordArray]
 	);
 
+	// Touch gestures:
 	const bind = useGesture({
 		onDrag: ({ offset: [dx, dy] }) =>
 			setPan((prev) => ({ ...prev, x: dx, y: dy })),

@@ -1,12 +1,12 @@
 import { BsPlusCircleFill } from 'react-icons/bs';
-import { SavedCloud } from '../../lib/types';
+import { Cloud } from '../../lib/types';
 import TableRow from './TableRow';
 import Link from 'next/link';
 
-const Table = ({ savedClouds }: { savedClouds: SavedCloud[] }) => {
+const Table = ({ savedClouds }: { savedClouds: Cloud[] }) => {
 	const rows = savedClouds.map((cloud) => {
 		return (
-			<TableRow key={cloud.id} name={cloud.name} date={prettyDate(cloud.ts)} />
+			<TableRow key={cloud.id} name={cloud.title} date={prettyDate(cloud.ts)} />
 		);
 	});
 	return (
@@ -18,7 +18,7 @@ const Table = ({ savedClouds }: { savedClouds: SavedCloud[] }) => {
 				<thead className='bg-neutral-800 text-neutral-100 text-lg '>
 					<tr>
 						<th colSpan={3} className='font-normal p-2 rounded-t-lg'>
-							Your previous word clouds
+							Your saved word clouds
 						</th>
 					</tr>
 				</thead>
