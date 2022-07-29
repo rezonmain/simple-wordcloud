@@ -4,11 +4,9 @@ import { MutableRefObject, useRef } from 'react';
 import ToolbarMenu from './ToolbarMenu';
 
 const Toolbar = ({
-	title,
 	btnRef,
 	onOpen,
 }: {
-	title: string;
 	btnRef: MutableRefObject<HTMLDivElement>;
 	onOpen: () => void;
 }) => {
@@ -24,7 +22,7 @@ const Toolbar = ({
 				<IoMenuSharp size={'1.50rem'} />
 			</div>
 			<div className='w-fit'>
-				<EditableTitle title={title} />
+				<EditableTitle />
 			</div>
 			<div id='dummy-flex-2' className='w-[2.5rem] lg:w-[26.625rem]'></div>
 		</header>
