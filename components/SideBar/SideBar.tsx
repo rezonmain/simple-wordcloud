@@ -16,7 +16,6 @@ import {
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import { IoChevronForward } from 'react-icons/io5';
-import useMedia from '../../lib/hooks/useMedia';
 import MyDivider from '../Divider/Divider';
 import Footer from '../Footer/Footer';
 
@@ -79,7 +78,7 @@ const SideBar = ({
 							<Divider />
 							<Menu isLazy={true} placement={'end-start'}>
 								<MenuButton {...buttonStylesProps}>Download</MenuButton>
-								<MenuList>
+								<MenuList {...menuListStylesProps}>
 									<MenuItem {...menuItemStylesProps}>as SVG</MenuItem>
 									<MenuItem {...menuItemStylesProps}>as JPEG</MenuItem>
 									<MenuItem {...menuItemStylesProps}>as PNG</MenuItem>
@@ -88,7 +87,7 @@ const SideBar = ({
 							<Divider />
 							<Menu isLazy={true} placement={'end-start'}>
 								<MenuButton {...buttonStylesProps}>Adv. Options</MenuButton>
-								<MenuList>
+								<MenuList {...menuListStylesProps}>
 									<MenuItem {...menuItemStylesProps}>Word scaling...</MenuItem>
 									<MenuItem {...menuItemStylesProps}>Word spacing...</MenuItem>
 								</MenuList>

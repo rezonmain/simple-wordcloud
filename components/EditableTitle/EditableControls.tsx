@@ -17,6 +17,9 @@ const EditableControls = () => {
 	return isEditing ? (
 		<ButtonGroup justifyContent='center' size={'s'}>
 			<IconButton
+				_active={{ backgroundColor: '#525252' }}
+				_hover={{ backgroundColor: '#525252' }}
+				textColor={'#f5f5f5'}
 				aria-label='confirm-editing'
 				variant={'outline'}
 				colorScheme='whiteAlpha'
@@ -24,9 +27,11 @@ const EditableControls = () => {
 				{...getSubmitButtonProps()}
 			/>
 			<IconButton
+				_active={{ backgroundColor: '#525252' }}
+				_hover={{ backgroundColor: '#525252' }}
+				textColor={'#f5f5f5'}
 				aria-label='cancel-editing'
 				variant={'outline'}
-				colorScheme='whiteAlpha'
 				icon={<BsX size={30} />}
 				{...getCancelButtonProps()}
 			/>

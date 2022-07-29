@@ -18,7 +18,7 @@ const Hero = () => {
 			id='hero'
 			className='flex flex-col gap-8 justify-center items-center w-full lg:flex-row'
 		>
-			<div id='hero-wc-container' className='w-fit h-fit'>
+			<div id='hero-wc-container' className='w-fit h-fit select-none'>
 				<div
 					id='hero-wc'
 					style={{ height: width - 30, width: width }}

@@ -4,20 +4,21 @@ import { useGesture, usePinch } from '@use-gesture/react';
 import { MutableRefObject, useMemo, useRef, useState } from 'react';
 
 const WordCloudWidget = () => {
-	const [pan, setPan] = useState({ x: 0, y: 0 });
-	const [zoom, setZoom] = useState(1);
+	const [pan, setPan] = useState({ x: 0, y: 0, scale: 1 });
 	const divRef = useRef() as MutableRefObject<HTMLDivElement>;
 	// Use memo is to control the WordCloud rendering
 	const wordCloud = useMemo(
 		() => (
-			<WordCloud size={{ w: 900, h: 900 }} wordsArray={demo[0].wordArray} />
+			<WordCloud size={{ w: 1000, h: 1000 }} wordsArray={demo[0].wordArray} />
 		),
 		[demo[0].wordArray]
 	);
 
 	const bind = useGesture({
-		onDrag: ({ offset: [dx, dy] }) => setPan({ x: dx, y: dy }),
-		onPinch: ({ delta: [z, _] }) => setZoom((prev) => prev + z),
+		onDrag: ({ offset: [dx, dy] }) =>
+			setPan((prev) => ({ ...prev, x: dx, y: dy })),
+		onPinch: ({ delta: [z, _] }) =>
+			setPan((prev) => ({ ...prev, scale: prev.scale + z })),
 	});
 
 	return (
@@ -25,7 +26,7 @@ const WordCloudWidget = () => {
 			<div
 				{...bind()}
 				style={{
-					transform: `scale(${zoom})`,
+					transform: `scale(${pan.scale})`,
 					touchAction: 'none',
 					left: pan.x,
 					top: pan.y,
