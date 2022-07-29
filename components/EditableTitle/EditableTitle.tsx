@@ -34,10 +34,11 @@ const EditableTitle = () => {
 					fontSize={18}
 					size={'md'}
 					onChange={(e) => setNewTitle(e.target.value)}
+					onBlur={() => onSubmit()}
 					value={newTitle}
 					focusBorderColor={'#f5f5f5'}
 				/>
-				<EditableControls onSubmit={onSubmit} />
+				<EditableControls />
 			</Flex>
 		</Editable>
 	);

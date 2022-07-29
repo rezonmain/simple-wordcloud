@@ -2,7 +2,7 @@ import WordCloud from '../WordCloud/WordCloud';
 import demo from '../../lib/data';
 import { useGesture } from '@use-gesture/react';
 import { useMemo, useState } from 'react';
-import { useMedia } from 'react-use';
+import useMedia from '../../lib/hooks/useMedia';
 
 /* 
 	TODO:

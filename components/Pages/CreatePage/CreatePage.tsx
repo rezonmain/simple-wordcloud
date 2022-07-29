@@ -6,7 +6,7 @@ import SideBar from '../../SideBar/SideBar';
 import TextControls from '../../TextControls/TextControls';
 import Toolbar from '../../Toolbar/Toolbar';
 import WordCloudWidget from '../../WordCloudWidget/WordCloudWidget';
-import cloudReducer from '../../../lib/reducer';
+import cloudReducer, { Action } from '../../../lib/reducer';
 import demo from '../../../lib/data';
 import { CloudContext } from '../../../lib/context/CloudContext';
 
@@ -22,7 +22,6 @@ const CreatePage = () => {
 	useEffect(() => {
 		lgMedia && onClose();
 	}, [lgMedia]);
-
 	return (
 		<CloudContext.Provider value={{ cloud: cloud, dispatch: dispatch }}>
 			<Toolbar btnRef={btnRef} onOpen={onOpen} />

@@ -6,7 +6,7 @@ import {
 } from '@chakra-ui/react';
 import { BsPencilSquare, BsCheck, BsX } from 'react-icons/bs';
 
-const EditableControls = ({ onSubmit }: { onSubmit: () => void }) => {
+const EditableControls = () => {
 	const {
 		isEditing,
 		getSubmitButtonProps,
@@ -24,7 +24,6 @@ const EditableControls = ({ onSubmit }: { onSubmit: () => void }) => {
 				variant={'outline'}
 				colorScheme='whiteAlpha'
 				icon={<BsCheck size={30} />}
-				onClick={onSubmit}
 				{...getSubmitButtonProps()}
 			/>
 			<IconButton
