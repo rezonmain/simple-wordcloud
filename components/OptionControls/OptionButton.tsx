@@ -3,7 +3,7 @@ const OptionButton = ({
 	onClick,
 }: {
 	text: string;
-	onClick: () => void;
+	onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }) => {
 	return (
 		<button

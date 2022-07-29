@@ -18,6 +18,9 @@ const CreatePage = () => {
 	// Get initial cloud from initial props
 	const [cloud, dispatch] = useReducer(cloudReducer, demo[0]);
 
+	// Refresh cloud
+	const refreshCloud = () => {};
+
 	// Close drawer when lgMedia is true
 	useEffect(() => {
 		lgMedia && onClose();
@@ -29,7 +32,7 @@ const CreatePage = () => {
 			<main className='w-[97vw] mx-auto my-3 flex flex-col justify-center gap-3 min-w-[330px] max-w-[510px] lg:max-w-[960px] lg:w-full'>
 				<div className='flex flex-col lg:flex-row gap-3'>
 					<TextControls />
-					<OptionControls />
+					<OptionControls onRefresh={refreshCloud} />
 				</div>
 				<WordCloudWidget />
 			</main>
