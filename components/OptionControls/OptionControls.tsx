@@ -2,8 +2,9 @@ import { BsGear } from 'react-icons/bs';
 import OptionButton from './OptionButton';
 import OptionSelect from './OptionSelect';
 import OptionSlider from './OptionsSlider';
+
 const OptionControls = ({ onRefresh }: { onRefresh: () => void }) => {
-	const handleOptionClick = (e: React.MouseEvent, option: string) => {
+	const handleOption = (e: React.MouseEvent, option: string) => {
 		e.preventDefault();
 		switch (option) {
 			case 'refresh':
@@ -31,11 +32,11 @@ const OptionControls = ({ onRefresh }: { onRefresh: () => void }) => {
 					>
 						<OptionButton
 							text='Edit Wordlist'
-							onClick={(e) => handleOptionClick(e, 'wordlist')}
+							onClick={(e) => handleOption(e, 'wordlist')}
 						/>
 						<OptionButton
 							text='Word Rotation'
-							onClick={(e) => handleOptionClick(e, 'rotation')}
+							onClick={(e) => handleOption(e, 'rotation')}
 						/>
 						<OptionSelect />
 					</div>
@@ -50,7 +51,7 @@ const OptionControls = ({ onRefresh }: { onRefresh: () => void }) => {
 						/>
 						<OptionButton
 							text='Generate Cloud'
-							onClick={(e) => handleOptionClick(e, 'refresh')}
+							onClick={(e) => handleOption(e, 'refresh')}
 						/>
 					</div>
 				</div>

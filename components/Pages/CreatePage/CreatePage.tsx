@@ -2,13 +2,13 @@ import { useDisclosure } from '@chakra-ui/react';
 import { MutableRefObject, useEffect, useReducer, useRef } from 'react';
 import useMedia from '../../../lib/hooks/useMedia';
 import OptionControls from '../../OptionControls/OptionControls';
-import SideBar from '../../SideBar/SideBar';
 import TextControls from '../../TextControls/TextControls';
+import SideBar from '../../SideBar/SideBar';
 import Toolbar from '../../Toolbar/Toolbar';
 import WordCloudWidget from '../../WordCloudWidget/WordCloudWidget';
-import cloudReducer, { Action } from '../../../lib/reducer';
-import demo from '../../../lib/data';
 import { CloudContext } from '../../../lib/context/CloudContext';
+import cloudReducer from '../../../lib/reducer';
+import demo from '../../../lib/data';
 
 const CreatePage = () => {
 	const btnRef = useRef() as MutableRefObject<HTMLDivElement>;

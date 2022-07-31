@@ -15,5 +15,5 @@ export const CloudContext = createContext<CloudContext>({
 	dispatch: () => {},
 });
 
-// export the hook to access the context values
+// Export the hook to access context values
 export const useCloudContext = () => useContext(CloudContext);
