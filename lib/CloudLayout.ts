@@ -1,6 +1,6 @@
 import d3Cloud from 'd3-cloud';
 import * as d3 from 'd3';
-import type { Cloud } from './types';
+import type { Cloud, Rotation } from './types';
 
 export type LayoutConfig = {
 	font?: string;
@@ -10,7 +10,7 @@ export type LayoutConfig = {
 	includePronouns?: boolean;
 	scaling?: 'log' | 'linear' | 'sq';
 	padding?: number;
-	rotation?: 'none' | 'right' | 'random';
+	rotation?: Rotation;
 };
 
 class CloudLayout {

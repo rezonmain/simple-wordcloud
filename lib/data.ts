@@ -86,9 +86,7 @@ const demo: Cloud[] = [
 			includePronouns: false,
 			scaling: 'linear',
 			padding: 1,
-			angleTo: 90,
-			angleFrom: 0,
-			rotations: 1,
+			rotation: 'none',
 		},
 	},
 	{
@@ -108,9 +106,7 @@ const demo: Cloud[] = [
 			includePronouns: false,
 			scaling: 'linear',
 			padding: 1,
-			angleTo: 90,
-			angleFrom: 0,
-			rotations: 1,
+			rotation: 'none',
 		},
 	},
 ];

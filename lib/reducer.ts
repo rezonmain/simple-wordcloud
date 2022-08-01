@@ -1,7 +1,12 @@
-import type { Cloud } from './types';
+import type { Cloud, Rotation } from './types';
 
 export type Action = {
-	type: 'updateTitle' | 'toggleWord' | 'changeFont' | 'changeLimit';
+	type:
+		| 'updateTitle'
+		| 'toggleWord'
+		| 'changeFont'
+		| 'changeLimit'
+		| 'changeRotation';
 	payload?: any;
 };
 
@@ -26,6 +31,14 @@ const cloudReducer = (state: Cloud, action: Action): Cloud => {
 				layout: {
 					...state.layout,
 					limit: payload as number,
+				},
+			};
+		case 'changeRotation':
+			return {
+				...state,
+				layout: {
+					...state.layout,
+					rotation: payload as Rotation,
 				},
 			};
 		default:

@@ -2,6 +2,7 @@ import { useDisclosure } from '@chakra-ui/react';
 import { BsGear } from 'react-icons/bs';
 import ReusableModal from '../ReusableModal/ReusableModal';
 import WordList from '../WordList/WordList';
+import WordRotation from '../WordRotation/WordRotation';
 import OptionButton from './OptionButton';
 import OptionSelect from './OptionSelect';
 import OptionSlider from './OptionsSlider';
@@ -13,6 +14,12 @@ const OptionControls = ({ onRefresh }: { onRefresh: () => void }) => {
 		onClose: onListClose,
 	} = useDisclosure();
 
+	const {
+		isOpen: isRotationOpen,
+		onOpen: onRotationOpen,
+		onClose: onRotationClose,
+	} = useDisclosure();
+
 	const handleOption = (e: React.MouseEvent, option: string) => {
 		e.preventDefault();
 		switch (option) {
@@ -21,6 +28,9 @@ const OptionControls = ({ onRefresh }: { onRefresh: () => void }) => {
 				return;
 			case 'wordlist':
 				onListOpen();
+				return;
+			case 'rotation':
+				onRotationOpen();
 				return;
 		}
 	};
@@ -74,6 +84,13 @@ const OptionControls = ({ onRefresh }: { onRefresh: () => void }) => {
 				onClose={onListClose}
 			>
 				<WordList />
+			</ReusableModal>
+			<ReusableModal
+				title='Word Rotation'
+				isOpen={isRotationOpen}
+				onClose={onRotationClose}
+			>
+				<WordRotation />
 			</ReusableModal>
 		</section>
 	);

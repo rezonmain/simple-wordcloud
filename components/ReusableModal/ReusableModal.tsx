@@ -21,7 +21,13 @@ const ReusableModal = ({
 	children: JSX.Element;
 }) => {
 	return (
-		<Modal isOpen={isOpen} onClose={onClose} isCentered scrollBehavior='inside'>
+		<Modal
+			isOpen={isOpen}
+			onClose={onClose}
+			isCentered
+			scrollBehavior='inside'
+			size={'2xl'}
+		>
 			<ModalOverlay />
 			<ModalContent fontFamily={'Maitree'} rounded='md'>
 				<ModalHeader>{title}</ModalHeader>
