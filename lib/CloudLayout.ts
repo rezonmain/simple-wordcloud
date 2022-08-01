@@ -10,9 +10,7 @@ export type LayoutConfig = {
 	includePronouns?: boolean;
 	scaling?: 'log' | 'linear' | 'sq';
 	padding?: number;
-	angleTo?: number;
-	angleFrom?: number;
-	rotations?: number;
+	rotation?: 'none' | 'right' | 'random';
 };
 
 class CloudLayout {
@@ -22,6 +20,9 @@ class CloudLayout {
 	onWord;
 	scale;
 	angles;
+	rotationsNumber;
+	angleFrom;
+	angleTo;
 
 	static DEFAULT: LayoutConfig = {
 		font: 'Helvetica',
@@ -31,9 +32,7 @@ class CloudLayout {
 		includePronouns: false,
 		scaling: 'linear',
 		padding: 1,
-		angleTo: 90,
-		angleFrom: 0,
-		rotations: 1,
+		rotation: 'none',
 	};
 
 	constructor(
@@ -51,6 +50,25 @@ class CloudLayout {
 		};
 		this.wordsArray = this._limit(wordsArray, this.config.limit as number);
 		this.scale = this._getScalefn(this.wordsArray);
+
+		switch (this.config.rotation) {
+			default:
+			case 'none':
+				this.rotationsNumber = 1;
+				this.angleFrom = 0;
+				this.angleTo = 0;
+				break;
+			case 'right':
+				this.rotationsNumber = 3;
+				this.angleFrom = 90;
+				this.angleTo = 90;
+				break;
+			case 'random':
+				this.rotationsNumber = 6;
+				this.angleFrom = 30;
+				this.angleTo = 60;
+				break;
+		}
 		this.angles = this._getQuantizedAngles();
 	}
 
@@ -116,8 +134,8 @@ class CloudLayout {
 
 	_getRotation = () => {
 		// @ts-ignore
-		const number = parseInt(this.config.rotations) as number;
-		const from = this.config.angleFrom as number;
+		const number = this.rotationsNumber as number;
+		const from = this.angleFrom as number;
 		if (number === 1) return from;
 		return this.angles[this._rand(number - 1)];
 	};
@@ -129,9 +147,9 @@ class CloudLayout {
 	};
 
 	_getQuantizedAngles = () => {
-		const number = this.config.rotations as number;
-		const from = this.config.angleFrom as number;
-		const to = this.config.angleTo as number;
+		const number = this.rotationsNumber;
+		const from = this.angleFrom;
+		const to = this.angleTo;
 		const distance = Math.abs(to - from);
 		const step = distance / (number - 1);
 		const offset = 90 - to;
