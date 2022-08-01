@@ -1,9 +1,8 @@
 import CloudLayout from './CloudLayout';
-import { CloudContext } from './context/CloudContext';
 import type { Cloud } from './types';
 
 export type Action = {
-	type: 'updateTitle' | 'toggleWord';
+	type: 'updateTitle' | 'toggleWord' | 'changeFont';
 	payload?: any;
 };
 
@@ -14,6 +13,16 @@ const cloudReducer = (state: Cloud, action: Action): Cloud => {
 			return { ...state, title: payload as string };
 		case 'toggleWord':
 			return CloudLayout.toggleWord(state, payload.word, payload.state);
+		case 'changeFont':
+			return {
+				...state,
+				layout: {
+					...state.layout,
+					font: payload as string,
+				},
+			};
+		default:
+			return state;
 	}
 };
 
