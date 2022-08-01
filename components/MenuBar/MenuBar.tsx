@@ -8,6 +8,7 @@ import {
 	MenuDivider,
 	PlacementWithLogical,
 } from '@chakra-ui/react';
+import { MouseEvent } from 'react';
 import { IoChevronForward } from 'react-icons/io5';
 import { IoChevronDown } from 'react-icons/io5';
 
@@ -29,8 +30,6 @@ const MenuBar = ({ as }: { as: 'toolbar' | 'drawer' }) => {
 			),
 	};
 
-	const menuListStylesProps = {};
-
 	const menuItemStylesProps = {
 		color: '#262626',
 		_hover: { backgroundColor: as === 'toolbar' ? '#e5e5e5' : '#d4d4d4' },
@@ -44,31 +43,89 @@ const MenuBar = ({ as }: { as: 'toolbar' | 'drawer' }) => {
 			as === 'toolbar' ? undefined : ('end-start' as PlacementWithLogical),
 	};
 
+	const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
+		console.log(e.currentTarget.name);
+	};
+
 	return (
 		<Flex gap={'0.1rem'} direction={as === 'toolbar' ? 'row' : 'column'}>
 			<Menu {...menuStyleProps}>
 				<MenuButton {...buttonStylesProps}>File</MenuButton>
-				<MenuList {...menuListStylesProps}>
-					<MenuItem {...menuItemStylesProps}>Open cloud...</MenuItem>
+				<MenuList>
+					<MenuItem
+						name='openCloud'
+						{...menuItemStylesProps}
+						onClick={(e) => handleClick(e)}
+					>
+						Open cloud...
+					</MenuItem>
 					<MenuDivider />
-					<MenuItem {...menuItemStylesProps}>Save...</MenuItem>
-					<MenuItem {...menuItemStylesProps}>Save as...</MenuItem>
-					<MenuItem {...menuItemStylesProps}>New cloud</MenuItem>
+					<MenuItem
+						name='save'
+						{...menuItemStylesProps}
+						onClick={(e) => handleClick(e)}
+					>
+						Save...
+					</MenuItem>
+					<MenuItem
+						name='saveAs'
+						{...menuItemStylesProps}
+						onClick={(e) => handleClick(e)}
+					>
+						Save as...
+					</MenuItem>
+					<MenuItem
+						name='newCloud'
+						{...menuItemStylesProps}
+						onClick={(e) => handleClick(e)}
+					>
+						New cloud
+					</MenuItem>
 				</MenuList>
 			</Menu>
 			<Menu {...menuStyleProps}>
 				<MenuButton {...buttonStylesProps}>Download</MenuButton>
-				<MenuList {...menuListStylesProps}>
-					<MenuItem {...menuItemStylesProps}>as SVG</MenuItem>
-					<MenuItem {...menuItemStylesProps}>as JPEG</MenuItem>
-					<MenuItem {...menuItemStylesProps}>as PNG</MenuItem>
+				<MenuList>
+					<MenuItem
+						name='svg'
+						{...menuItemStylesProps}
+						onClick={(e) => handleClick(e)}
+					>
+						as SVG
+					</MenuItem>
+					<MenuItem
+						name='jpg'
+						{...menuItemStylesProps}
+						onClick={(e) => handleClick(e)}
+					>
+						as JPEG
+					</MenuItem>
+					<MenuItem
+						name='png'
+						{...menuItemStylesProps}
+						onClick={(e) => handleClick(e)}
+					>
+						as PNG
+					</MenuItem>
 				</MenuList>
 			</Menu>
 			<Menu {...menuStyleProps}>
 				<MenuButton {...buttonStylesProps}>Adv. Options</MenuButton>
-				<MenuList {...menuListStylesProps}>
-					<MenuItem {...menuItemStylesProps}>Scaling method...</MenuItem>
-					<MenuItem {...menuItemStylesProps}>Word spacing...</MenuItem>
+				<MenuList>
+					<MenuItem
+						name='scalingMethod'
+						{...menuItemStylesProps}
+						onClick={(e) => handleClick(e)}
+					>
+						Scaling method...
+					</MenuItem>
+					<MenuItem
+						name='wordSpacing'
+						{...menuItemStylesProps}
+						onClick={(e) => handleClick(e)}
+					>
+						Word spacing...
+					</MenuItem>
 				</MenuList>
 			</Menu>
 		</Flex>

@@ -27,12 +27,13 @@ const CreatePage = () => {
 	useEffect(() => {
 		lgMedia && onClose();
 	}, [lgMedia, onClose]);
+
 	return (
 		<CloudContext.Provider value={{ cloud: cloud, dispatch: dispatch }}>
 			<Toolbar btnRef={btnRef} onOpen={onOpen} />
 			<SideDrawer isOpen={isOpen} onClose={onClose} />
 			<main className='w-[97vw] mx-auto my-3 flex flex-col justify-center gap-3 min-w-[330px] max-w-[510px] lg:max-w-[960px] lg:w-full'>
-				<div className='flex flex-col lg:flex-row gap-3'>
+				<div className='flex flex-col gap-3 lg:flex-row '>
 					<TextControls />
 					<OptionControls onRefresh={refreshCloud} />
 				</div>
