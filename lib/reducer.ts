@@ -2,7 +2,7 @@ import CloudLayout from './CloudLayout';
 import type { Cloud } from './types';
 
 export type Action = {
-	type: 'updateTitle' | 'toggleWord' | 'changeFont';
+	type: 'updateTitle' | 'toggleWord' | 'changeFont' | 'changeLimit';
 	payload?: any;
 };
 
@@ -19,6 +19,14 @@ const cloudReducer = (state: Cloud, action: Action): Cloud => {
 				layout: {
 					...state.layout,
 					font: payload as string,
+				},
+			};
+		case 'changeLimit':
+			return {
+				...state,
+				layout: {
+					...state.layout,
+					limit: payload as number,
 				},
 			};
 		default:

@@ -6,9 +6,20 @@ import {
 	Box,
 } from '@chakra-ui/react';
 import { useState } from 'react';
+import { useCloudContext } from '../../lib/context/CloudContext';
 
 const OptionSlider = () => {
-	const [sliderValue, setSliderValue] = useState(30);
+	const {
+		cloud: {
+			layout: { limit },
+		},
+		dispatch,
+	} = useCloudContext();
+	const [sliderValue, setSliderValue] = useState(limit);
+
+	const onChangeEnd = (value: number) => {
+		dispatch({ type: 'changeLimit', payload: value });
+	};
 	return (
 		<div id='slider-container' className='font-serif flex flex-col gap-4'>
 			<div className='flex flex-row gap-2 items-center'>
@@ -23,10 +34,12 @@ const OptionSlider = () => {
 				<span>words</span>
 			</div>
 			<Slider
+				min={0}
+				max={150}
 				aria-label='slider-ex-1'
-				defaultValue={30}
 				size={'lg'}
 				onChange={(v) => setSliderValue(v)}
+				onChangeEnd={onChangeEnd}
 				value={sliderValue}
 			>
 				<SliderTrack rounded={'full'} bg={'#f5f5f5'} h={2}>

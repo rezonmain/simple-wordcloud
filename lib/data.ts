@@ -80,7 +80,7 @@ const demo: Cloud[] = [
 		],
 		layout: {
 			font: 'Helvetica',
-			limit: 150,
+			limit: 100,
 			lang: 'eng',
 			includeStopWords: false,
 			includePronouns: false,
@@ -102,7 +102,7 @@ const demo: Cloud[] = [
 		],
 		layout: {
 			font: 'Helvetica',
-			limit: 150,
+			limit: 100,
 			lang: 'eng',
 			includeStopWords: false,
 			includePronouns: false,
