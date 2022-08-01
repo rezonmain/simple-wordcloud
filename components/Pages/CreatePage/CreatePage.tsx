@@ -15,7 +15,7 @@ const CreatePage = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const lgMedia = useMedia('(min-width: 1024px)');
 
-	// Get initial cloud from initial props
+	// Get initial cloud from initial props (not from demo, this is only for dev)
 	const [cloud, dispatch] = useReducer(cloudReducer, demo[0]);
 
 	// Refresh cloud
