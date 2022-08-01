@@ -21,13 +21,13 @@ const WordListModal = ({
 	return (
 		<Modal isOpen={isOpen} onClose={onClose} isCentered scrollBehavior='inside'>
 			<ModalOverlay />
-			<ModalContent fontFamily={'Maitree'}>
-				<ModalHeader bg={'#f5f5f5'}>Cloud Word List</ModalHeader>
+			<ModalContent fontFamily={'Maitree'} rounded='md'>
+				<ModalHeader>Cloud Word List</ModalHeader>
 				<ModalCloseButton />
-				<ModalBody bg={'#f5f5f5'} maxH={'45vh'}>
+				<ModalBody maxH={'45vh'}>
 					<WordList />
 				</ModalBody>
-				<ModalFooter bg={'#f5f5f5'}>
+				<ModalFooter>
 					<Button colorScheme='blue' mr={3} onClick={onClose}>
 						Close
 					</Button>

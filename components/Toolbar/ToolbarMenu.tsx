@@ -5,6 +5,7 @@ import {
 	MenuList,
 	MenuItem,
 	Flex,
+	MenuDivider,
 } from '@chakra-ui/react';
 
 import Link from 'next/link';
@@ -25,8 +26,8 @@ const ToolbarMenu = () => {
 	const menuListStylesProps = {};
 
 	const menuItemStylesProps = {
-		_hover: { backgroundColor: '#d4d4d4' },
-		_active: { backgroundColor: '#d4d4d4' },
+		_hover: { backgroundColor: '#e5e5e5' },
+		_active: { backgroundColor: '#e5e5e5' },
 		_focus: { backgroundColor: 'inherit' },
 	};
 	return (
@@ -41,6 +42,8 @@ const ToolbarMenu = () => {
 				<Menu isLazy={true}>
 					<MenuButton {...buttonStylesProps}>File</MenuButton>
 					<MenuList {...menuListStylesProps}>
+						<MenuItem {...menuItemStylesProps}>Open cloud...</MenuItem>
+						<MenuDivider />
 						<MenuItem {...menuItemStylesProps}>Save...</MenuItem>
 						<MenuItem {...menuItemStylesProps}>Save as...</MenuItem>
 						<MenuItem {...menuItemStylesProps}>New cloud</MenuItem>
@@ -57,7 +60,7 @@ const ToolbarMenu = () => {
 				<Menu isLazy={true}>
 					<MenuButton {...buttonStylesProps}>Adv. Options</MenuButton>
 					<MenuList {...menuListStylesProps}>
-						<MenuItem {...menuItemStylesProps}>Word scaling...</MenuItem>
+						<MenuItem {...menuItemStylesProps}>Scaling method...</MenuItem>
 						<MenuItem {...menuItemStylesProps}>Word spacing...</MenuItem>
 					</MenuList>
 				</Menu>
