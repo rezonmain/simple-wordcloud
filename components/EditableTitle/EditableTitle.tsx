@@ -17,6 +17,7 @@ const EditableTitle = () => {
 	} = useCloudContext();
 	const [newTitle, setNewTitle] = useState(title);
 
+	// Update global state on editable confirm
 	const onSubmit = () => {
 		dispatch({ type: 'updateTitle', payload: newTitle });
 	};
@@ -26,6 +27,7 @@ const EditableTitle = () => {
 			fontSize='xl'
 			isPreviewFocusable={false}
 			defaultValue={newTitle}
+			onSubmit={onSubmit}
 		>
 			<Flex alignItems={'center'} gap={'0.5rem'}>
 				<EditablePreview />
@@ -33,8 +35,8 @@ const EditableTitle = () => {
 					as={EditableInput}
 					fontSize={18}
 					size={'md'}
+					// Update local state on change
 					onChange={(e) => setNewTitle(e.target.value)}
-					onBlur={() => onSubmit()}
 					value={newTitle}
 					focusBorderColor={'#f5f5f5'}
 				/>
