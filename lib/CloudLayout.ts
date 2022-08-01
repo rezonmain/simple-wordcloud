@@ -1,5 +1,6 @@
 import d3Cloud from 'd3-cloud';
 import * as d3 from 'd3';
+import type { Cloud } from './types';
 
 export type LayoutConfig = {
 	font?: string;
@@ -139,6 +140,13 @@ class CloudLayout {
 			return 90 - ((number - i - 1) * step + offset);
 		});
 	};
+
+	static toggleWord(cloud: Cloud, text: string, state: boolean) {
+		const newCloud = structuredClone(cloud);
+		const index = newCloud.wordArray.findIndex((el) => el.text === text);
+		newCloud.wordArray[index].enabled = state;
+		return newCloud;
+	}
 }
 
 export default CloudLayout;

@@ -1,8 +1,10 @@
+import CloudLayout from './CloudLayout';
+import { CloudContext } from './context/CloudContext';
 import type { Cloud } from './types';
 
 export type Action = {
-	type: 'updateTitle';
-	payload?: string;
+	type: 'updateTitle' | 'toggleWord';
+	payload?: any;
 };
 
 const cloudReducer = (state: Cloud, action: Action): Cloud => {
@@ -10,6 +12,8 @@ const cloudReducer = (state: Cloud, action: Action): Cloud => {
 	switch (type) {
 		case 'updateTitle':
 			return { ...state, title: payload as string };
+		case 'toggleWord':
+			return CloudLayout.toggleWord(state, payload.word, payload.state);
 	}
 };
 

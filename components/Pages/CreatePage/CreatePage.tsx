@@ -21,6 +21,8 @@ const CreatePage = () => {
 	// Refresh cloud
 	const refreshCloud = () => {};
 
+	console.log(cloud);
+
 	// Close drawer when lgMedia is true
 	useEffect(() => {
 		lgMedia && onClose();

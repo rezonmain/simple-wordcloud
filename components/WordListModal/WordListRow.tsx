@@ -17,9 +17,9 @@ const WordListRow = ({
 	onChange,
 }: WordListRowProps) => {
 	return (
-		<tr className='items-center border-bg hover:bg-neutral-200 active:bg-neutral-200'>
-			<td className='text-neutral-400'>{index}</td>
-			<td className=' pl-4'>
+		<tr className='items-center hover:bg-neutral-200 active:bg-neutral-200'>
+			<td className='text-neutral-400 border-b border-r'>{index}</td>
+			<td className=' pl-4 border-b'>
 				<Checkbox isChecked={enabled} onChange={(e) => onChange(e, word)} />
 			</td>
 			<td className='border-b text-lg pr-10'>{word}</td>

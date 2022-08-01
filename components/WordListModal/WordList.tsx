@@ -8,8 +8,8 @@ const WordList = () => {
 		dispatch,
 	} = useCloudContext();
 	const onChange = (e: ChangeEvent<HTMLInputElement>, word: string) => {
-		console.log(e, word);
-		// TODO: call dispatch to update the enabled value of word
+		const state = e.target.checked;
+		dispatch({ type: 'toggleWord', payload: { word, state } });
 	};
 
 	const rows = wordArray.map((word, index) => (
@@ -28,7 +28,7 @@ const WordList = () => {
 			<thead className='text-left'>
 				<tr>
 					<th className=' font-normal text-neutral-400'>No.</th>
-					<th>Show?</th>
+					<th>Show</th>
 					<th>Word</th>
 					<th>Value</th>
 				</tr>

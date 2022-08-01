@@ -12,7 +12,7 @@ import {
 	MenuList,
 	MenuItem,
 	Flex,
-	Divider,
+	MenuDivider,
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import { IoChevronForward } from 'react-icons/io5';
@@ -70,12 +70,13 @@ const SideBar = ({
 							<Menu isLazy={true} placement={'end-start'}>
 								<MenuButton {...buttonStylesProps}>File</MenuButton>
 								<MenuList {...menuListStylesProps}>
+									<MenuItem {...menuItemStylesProps}>Open cloud...</MenuItem>
+									<MenuDivider />
 									<MenuItem {...menuItemStylesProps}>Save...</MenuItem>
 									<MenuItem {...menuItemStylesProps}>Save as...</MenuItem>
 									<MenuItem {...menuItemStylesProps}>New cloud</MenuItem>
 								</MenuList>
 							</Menu>
-							<Divider />
 							<Menu isLazy={true} placement={'end-start'}>
 								<MenuButton {...buttonStylesProps}>Download</MenuButton>
 								<MenuList {...menuListStylesProps}>
@@ -84,11 +85,12 @@ const SideBar = ({
 									<MenuItem {...menuItemStylesProps}>as PNG</MenuItem>
 								</MenuList>
 							</Menu>
-							<Divider />
 							<Menu isLazy={true} placement={'end-start'}>
 								<MenuButton {...buttonStylesProps}>Adv. Options</MenuButton>
 								<MenuList {...menuListStylesProps}>
-									<MenuItem {...menuItemStylesProps}>Word scaling...</MenuItem>
+									<MenuItem {...menuItemStylesProps}>
+										Scaling method...
+									</MenuItem>
 									<MenuItem {...menuItemStylesProps}>Word spacing...</MenuItem>
 								</MenuList>
 							</Menu>
