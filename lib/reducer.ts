@@ -1,4 +1,3 @@
-import CloudLayout from './CloudLayout';
 import type { Cloud } from './types';
 
 export type Action = {

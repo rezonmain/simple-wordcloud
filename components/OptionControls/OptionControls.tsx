@@ -1,20 +1,26 @@
 import { useDisclosure } from '@chakra-ui/react';
 import { BsGear } from 'react-icons/bs';
-import WordListModal from '../WordListModal/WordListModal';
+import ReusableModal from '../ReusableModal/ReusableModal';
+import WordList from '../WordList/WordList';
 import OptionButton from './OptionButton';
 import OptionSelect from './OptionSelect';
 import OptionSlider from './OptionsSlider';
 
 const OptionControls = ({ onRefresh }: { onRefresh: () => void }) => {
-	const { isOpen, onOpen, onClose } = useDisclosure();
+	const {
+		isOpen: isListOpen,
+		onOpen: onListOpen,
+		onClose: onListClose,
+	} = useDisclosure();
 
 	const handleOption = (e: React.MouseEvent, option: string) => {
 		e.preventDefault();
 		switch (option) {
 			case 'refresh':
 				onRefresh();
+				return;
 			case 'wordlist':
-				onOpen();
+				onListOpen();
 				return;
 		}
 	};
@@ -62,7 +68,13 @@ const OptionControls = ({ onRefresh }: { onRefresh: () => void }) => {
 					</div>
 				</div>
 			</form>
-			<WordListModal isOpen={isOpen} onClose={onClose} />
+			<ReusableModal
+				title='Word Cloud List'
+				isOpen={isListOpen}
+				onClose={onListClose}
+			>
+				<WordList />
+			</ReusableModal>
 		</section>
 	);
 };
