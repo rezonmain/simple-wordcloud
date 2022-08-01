@@ -1,14 +1,20 @@
+import { useDisclosure } from '@chakra-ui/react';
 import { BsGear } from 'react-icons/bs';
+import WordListModal from '../WordListModal/WordListModal';
 import OptionButton from './OptionButton';
 import OptionSelect from './OptionSelect';
 import OptionSlider from './OptionsSlider';
 
 const OptionControls = ({ onRefresh }: { onRefresh: () => void }) => {
+	const { isOpen, onOpen, onClose } = useDisclosure();
+
 	const handleOption = (e: React.MouseEvent, option: string) => {
 		e.preventDefault();
 		switch (option) {
 			case 'refresh':
 				onRefresh();
+			case 'wordlist':
+				onOpen();
 				return;
 		}
 	};
@@ -56,6 +62,7 @@ const OptionControls = ({ onRefresh }: { onRefresh: () => void }) => {
 					</div>
 				</div>
 			</form>
+			<WordListModal isOpen={isOpen} onClose={onClose} />
 		</section>
 	);
 };

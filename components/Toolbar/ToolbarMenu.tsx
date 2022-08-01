@@ -6,9 +6,11 @@ import {
 	MenuItem,
 	Flex,
 } from '@chakra-ui/react';
+
 import Link from 'next/link';
 import { IoChevronDown } from 'react-icons/io5';
 import MyDivider from '../Divider/Divider';
+
 const ToolbarMenu = () => {
 	const buttonStylesProps = {
 		_hover: { backgroundColor: '#525252' },

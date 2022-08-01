@@ -1,6 +1,6 @@
 import EditableTitle from '../EditableTitle/EditableTitle';
 import { IoMenuSharp } from 'react-icons/io5';
-import { MutableRefObject, useRef } from 'react';
+import { MutableRefObject } from 'react';
 import ToolbarMenu from './ToolbarMenu';
 
 const Toolbar = ({
