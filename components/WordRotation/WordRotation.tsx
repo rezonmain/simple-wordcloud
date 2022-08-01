@@ -23,7 +23,12 @@ const WordRotation = () => {
 				rotation={rotation}
 				onClick={onClick}
 			>
-				<Image width={imgSize} height={imgSize} src={'/norotation.svg'} />
+				<Image
+					width={imgSize}
+					height={imgSize}
+					src={'/norotation.svg'}
+					alt='no rotation'
+				/>
 			</RotationCard>
 			<RotationCard
 				title='Righ angles'
@@ -31,7 +36,12 @@ const WordRotation = () => {
 				rotation={rotation}
 				onClick={onClick}
 			>
-				<Image width={imgSize} height={imgSize} src={'/rightangle.svg'} />
+				<Image
+					width={imgSize}
+					height={imgSize}
+					src={'/rightangle.svg'}
+					alt='right angles'
+				/>
 			</RotationCard>
 			<RotationCard
 				title='Random'
@@ -39,7 +49,12 @@ const WordRotation = () => {
 				rotation={rotation}
 				onClick={onClick}
 			>
-				<Image width={imgSize} height={imgSize} src={'/random.svg'} />
+				<Image
+					width={imgSize}
+					height={imgSize}
+					src={'/random.svg'}
+					alt='random angles'
+				/>
 			</RotationCard>
 		</section>
 	);
