@@ -1,16 +1,21 @@
 import { ChangeEvent } from 'react';
-import demo from '../../lib/data';
+import { useCloudContext } from '../../lib/context/CloudContext';
 import WordListRow from './WordListRow';
 
 const WordList = () => {
+	const {
+		cloud: { wordArray },
+		dispatch,
+	} = useCloudContext();
 	const onChange = (e: ChangeEvent<HTMLInputElement>, word: string) => {
 		console.log(e, word);
-		// toggle enable status of word
+		// TODO: call dispatch to update the enabled value of word
 	};
 
-	const rows = demo[0].wordArray.map((word) => (
+	const rows = wordArray.map((word, index) => (
 		<WordListRow
 			key={word.text}
+			index={index + 1}
 			word={word.text}
 			value={word.size}
 			enabled={word.enabled}
@@ -19,12 +24,13 @@ const WordList = () => {
 	));
 
 	return (
-		<table className='border border-black'>
-			<thead>
+		<table className='w-full'>
+			<thead className='text-left'>
 				<tr>
-					<th>Show</th>
+					<th className=' font-normal text-neutral-400'>No.</th>
+					<th>Show?</th>
 					<th>Word</th>
-					<th>Values</th>
+					<th>Value</th>
 				</tr>
 			</thead>
 			<tbody>{rows}</tbody>

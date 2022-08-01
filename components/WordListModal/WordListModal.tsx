@@ -6,6 +6,7 @@ import {
 	ModalFooter,
 	ModalBody,
 	ModalCloseButton,
+	Button,
 } from '@chakra-ui/react';
 
 import WordList from './WordList';
@@ -21,11 +22,16 @@ const WordListModal = ({
 		<Modal isOpen={isOpen} onClose={onClose} isCentered scrollBehavior='inside'>
 			<ModalOverlay />
 			<ModalContent fontFamily={'Maitree'}>
-				<ModalHeader>Cloud Word List</ModalHeader>
+				<ModalHeader bg={'#f5f5f5'}>Cloud Word List</ModalHeader>
 				<ModalCloseButton />
-				<ModalBody maxH={'45vh'}>
+				<ModalBody bg={'#f5f5f5'} maxH={'45vh'}>
 					<WordList />
 				</ModalBody>
+				<ModalFooter bg={'#f5f5f5'}>
+					<Button colorScheme='blue' mr={3} onClick={onClose}>
+						Close
+					</Button>
+				</ModalFooter>
 			</ModalContent>
 		</Modal>
 	);
