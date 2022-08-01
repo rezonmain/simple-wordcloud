@@ -140,15 +140,6 @@ class CloudLayout {
 			return 90 - ((number - i - 1) * step + offset);
 		});
 	};
-
-	// Function used to toggle state of wordlist word
-	static toggleWord(cloud: Cloud, text: string, state: boolean) {
-		// TODO: optimize this, idea: update state on modal close, not on every toggle
-		const newCloud = structuredClone(cloud);
-		const index = newCloud.wordArray.findIndex((el) => el.text === text);
-		newCloud.wordArray[index].enabled = state;
-		return newCloud;
-	}
 }
 
 export default CloudLayout;

@@ -1,28 +1,4 @@
-import { ChangeEvent } from 'react';
-import { useCloudContext } from '../../lib/context/CloudContext';
-import WordListRow from './WordListRow';
-
-const WordList = () => {
-	const {
-		cloud: { wordArray },
-		dispatch,
-	} = useCloudContext();
-	const onChange = (e: ChangeEvent<HTMLInputElement>, word: string) => {
-		const state = e.target.checked;
-		dispatch({ type: 'toggleWord', payload: { word, state } });
-	};
-
-	const rows = wordArray.map((word, index) => (
-		<WordListRow
-			key={word.text}
-			index={index + 1}
-			word={word.text}
-			value={word.size}
-			enabled={word.enabled}
-			onChange={onChange}
-		/>
-	));
-
+const WordList = ({ children }: { children: JSX.Element[] }) => {
 	return (
 		<table className='w-full'>
 			<thead className='text-left'>
@@ -33,7 +9,7 @@ const WordList = () => {
 					<th>Value</th>
 				</tr>
 			</thead>
-			<tbody>{rows}</tbody>
+			<tbody>{children}</tbody>
 		</table>
 	);
 };

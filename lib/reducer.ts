@@ -12,7 +12,7 @@ const cloudReducer = (state: Cloud, action: Action): Cloud => {
 		case 'updateTitle':
 			return { ...state, title: payload as string };
 		case 'toggleWord':
-			return CloudLayout.toggleWord(state, payload.word, payload.state);
+			return { ...state, wordArray: payload };
 		case 'changeFont':
 			return {
 				...state,
