@@ -3,7 +3,7 @@ import { MutableRefObject, useEffect, useReducer, useRef } from 'react';
 import useMedia from '../../../lib/hooks/useMedia';
 import OptionControls from '../../OptionControls/OptionControls';
 import TextControls from '../../TextControls/TextControls';
-import SideBar from '../../SideBar/SideBar';
+import SideDrawer from '../../SideDrawer/SideDrawer';
 import Toolbar from '../../Toolbar/Toolbar';
 import WordCloudWidget from '../../WordCloudWidget/WordCloudWidget';
 import { CloudContext } from '../../../lib/context/CloudContext';
@@ -30,7 +30,7 @@ const CreatePage = () => {
 	return (
 		<CloudContext.Provider value={{ cloud: cloud, dispatch: dispatch }}>
 			<Toolbar btnRef={btnRef} onOpen={onOpen} />
-			<SideBar isOpen={isOpen} onClose={onClose} />
+			<SideDrawer isOpen={isOpen} onClose={onClose} />
 			<main className='w-[97vw] mx-auto my-3 flex flex-col justify-center gap-3 min-w-[330px] max-w-[510px] lg:max-w-[960px] lg:w-full'>
 				<div className='flex flex-col lg:flex-row gap-3'>
 					<TextControls />
