@@ -8,9 +8,12 @@ import { BsCloudUpload } from 'react-icons/bs';
  */
 
 const FileDropper = ({ onFile }: { onFile: (file: Blob) => void }) => {
-	const onDrop = useCallback((acceptedFiles: File[]) => {
-		onFile(acceptedFiles[0]);
-	}, []);
+	const onDrop = useCallback(
+		(acceptedFiles: File[]) => {
+			onFile(acceptedFiles[0]);
+		},
+		[onFile]
+	);
 
 	const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 	return (

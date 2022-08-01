@@ -24,7 +24,7 @@ const CreatePage = () => {
 	// Close drawer when lgMedia is true
 	useEffect(() => {
 		lgMedia && onClose();
-	}, [lgMedia]);
+	}, [lgMedia, onClose]);
 	return (
 		<CloudContext.Provider value={{ cloud: cloud, dispatch: dispatch }}>
 			<Toolbar btnRef={btnRef} onOpen={onOpen} />

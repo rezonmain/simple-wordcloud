@@ -13,13 +13,12 @@ import useMedia from '../../lib/hooks/useMedia';
 const WordCloudWidget = () => {
 	const [pan, setPan] = useState({ x: 0, y: 0, scale: 1 });
 	const isTouch = useMedia('(hover: none) and (pointer: coarse)');
+	const wordArray = demo[0].wordArray;
 
 	// useMemo is to control the WordCloud rendering
 	const wordCloud = useMemo(
-		() => (
-			<WordCloud size={{ w: 1000, h: 1000 }} wordsArray={demo[0].wordArray} />
-		),
-		[demo[0].wordArray]
+		() => <WordCloud size={{ w: 1000, h: 1000 }} wordsArray={wordArray} />,
+		[wordArray]
 	);
 
 	// Touch gestures:
