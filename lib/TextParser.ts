@@ -20,6 +20,7 @@ class TextParser {
 		}));
 	}
 
+	// TODO: using default settings on stop words
 	countWordInstance(
 		text: string,
 		options = { stopWords: false, lang: 'eng' }
@@ -113,7 +114,6 @@ class TextParser {
 			text
 				/* Split words in anything that is NOT alphabetic or has contraction (')
         ex: "123hello" => "123", "hello" or "©nomad" => "©" "nomad" */
-				// TODO: Maybe add split check for camelcase
 				.split(/[^a-z']/gi)
 				/* Just keep alphabetic words, min length of 2 */
 				.filter((word) => word.match(/[a-z']{2,}/gi))

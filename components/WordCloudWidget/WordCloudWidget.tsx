@@ -1,8 +1,9 @@
 import WordCloud from '../WordCloud/WordCloud';
 import demo from '../../lib/data';
 import { useGesture } from '@use-gesture/react';
-import { useMemo, useState } from 'react';
+import { RefObject, useEffect, useMemo, useRef, useState } from 'react';
 import useMedia from '../../lib/hooks/useMedia';
+import { useCloudContext } from '../../lib/context/CloudContext';
 
 /* 
 	TODO:
@@ -13,8 +14,11 @@ import useMedia from '../../lib/hooks/useMedia';
 const WordCloudWidget = () => {
 	const [pan, setPan] = useState({ x: 0, y: 0, scale: 1 });
 	const isTouch = useMedia('(hover: none) and (pointer: coarse)');
-	const wordArray = demo[0].wordArray;
+	const {
+		cloud: { wordArray },
+	} = useCloudContext();
 
+	const divRef = useRef() as RefObject<HTMLDivElement>;
 	// useMemo is to control the WordCloud rendering
 	const wordCloud = useMemo(
 		() => <WordCloud size={{ w: 1000, h: 1000 }} wordsArray={wordArray} />,
@@ -29,10 +33,16 @@ const WordCloudWidget = () => {
 			setPan((prev) => ({ ...prev, scale: prev.scale + z })),
 	});
 
+	useEffect(() => {
+		const scale = (divRef.current?.clientWidth as number) / 1000;
+		setPan((prev) => ({ ...prev, scale }));
+	});
+
 	return (
-		<div className='overflow-scroll border border-neutral-800 aspect-square'>
+		<div className='overflow-hidden border border-neutral-800 aspect-square'>
 			<div
 				{...bind()}
+				ref={divRef}
 				style={{
 					transform: `scale(${pan.scale})`,
 					touchAction: 'none',
