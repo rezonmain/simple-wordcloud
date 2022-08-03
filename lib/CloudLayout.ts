@@ -60,16 +60,17 @@ class CloudLayout {
 				break;
 			case 'right':
 				this.rotationsNumber = 3;
-				this.angleFrom = 90;
+				this.angleFrom = -90;
 				this.angleTo = 90;
 				break;
 			case 'random':
-				this.rotationsNumber = 6;
-				this.angleFrom = 30;
-				this.angleTo = 60;
+				this.rotationsNumber = 11;
+				this.angleFrom = -30;
+				this.angleTo = 30;
 				break;
 		}
 		this.angles = this._getQuantizedAngles();
+		console.log(this.angles);
 	}
 
 	/* Returns the d3Cloud layout object and runs start method on it,
@@ -152,6 +153,9 @@ class CloudLayout {
 		const distance = Math.abs(to - from);
 		const step = distance / (number - 1);
 		const offset = 90 - to;
+		if (number === 1) {
+			return [from];
+		}
 		// Formula to equal divide angle and return corresponding word orientation
 		return Array.from({ length: number }, (_, i) => {
 			return 90 - ((number - i - 1) * step + offset);
