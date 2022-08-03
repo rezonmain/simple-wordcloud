@@ -73,8 +73,9 @@ const OptionControls = ({ onRefresh }: { onRefresh: () => void }) => {
 							className='control-base bg-neutral-100 border border-neutral-400 font-serif p-2 rounded-md active:'
 						/>
 						<OptionButton
-							text='Generate Cloud'
+							text={'Apply settings'}
 							onClick={(e) => handleOption(e, 'refresh')}
+							highlight={true}
 						/>
 					</div>
 				</div>
