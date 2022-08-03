@@ -4,8 +4,10 @@ export type Cloud = {
 	id: string;
 	title: string;
 	ts: number;
-	wordArray: { text: string; size: number; enabled: boolean }[];
+	wordArray: Word[];
 	layout: LayoutConfig;
 };
 
 export type Rotation = 'none' | 'right' | 'random' | undefined;
+
+export type Word = { text: string; size: number; enabled: boolean };

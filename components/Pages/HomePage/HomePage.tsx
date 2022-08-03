@@ -3,7 +3,7 @@ import Button from '../../Button/Button';
 import Header from '../../Header/Header';
 import Hero from '../../Hero/Hero';
 import Table from '../../Table/Table';
-import demo from '../../../lib/data';
+import { demoClouds } from '../../../lib/data';
 import Link from 'next/link';
 
 const HomePage = () => {
@@ -25,7 +25,7 @@ const HomePage = () => {
 					<span className='font-serif'>or</span>
 					<Button type='upload' text='Upload'></Button>
 				</div>
-				<Table savedClouds={demo} />
+				<Table savedClouds={demoClouds} />
 			</main>
 		</>
 	);

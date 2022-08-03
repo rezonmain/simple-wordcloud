@@ -21,7 +21,7 @@ const WordCloudWidget = () => {
 	const divRef = useRef() as RefObject<HTMLDivElement>;
 	// useMemo is to control the WordCloud rendering
 	const wordCloud = useMemo(
-		() => <WordCloud size={{ w: 1000, h: 1000 }} wordsArray={wordArray} />,
+		() => <WordCloud size={{ w: 1000, h: 1000 }} wordArray={wordArray} />,
 		[wordArray]
 	);
 
@@ -36,7 +36,7 @@ const WordCloudWidget = () => {
 	useEffect(() => {
 		const scale = (divRef.current?.clientWidth as number) / 1000;
 		setPan((prev) => ({ ...prev, scale }));
-	});
+	}, []);
 
 	return (
 		<div className='overflow-hidden border border-neutral-800 aspect-square'>

@@ -1,6 +1,6 @@
 import d3Cloud from 'd3-cloud';
 import * as d3 from 'd3';
-import type { Cloud, Rotation } from './types';
+import type { Cloud, Rotation, Word } from './types';
 
 export type LayoutConfig = {
 	font?: string;
@@ -16,7 +16,7 @@ export type LayoutConfig = {
 class CloudLayout {
 	size;
 	config: LayoutConfig;
-	wordsArray;
+	wordArray;
 	onWord;
 	scale;
 	angles;
@@ -37,7 +37,7 @@ class CloudLayout {
 
 	constructor(
 		size: { w: number; h: number },
-		wordsArray: { text: string; size: number }[],
+		wordArray: Word[],
 		onWord: (draw: d3Cloud.Word) => void,
 		config?: LayoutConfig
 	) {
@@ -48,8 +48,8 @@ class CloudLayout {
 			...CloudLayout.DEFAULT,
 			...config,
 		};
-		this.wordsArray = this._limit(wordsArray, this.config.limit as number);
-		this.scale = this._getScalefn(this.wordsArray);
+		this.wordArray = this._limit(wordArray, this.config.limit as number);
+		this.scale = this._getScalefn(this.wordArray);
 
 		switch (this.config.rotation) {
 			default:
@@ -77,14 +77,13 @@ class CloudLayout {
 	start = () => this._layout().start();
 
 	_layout = () => {
-		const limitedWords = this._limit(
-			this.wordsArray,
-			this.config.limit as number
-		);
+		// filter out words with !enabled and pass it to d3Cloud lauyout builder
+		const enabledWords = this.wordArray.filter((word) => word.enabled === true);
+
 		return (
 			d3Cloud()
 				.size([this.size.w, this.size.h])
-				.words(limitedWords)
+				.words(enabledWords)
 				.padding(this.config.padding as number)
 				.rotate(this._getRotation)
 				.font(this.config.font as string)
@@ -94,7 +93,7 @@ class CloudLayout {
 		);
 	};
 
-	_limit = (words: { text: string; size: number }[], limit: number) => {
+	_limit = (words: Word[], limit: number) => {
 		/* Sort from biggest value to smallest 
     so bigger words show on cloud when limiting array, slice to limit */
 		return words.sort((a, b) => b.size - a.size).slice(0, limit);

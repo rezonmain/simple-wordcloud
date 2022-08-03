@@ -4,13 +4,30 @@ import d3Cloud from 'd3-cloud';
 import { useEffect, memo } from 'react';
 
 interface WordCloudProps {
-	wordsArray: { text: string; size: number }[];
+	wordArray: { text: string; size: number; enabled: boolean }[];
 	size: { w: number; h: number };
 	config?: LayoutConfig;
 }
 
-const WordCloud = ({ wordsArray, size, config }: WordCloudProps) => {
-	const draw = (word: d3Cloud.Word) => {
+const WordCloud = ({ wordArray, size, config }: WordCloudProps) => {
+	const cl = new CloudLayout(
+		size,
+		wordArray,
+		draw,
+		config || CloudLayout.DEFAULT
+	);
+
+	useEffect(() => {
+		removeCloud();
+		// This calls draw
+		cl.start();
+	});
+
+	function removeCloud() {
+		d3.select('#cloud-wrapper').selectAll('*').remove();
+	}
+
+	function draw(word: d3Cloud.Word) {
 		// Create svg with given size
 		const container = d3
 			.select('#cloud-wrapper')
@@ -46,23 +63,7 @@ const WordCloud = ({ wordsArray, size, config }: WordCloudProps) => {
 			.style('font-family', (d) => d.font as string)
 			.style('fill', '#262626')
 			.text((d) => d.text as string);
-	};
-
-	const removeCloud = () => {
-		d3.select('#cloud-wrapper').selectAll('*').remove();
-	};
-
-	let cl = new CloudLayout(
-		size,
-		wordsArray,
-		draw,
-		config || CloudLayout.DEFAULT
-	);
-
-	useEffect(() => {
-		removeCloud();
-		cl.start();
-	});
+	}
 
 	return <div id='cloud-wrapper' className='select-none'></div>;
 };

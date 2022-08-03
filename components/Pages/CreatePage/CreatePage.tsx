@@ -8,30 +8,37 @@ import Toolbar from '../../Toolbar/Toolbar';
 import WordCloudWidget from '../../WordCloudWidget/WordCloudWidget';
 import { CloudContext } from '../../../lib/context/CloudContext';
 import cloudReducer from '../../../lib/reducer';
-import demo from '../../../lib/data';
+import { demoClouds } from '../../../lib/data';
 
 const CreatePage = () => {
-	const btnRef = useRef() as MutableRefObject<HTMLDivElement>;
-	const { isOpen, onOpen, onClose } = useDisclosure();
+	// Get initial cloud from initial props (replace demo here)
+	const [cloud, dispatch] = useReducer(cloudReducer, demoClouds[0]);
+
+	const drawerBtnRef = useRef() as MutableRefObject<HTMLDivElement>;
+	const {
+		isOpen: isDrawerOpen,
+		onOpen: onDrawerOpen,
+		onClose: onDrawerClose,
+	} = useDisclosure();
+
 	const lgMedia = useMedia('(min-width: 1024px)');
 
-	// Get initial cloud from initial props (replace demo here)
-	const [cloud, dispatch] = useReducer(cloudReducer, demo[0]);
-
 	// Refresh cloud
-	const refreshCloud = () => {};
+	const refreshCloud = () => {
+		// Update the word array array, this triggers a wordcloud rerender(??)
+	};
 
 	console.log(cloud);
 
 	// Close drawer when lgMedia is true
 	useEffect(() => {
-		lgMedia && onClose();
-	}, [lgMedia, onClose]);
+		lgMedia && onDrawerClose();
+	}, [lgMedia, onDrawerClose]);
 
 	return (
 		<CloudContext.Provider value={{ cloud: cloud, dispatch: dispatch }}>
-			<Toolbar btnRef={btnRef} onOpen={onOpen} />
-			<SideDrawer isOpen={isOpen} onClose={onClose} />
+			<Toolbar btnRef={drawerBtnRef} onOpen={onDrawerOpen} />
+			<SideDrawer isOpen={isDrawerOpen} onClose={onDrawerClose} />
 			<main className='w-[97vw] mx-auto my-3 flex flex-col justify-center gap-3 min-w-[330px] max-w-[510px] lg:max-w-[960px] lg:w-full'>
 				<div className='flex flex-col gap-3 lg:flex-row '>
 					<TextControls />
