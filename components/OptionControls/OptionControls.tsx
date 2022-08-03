@@ -25,6 +25,7 @@ const OptionControls = ({ onRefresh }: { onRefresh: () => void }) => {
 		switch (option) {
 			case 'refresh':
 				onRefresh();
+				console.log();
 				return;
 			case 'wordlist':
 				onListOpen();

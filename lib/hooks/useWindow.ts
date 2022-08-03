@@ -1,26 +1,14 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 /* Returns window size on window resize end */
-const useWindowSize = (bounds: { w: number; h: number }) => {
-	let triggerChange = useRef(false);
+const useWindow = () => {
 	const [windowSize, setWindowSize] = useState({
 		w: globalThis.innerWidth,
 		h: globalThis.innerHeight,
 	});
 	useEffect(() => {
 		const handleResizeEnd = () => {
-			if (globalThis.innerWidth < bounds.w) {
-				setWindowSize({ w: globalThis.innerWidth, h: globalThis.innerHeight });
-				triggerChange.current = true;
-			}
-			if (globalThis.innerWidth > bounds.w) {
-				triggerChange.current &&
-					setWindowSize({
-						w: globalThis.innerWidth,
-						h: globalThis.innerHeight,
-					});
-				triggerChange.current = false;
-			}
+			setWindowSize({ w: globalThis.innerWidth, h: globalThis.innerHeight });
 		};
 		let resizeEnd: NodeJS.Timeout;
 		globalThis.onresize = () => {
@@ -35,4 +23,4 @@ const useWindowSize = (bounds: { w: number; h: number }) => {
 	return windowSize;
 };
 
-export default useWindowSize;
+export default useWindow;

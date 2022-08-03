@@ -1,5 +1,11 @@
 import { useDisclosure } from '@chakra-ui/react';
-import { MutableRefObject, useEffect, useReducer, useRef } from 'react';
+import {
+	MutableRefObject,
+	useEffect,
+	useReducer,
+	useRef,
+	useState,
+} from 'react';
 import useMedia from '../../../lib/hooks/useMedia';
 import OptionControls from '../../OptionControls/OptionControls';
 import TextControls from '../../TextControls/TextControls';
@@ -13,6 +19,7 @@ import { demoClouds } from '../../../lib/data';
 const CreatePage = () => {
 	// Get initial cloud from initial props (replace demo here)
 	const [cloud, dispatch] = useReducer(cloudReducer, demoClouds[0]);
+	const [refresh, setRefresh] = useState(0);
 
 	const drawerBtnRef = useRef() as MutableRefObject<HTMLDivElement>;
 	const {
@@ -23,17 +30,17 @@ const CreatePage = () => {
 
 	const lgMedia = useMedia('(min-width: 1024px)');
 
-	// Refresh cloud
 	const refreshCloud = () => {
-		// Update the word array array, this triggers a wordcloud rerender(??)
+		// Updating refresh state regenerates the wordcloud with updated state
+		setRefresh((prev) => prev + 1);
 	};
-
-	console.log(cloud);
 
 	// Close drawer when lgMedia is true
 	useEffect(() => {
 		lgMedia && onDrawerClose();
 	}, [lgMedia, onDrawerClose]);
+
+	console.log(cloud);
 
 	return (
 		<CloudContext.Provider value={{ cloud: cloud, dispatch: dispatch }}>
@@ -44,7 +51,7 @@ const CreatePage = () => {
 					<TextControls />
 					<OptionControls onRefresh={refreshCloud} />
 				</div>
-				<WordCloudWidget />
+				<WordCloudWidget refresh={refresh} />
 			</main>
 		</CloudContext.Provider>
 	);

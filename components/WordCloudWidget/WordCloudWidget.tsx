@@ -1,28 +1,31 @@
 import WordCloud from '../WordCloud/WordCloud';
-import demo from '../../lib/data';
 import { useGesture } from '@use-gesture/react';
 import { RefObject, useEffect, useMemo, useRef, useState } from 'react';
 import useMedia from '../../lib/hooks/useMedia';
 import { useCloudContext } from '../../lib/context/CloudContext';
+import useWindow from '../../lib/hooks/useWindow';
 
-/* 
-	TODO:
-	[ ] Make the zoom-in/out from the pinch origin or mouse position
-	[ ] Allow zoom-in/out with scroll wheel
-*/
-
-const WordCloudWidget = () => {
+const WordCloudWidget = ({ refresh }: { refresh: number }) => {
 	const [pan, setPan] = useState({ x: 0, y: 0, scale: 1 });
-	const isTouch = useMedia('(hover: none) and (pointer: coarse)');
+	// TODO: Handle gestures according to type of input
+	// const isTouch = useMedia('(hover: none) and (pointer: coarse)');
+	const { w: windowWidth } = useWindow();
 	const {
-		cloud: { wordArray },
+		cloud: { wordArray, layout },
 	} = useCloudContext();
 
 	const divRef = useRef() as RefObject<HTMLDivElement>;
-	// useMemo is to control the WordCloud rendering
+
+	// useMemo is used to control the WordCloud re-rendering
 	const wordCloud = useMemo(
-		() => <WordCloud size={{ w: 1000, h: 1000 }} wordArray={wordArray} />,
-		[wordArray]
+		() => (
+			<WordCloud
+				size={{ w: 1000, h: 1000 }}
+				wordArray={wordArray}
+				config={layout}
+			/>
+		),
+		[refresh]
 	);
 
 	// Touch gestures:
@@ -36,7 +39,7 @@ const WordCloudWidget = () => {
 	useEffect(() => {
 		const scale = (divRef.current?.clientWidth as number) / 1000;
 		setPan((prev) => ({ ...prev, scale }));
-	}, []);
+	}, [windowWidth]);
 
 	return (
 		<div className='overflow-hidden border border-neutral-800 aspect-square'>
