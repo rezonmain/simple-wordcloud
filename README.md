@@ -17,7 +17,7 @@ Generate simple wordclouds from text file or text input. It uses D3.js to genera
   - [x] Autorange layout of words
   - [x] Changing configuration updates cloud real-time
   - [ ] Allow user to download cloud as image or svg
-  - [ ] Allow user to remove words from list
+  - [x] Allow user to remove words from list
   - [ ] Mouse over shows value of word
   - [x] Populate animation
   - [ ] Rotate animation
@@ -30,10 +30,10 @@ Generate simple wordclouds from text file or text input. It uses D3.js to genera
   - [ ] Word colors and fading
   - [ ] Option to keep stop words and pronouns (eng, fre, esp)
 
-- [ ] Make 'create' page
+- [x] Make 'create' page
 - [x] Make landing page
 - [ ] Implement chart saving to LS functionality
-- [ ] Style pages according to desgin
+- [x] Style pages according to desgin
 - [ ] Add user friendly animations
 
 ### Design files

@@ -70,7 +70,6 @@ class CloudLayout {
 				break;
 		}
 		this.angles = this._getQuantizedAngles();
-		console.log(this.angles);
 	}
 
 	/* Returns the d3Cloud layout object and runs start method on it,
