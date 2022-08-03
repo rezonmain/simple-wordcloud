@@ -40,8 +40,6 @@ const CreatePage = () => {
 		lgMedia && onDrawerClose();
 	}, [lgMedia, onDrawerClose]);
 
-	console.log(cloud);
-
 	return (
 		<CloudContext.Provider value={{ cloud: cloud, dispatch: dispatch }}>
 			<Toolbar btnRef={drawerBtnRef} onOpen={onDrawerOpen} />

@@ -1,5 +1,5 @@
 import { Dispatch, createContext, useContext } from 'react';
-import demo from '../data';
+import { demoClouds } from '../data';
 import { Action } from '../reducer';
 import { Cloud } from '../types';
 
@@ -11,7 +11,7 @@ export type CloudContext = {
 
 // Create the context with default values, export to access the provider
 export const CloudContext = createContext<CloudContext>({
-	cloud: demo[0],
+	cloud: demoClouds[0],
 	dispatch: () => {},
 });
 
