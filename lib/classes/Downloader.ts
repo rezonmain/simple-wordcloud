@@ -24,6 +24,21 @@ class Downloader {
 		this._downloadAction(uri, fileName);
 	}
 
+	asJPG(fileName: string) {
+		// Clone the canvas with transparent bg
+		let canvas = document.querySelector('canvas') as HTMLCanvasElement;
+		var tempCanvas = canvas.cloneNode(true) as HTMLCanvasElement;
+		var ctx = tempCanvas.getContext('2d') as CanvasRenderingContext2D;
+		// Fill the cloned canvas white
+		ctx.fillStyle = '#FFF';
+		ctx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
+		// Super impose the original canvas that contains the cloud
+		ctx.drawImage(canvas, 0, 0);
+		// Get uri and download
+		const uri = tempCanvas.toDataURL('image/jpeg', '0.75');
+		this._downloadAction(uri, fileName);
+	}
+
 	private _downloadAction(href: string, name: string) {
 		const a = document.createElement('a');
 		a.href = href;
@@ -35,32 +50,3 @@ class Downloader {
 }
 
 export default Downloader;
-
-`async function toPng(data) {
-  const {
-    width,
-    height,
-    svg
-  } = data
-  const canvas = new OffscreenCanvas(width, height)
-  const ctx = canvas.getContext('2d')
-  const v = await Canvg.from(ctx, svg, preset)
-
-  // Render only first frame, ignoring animations and mouse.
-  await v.render()
-
-  const blob = await canvas.convertToBlob()
-  const pngUrl = URL.createObjectURL(blob)
-
-  return pngUrl
-}
-
-toPng({
-  width: 600,
-  height: 600,
-  svg: './example.svg'
-}).then((pngUrl) => {
-  const img = document.querySelector('img')
-
-  img.src = pngUrl
-})`;

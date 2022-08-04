@@ -57,6 +57,9 @@ const MenuBar = ({ as }: { as: 'toolbar' | 'drawer' }) => {
 			case 'png':
 				d.asPNG(title);
 				break;
+			case 'jpg':
+				d.asJPG(title);
+				break;
 		}
 	};
 
@@ -112,6 +115,13 @@ const MenuBar = ({ as }: { as: 'toolbar' | 'drawer' }) => {
 						onClick={(e) => handleClick(e)}
 					>
 						as PNG
+					</MenuItem>
+					<MenuItem
+						name='jpg'
+						{...menuItemStylesProps}
+						onClick={(e) => handleClick(e)}
+					>
+						as JPG
 					</MenuItem>
 				</MenuList>
 			</Menu>

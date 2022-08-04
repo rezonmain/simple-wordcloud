@@ -65,9 +65,9 @@ class CloudLayout {
 				this.angleTo = 90;
 				break;
 			case 'random':
-				this.rotationsNumber = 11;
-				this.angleFrom = -30;
-				this.angleTo = 30;
+				this.rotationsNumber = 5;
+				this.angleFrom = -60;
+				this.angleTo = 60;
 				break;
 		}
 		this.angles = this._getQuantizedAngles();
