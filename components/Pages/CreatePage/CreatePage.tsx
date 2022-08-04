@@ -16,8 +16,6 @@ import { CloudContext } from '../../../lib/context/CloudContext';
 import { demoClouds } from '../../../lib/data';
 import cloudReducer from '../../../lib/cloudReducer';
 
-// TODO: Fixed UB on wordlist table (might create own toggle component chakra acting wierd on build)
-
 const CreatePage = () => {
 	// Get initial cloud from initial props (replace demo here)
 	const [cloud, dispatch] = useReducer(cloudReducer, demoClouds[0]);

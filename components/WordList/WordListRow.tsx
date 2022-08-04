@@ -1,4 +1,3 @@
-import { Checkbox } from '@chakra-ui/react';
 import { ChangeEvent } from 'react';
 
 export type WordListRowProps = {
@@ -25,7 +24,6 @@ const WordListRow = ({
 					checked={enabled}
 					onChange={(e) => onChange(e, word)}
 				/>
-				{/* <Checkbox isChecked={enabled} onChange={(e) => onChange(e, word)} /> */}
 			</td>
 			<td className='border-b text-lg pr-10'>{word}</td>
 			<td className='border-b pr-10'>{value}</td>
