@@ -1,7 +1,7 @@
-import CloudLayout, { LayoutConfig } from '../../lib/CloudLayout';
+import CloudLayout, { LayoutConfig } from '../../lib/classes/CloudLayout';
 import * as d3 from 'd3';
 import d3Cloud from 'd3-cloud';
-import { useEffect, memo } from 'react';
+import { useEffect } from 'react';
 
 interface WordCloudProps {
 	wordArray: { text: string; size: number; enabled: boolean }[];
@@ -35,6 +35,8 @@ const WordCloud = ({ wordArray, size, config }: WordCloudProps) => {
 			.attr('width', cl.size.w)
 			.attr('height', cl.size.h)
 			.attr('id', 'wc-svg')
+			.attr('version', '1.1')
+			.attr('xmlns', 'http://www.w3.org/2000/svg')
 			.append('g')
 			.attr('transform', `translate(${cl.size.w / 2},${cl.size.h / 2})`);
 

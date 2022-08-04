@@ -1,6 +1,6 @@
 import d3Cloud from 'd3-cloud';
 import * as d3 from 'd3';
-import type { Cloud, Rotation, Word } from './types';
+import type { Rotation, Word } from '../types';
 
 export type LayoutConfig = {
 	font?: string;
@@ -76,7 +76,7 @@ class CloudLayout {
   which initialiazes the word placement algorithm from d3Cloud */
 	start = () => this._layout().start();
 
-	_layout = () => {
+	private _layout = () => {
 		// filter out words with !enabled and pass it to d3Cloud lauyout builder
 		const enabledWords = this.wordArray.filter((word) => word.enabled === true);
 
@@ -93,13 +93,13 @@ class CloudLayout {
 		);
 	};
 
-	_limit = (words: Word[], limit: number) => {
+	private _limit = (words: Word[], limit: number) => {
 		/* Sort from biggest value to smallest 
     so bigger words show on cloud when limiting array, slice to limit */
 		return words.sort((a, b) => b.size - a.size).slice(0, limit);
 	};
 
-	_getScalefn = (wordsArray: { text: string; size: number }[]) => {
+	private _getScalefn = (wordsArray: { text: string; size: number }[]) => {
 		// WORDS MUST BE SORTED
 		/* Make sure biggest word always fits inside given viewbox */
 		const max = wordsArray[0].size;
@@ -125,13 +125,13 @@ class CloudLayout {
 		}
 	};
 
-	_widthToFSize = () => {
+	private _widthToFSize = () => {
 		// This functions scales the font size with the width
 		// Makes sure the biggest word always renders
 		return this.size.w * (5 / 17) - 100 / 17;
 	};
 
-	_getRotation = () => {
+	private _getRotation = () => {
 		// @ts-ignore
 		const number = this.rotationsNumber as number;
 		const from = this.angleFrom as number;
@@ -139,13 +139,13 @@ class CloudLayout {
 		return this.angles[this._rand(number - 1)];
 	};
 
-	_rand = (max: number, min = 0) => {
+	private _rand = (max: number, min = 0) => {
 		min = Math.ceil(min);
 		max = Math.floor(max);
 		return Math.floor(Math.random() * (max - min + 1) + min);
 	};
 
-	_getQuantizedAngles = () => {
+	private _getQuantizedAngles = () => {
 		const number = this.rotationsNumber;
 		const from = this.angleFrom;
 		const to = this.angleTo;

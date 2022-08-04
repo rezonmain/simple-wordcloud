@@ -1,6 +1,6 @@
 import { Dispatch, createContext, useContext } from 'react';
 import { demoClouds } from '../data';
-import { Action } from '../reducer';
+import { Action } from '../cloudReducer';
 import { Cloud } from '../types';
 
 // The context type

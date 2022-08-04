@@ -11,8 +11,13 @@ import {
 import { MouseEvent } from 'react';
 import { IoChevronForward } from 'react-icons/io5';
 import { IoChevronDown } from 'react-icons/io5';
+import Downloader from '../../lib/classes/Downloader';
+import { useCloudContext } from '../../lib/context/CloudContext';
 
 const MenuBar = ({ as }: { as: 'toolbar' | 'drawer' }) => {
+	const {
+		cloud: { title },
+	} = useCloudContext();
 	const buttonStylesProps = {
 		color: '#f5f5f5',
 		borderRadius: as === 'toolbar' ? undefined : '0',
@@ -45,6 +50,12 @@ const MenuBar = ({ as }: { as: 'toolbar' | 'drawer' }) => {
 
 	const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
 		console.log(e.currentTarget.name);
+		switch (e.currentTarget.name) {
+			case 'svg':
+				const d = new Downloader();
+				d.asSVG(title);
+				break;
+		}
 	};
 
 	return (

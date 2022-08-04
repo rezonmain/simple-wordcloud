@@ -1,4 +1,4 @@
-import { LayoutConfig } from './CloudLayout';
+import { LayoutConfig } from './classes/CloudLayout';
 
 export type Cloud = {
 	id: string;
