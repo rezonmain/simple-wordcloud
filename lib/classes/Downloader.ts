@@ -1,5 +1,3 @@
-import { Canvg, RenderingContext2D, presets } from 'canvg';
-
 class Downloader {
 	id;
 	el;
@@ -20,29 +18,9 @@ class Downloader {
 		this._downloadAction(uri, fileName);
 	}
 
-	async asPNG(fileName: string) {
-		const preset = presets.offscreen();
-		let canvas;
-		try {
-			canvas = new OffscreenCanvas(
-				this.el?.clientWidth as number,
-				this.el?.clientHeight as number
-			);
-		} catch {
-			alert('Currently only supported in Google Chrome, working on a fix');
-			return;
-		}
-		const ctx = canvas.getContext('2d');
-		const v = await Canvg.from(
-			ctx as RenderingContext2D,
-			this.el?.outerHTML as string,
-			preset
-		);
-		await v.render();
-
-		const blob = await canvas.convertToBlob();
-		const uri = URL.createObjectURL(blob);
-
+	asPNG(fileName: string) {
+		const canvas = document.querySelector('canvas') as HTMLCanvasElement;
+		const uri = canvas.toDataURL('image/png');
 		this._downloadAction(uri, fileName);
 	}
 
