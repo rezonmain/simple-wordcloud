@@ -20,7 +20,12 @@ const WordListRow = ({
 		<tr className='items-center hover:bg-neutral-100 active:bg-neutral-100'>
 			<td className='text-neutral-400 border-b border-r'>{index}</td>
 			<td className=' pl-4 border-b'>
-				<Checkbox isChecked={enabled} onChange={(e) => onChange(e, word)} />
+				<input
+					type={'checkbox'}
+					checked={enabled}
+					onChange={(e) => onChange(e, word)}
+				/>
+				{/* <Checkbox isChecked={enabled} onChange={(e) => onChange(e, word)} /> */}
 			</td>
 			<td className='border-b text-lg pr-10'>{word}</td>
 			<td className='border-b pr-10'>{value}</td>
