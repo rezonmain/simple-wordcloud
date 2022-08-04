@@ -1,7 +1,7 @@
 import CloudLayout, { LayoutConfig } from '../../lib/classes/CloudLayout';
 import * as d3 from 'd3';
 import d3Cloud from 'd3-cloud';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 interface WordCloudProps {
 	wordArray: { text: string; size: number; enabled: boolean }[];
@@ -10,6 +10,7 @@ interface WordCloudProps {
 }
 
 const WordCloud = ({ wordArray, size, config }: WordCloudProps) => {
+	const [isLoaded, setIsLoaded] = useState(false);
 	const cl = new CloudLayout(
 		size,
 		wordArray,
@@ -21,6 +22,11 @@ const WordCloud = ({ wordArray, size, config }: WordCloudProps) => {
 		removeCloud();
 		// This calls draw
 		cl.start();
+
+		// Binds the generated svg to the canvas
+		(async () => {
+			await cl.bind();
+		})();
 	});
 
 	function removeCloud() {
@@ -45,13 +51,6 @@ const WordCloud = ({ wordArray, size, config }: WordCloudProps) => {
 			.selectAll('text')
 			.data(word as d3Cloud.Word[]);
 
-		// Set its transition properties
-		wordContainer
-			.transition()
-			.duration(500)
-			.attr('transfrom', (d) => `translate(${[d.x, d.y]})rotate(${d.rotate})`)
-			.style('font-size', (d) => d.size + 'px');
-
 		// Apend the new text svg element and sets its rotation
 		wordContainer
 			.enter()
@@ -59,15 +58,18 @@ const WordCloud = ({ wordArray, size, config }: WordCloudProps) => {
 			.attr('text-anchor', 'middle')
 			.attr('transform', (d) => `translate(${[d.x, d.y]})rotate(${d.rotate})`)
 			.style('font-size', '1px')
-			.transition()
-			.duration(500)
 			.style('font-size', (d) => d.size + 'px')
 			.style('font-family', (d) => d.font as string)
 			.style('fill', '#262626')
 			.text((d) => d.text as string);
 	}
 
-	return <div id='cloud-wrapper' className='select-none'></div>;
+	return (
+		<>
+			<div id='cloud-wrapper' className='select-none hidden'></div>
+			<canvas id='wc-canvas' className='' />
+		</>
+	);
 };
 
 export default WordCloud;

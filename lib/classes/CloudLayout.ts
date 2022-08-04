@@ -1,6 +1,7 @@
 import d3Cloud from 'd3-cloud';
 import * as d3 from 'd3';
 import type { Rotation, Word } from '../types';
+import { Canvg, RenderingContext2D } from 'canvg';
 
 export type LayoutConfig = {
 	font?: string;
@@ -75,6 +76,17 @@ class CloudLayout {
 	/* Returns the d3Cloud layout object and runs start method on it,
   which initialiazes the word placement algorithm from d3Cloud */
 	start = () => this._layout().start();
+
+	bind = async () => {
+		const svg = document.getElementById('wc-svg')?.outerHTML as string;
+		const canvas = document.querySelector('canvas') as HTMLCanvasElement;
+		const ctx = canvas.getContext('2d') as RenderingContext2D;
+		const v = await Canvg.from(ctx, svg);
+		v.start();
+		window.onbeforeunload = () => {
+			v.stop();
+		};
+	};
 
 	private _layout = () => {
 		// filter out words with !enabled and pass it to d3Cloud lauyout builder
