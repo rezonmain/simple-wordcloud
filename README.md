@@ -36,6 +36,12 @@ Generate simple wordclouds from text file or text input. It uses D3.js to genera
 - [x] Style pages according to desgin
 - [ ] Add user friendly animations
 
+### FIX:
+
+The conversion of svg to bitmap is done using a OffscreenCanvas which is currently only fully supported in Chromium browsers, so download to png fails in Firefox and Safari:
+to fix:
+[ ] Render svg to a canvas, get blob using native canvas calls
+
 ### Design files
 
 - [Figma](https://www.figma.com/file/t29YRFbKmMt8mZlbjgb9pI/simple-wordcloud?node-id=0%3A1)

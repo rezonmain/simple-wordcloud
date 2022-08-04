@@ -22,10 +22,16 @@ class Downloader {
 
 	async asPNG(fileName: string) {
 		const preset = presets.offscreen();
-		const canvas = new OffscreenCanvas(
-			this.el?.clientWidth as number,
-			this.el?.clientHeight as number
-		);
+		let canvas;
+		try {
+			canvas = new OffscreenCanvas(
+				this.el?.clientWidth as number,
+				this.el?.clientHeight as number
+			);
+		} catch {
+			alert('Currently only supported in Google Chrome, working on a fix');
+			return;
+		}
 		const ctx = canvas.getContext('2d');
 		const v = await Canvg.from(
 			ctx as RenderingContext2D,
