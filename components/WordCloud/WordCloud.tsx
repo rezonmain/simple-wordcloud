@@ -1,7 +1,7 @@
 import CloudLayout, { LayoutConfig } from '../../lib/classes/CloudLayout';
 import * as d3 from 'd3';
 import d3Cloud from 'd3-cloud';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 interface WordCloudProps {
 	wordArray: { text: string; size: number; enabled: boolean }[];
@@ -10,7 +10,6 @@ interface WordCloudProps {
 }
 
 const WordCloud = ({ wordArray, size, config }: WordCloudProps) => {
-	const [isLoaded, setIsLoaded] = useState(false);
 	const cl = new CloudLayout(
 		size,
 		wordArray,
@@ -63,7 +62,6 @@ const WordCloud = ({ wordArray, size, config }: WordCloudProps) => {
 			.style('fill', '#262626')
 			.text((d) => d.text as string);
 	}
-
 	return (
 		<>
 			<div id='cloud-wrapper' className='select-none hidden'></div>

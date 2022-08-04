@@ -1,7 +1,6 @@
 import WordCloud from '../WordCloud/WordCloud';
 import { useGesture } from '@use-gesture/react';
 import { RefObject, useEffect, useMemo, useRef, useState } from 'react';
-import useMedia from '../../lib/hooks/useMedia';
 import { useCloudContext } from '../../lib/context/CloudContext';
 import useWindow from '../../lib/hooks/useWindow';
 

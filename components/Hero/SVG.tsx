@@ -30,12 +30,6 @@ const SVG = ({ size }: { size: number }) => {
 					id='text2'
 					x='18.909632'
 					y='-74.191521'
-					animate={floating}
-					transition={{
-						...transition,
-						duration: 5,
-						repeatDelay: 2,
-					}}
 				>
 					nice
 				</motion.text>
@@ -48,12 +42,6 @@ const SVG = ({ size }: { size: number }) => {
 					id='text4'
 					x='4.6129112'
 					y='-0.45052755'
-					animate={floating}
-					transition={{
-						...transition,
-						duration: 3,
-						repeatDelay: 3,
-					}}
 				>
 					simple
 				</motion.text>
@@ -66,12 +54,6 @@ const SVG = ({ size }: { size: number }) => {
 					id='text6'
 					x='-34.514961'
 					y='65.013412'
-					animate={floating}
-					transition={{
-						...transition,
-						duration: 6,
-						repeatDelay: 0,
-					}}
 				>
 					word
 				</motion.text>
@@ -84,12 +66,6 @@ const SVG = ({ size }: { size: number }) => {
 					id='text8'
 					x='-1.4067614'
 					y='114.67571'
-					animate={floating}
-					transition={{
-						...transition,
-						duration: 4,
-						repeatDelay: 0,
-					}}
 				>
 					clouds
 				</motion.text>

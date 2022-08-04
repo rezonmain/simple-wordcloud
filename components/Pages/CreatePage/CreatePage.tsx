@@ -13,8 +13,8 @@ import SideDrawer from '../../SideDrawer/SideDrawer';
 import Toolbar from '../../Toolbar/Toolbar';
 import WordCloudWidget from '../../WordCloudWidget/WordCloudWidget';
 import { CloudContext } from '../../../lib/context/CloudContext';
-import cloudReducer from '../../../lib/cloudReducer';
 import { demoClouds } from '../../../lib/data';
+import cloudReducer from '../../../lib/cloudReducer';
 
 // TODO: Fixed UB on wordlist table (might create own toggle component chakra acting wierd on build)
 
