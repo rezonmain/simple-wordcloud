@@ -40,7 +40,8 @@ Generate simple wordclouds from text file or text input. It uses D3.js to genera
 
 The conversion of svg to bitmap is done using a OffscreenCanvas which is currently only fully supported in Chromium browsers, so download to png fails in Firefox and Safari:
 to fix:
-[x] Render svg to a canvas, get blob using native canvas calls
+
+- [x] Render svg to a canvas, get blob using native canvas calls
 
 ### Design files
 
