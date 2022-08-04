@@ -49,11 +49,13 @@ const MenuBar = ({ as }: { as: 'toolbar' | 'drawer' }) => {
 	};
 
 	const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
-		console.log(e.currentTarget.name);
+		const d = new Downloader();
 		switch (e.currentTarget.name) {
 			case 'svg':
-				const d = new Downloader();
 				d.asSVG(title);
+				break;
+			case 'png':
+				d.asPNG(title);
 				break;
 		}
 	};
@@ -103,13 +105,6 @@ const MenuBar = ({ as }: { as: 'toolbar' | 'drawer' }) => {
 						onClick={(e) => handleClick(e)}
 					>
 						as SVG
-					</MenuItem>
-					<MenuItem
-						name='jpg'
-						{...menuItemStylesProps}
-						onClick={(e) => handleClick(e)}
-					>
-						as JPEG
 					</MenuItem>
 					<MenuItem
 						name='png'
