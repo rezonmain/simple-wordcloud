@@ -6,6 +6,9 @@ export type Cloud = {
 	ts: number;
 	wordArray: Word[];
 	layout: LayoutConfig;
+	// true = file, false = text
+	source: boolean;
+	textArea?: string;
 };
 
 export type Rotation = 'none' | 'right' | 'random' | undefined;

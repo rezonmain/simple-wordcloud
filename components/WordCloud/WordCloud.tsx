@@ -2,9 +2,10 @@ import CloudLayout, { LayoutConfig } from '../../lib/classes/CloudLayout';
 import * as d3 from 'd3';
 import d3Cloud from 'd3-cloud';
 import { useEffect } from 'react';
+import { Word } from '../../lib/types';
 
 interface WordCloudProps {
-	wordArray: { text: string; size: number; enabled: boolean }[];
+	wordArray: Word[];
 	size: { w: number; h: number };
 	config?: LayoutConfig;
 }

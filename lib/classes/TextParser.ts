@@ -1,5 +1,6 @@
 import mammoth from 'mammoth';
 import * as pdfjs from 'pdfjs-dist';
+import { Word } from '../types';
 
 class TextParser {
 	static readonly acceptedStr =
@@ -11,12 +12,22 @@ class TextParser {
 		pdf: 'application/pdf',
 	};
 
-	async getDataFromFile(file: Blob) {
-		const words = await this.getWordsFromFile(file);
+	async getWordArrayFromFile(file: Blob) {
+		const words = await this._getWordsFromFile(file);
 		const wordCount = this.countWordInstance(words);
+		return this._toWordArray(wordCount);
+	}
+
+	getWordArrayFromText(text: string) {
+		const wordCount = this.countWordInstance(this._trim(text));
+		return this._toWordArray(wordCount);
+	}
+
+	private _toWordArray(wordCount: { [name: string]: number }): Word[] {
 		return Object.entries(wordCount).map((entry) => ({
 			text: entry[0],
 			size: entry[1],
+			enabled: true,
 		}));
 	}
 
@@ -35,11 +46,13 @@ class TextParser {
 		text.split(' ').forEach((word) => {
 			wordInstance[word] = wordInstance[word] ? ++wordInstance[word] : 1;
 		});
-
 		return wordInstance;
 	}
 
-	async getWordsFromFile(f: Blob, raw: boolean = false): Promise<string> {
+	private async _getWordsFromFile(
+		f: Blob,
+		raw: boolean = false
+	): Promise<string> {
 		return new Promise(async (resolve, reject) => {
 			try {
 				switch (f.type) {
@@ -74,18 +87,18 @@ class TextParser {
 		});
 	}
 
-	async _parseDocx(f: Blob) {
+	private async _parseDocx(f: Blob) {
 		const buffer = await f.arrayBuffer();
 		const res = await mammoth.extractRawText({ arrayBuffer: buffer });
 		return res.value;
 	}
 
-	async _parseTxt(f: Blob) {
+	private async _parseTxt(f: Blob) {
 		const text = await f.text();
 		return text;
 	}
 
-	async _parsePdf(f: Blob) {
+	private async _parsePdf(f: Blob) {
 		const array = await f.arrayBuffer();
 		const typedarray = new Uint8Array(array);
 		pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
@@ -100,7 +113,7 @@ class TextParser {
 		return text.join(' ');
 	}
 
-	async _getPdfPageText(pdf: pdfjs.PDFDocumentProxy, pageNum: number) {
+	private async _getPdfPageText(pdf: pdfjs.PDFDocumentProxy, pageNum: number) {
 		const page = await pdf.getPage(pageNum);
 		const tokenText = await page.getTextContent();
 		// FIXME: Get correct type here (textItem.str)
@@ -108,7 +121,7 @@ class TextParser {
 		return tokenText.items.map((textItem) => textItem.str).join('');
 	}
 
-	_trim(text: string) {
+	private _trim(text: string) {
 		// Returns a space seperated string of alphabetic words or dashed words
 		return (
 			text

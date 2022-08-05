@@ -1,22 +1,32 @@
 import { Textarea } from '@chakra-ui/react';
-import { useState } from 'react';
+import { ChangeEvent } from 'react';
+import { useCloudContext } from '../../lib/context/CloudContext';
 import FileDropper from '../FileDropper/FileDropper';
 import Switch from '../Switch/Switch';
 
 const TextControls = () => {
-	const [textOrFile, setTextOrFile] = useState(false);
+	const {
+		cloud: { source, textArea },
+		dispatch,
+	} = useCloudContext();
+
+	const toggleSource = () => {
+		dispatch({ type: 'toggleSource' });
+	};
+
+	const onTextAreaChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+		dispatch({ type: 'updateTextArea', payload: e.target.value });
+	};
+
 	return (
 		<section className='flex flex-col w-full'>
 			<div className='flex flex-row gap-2 font-serif text-xl bg-neutral-300 items-center p-3 w-fit'>
 				<span>Text</span>
-				<Switch
-					value={textOrFile}
-					onClick={() => setTextOrFile((prev) => !prev)}
-				/>
+				<Switch value={source} onClick={toggleSource} />
 				<span>File</span>
 			</div>
 			<div className='bg-neutral-300 p-3'>
-				{textOrFile ? (
+				{source ? (
 					<FileDropper onFile={() => {}} />
 				) : (
 					<Textarea
@@ -24,6 +34,8 @@ const TextControls = () => {
 						bgColor={'#f5f5f5'}
 						resize={'vertical'}
 						maxHeight={300}
+						value={textArea}
+						onChange={onTextAreaChange}
 					></Textarea>
 				)}
 			</div>
