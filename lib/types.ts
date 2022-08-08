@@ -4,7 +4,7 @@ export type Cloud = {
 	id: string;
 	title: string;
 	ts: number;
-	wordArray: Word[];
+	wordArray: WordInstance[];
 	layout: LayoutConfig;
 	// true = file, false = text
 	source: boolean;
@@ -13,4 +13,8 @@ export type Cloud = {
 
 export type Rotation = 'none' | 'right' | 'random' | undefined;
 
-export type Word = { text: string; size: number; enabled: boolean };
+export type WordInstance = {
+	word: string;
+	instances: number;
+	enabled: boolean;
+};

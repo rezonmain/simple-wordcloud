@@ -1,6 +1,6 @@
 import d3Cloud from 'd3-cloud';
 import * as d3 from 'd3';
-import type { Rotation, Word } from '../types';
+import type { Rotation, WordInstance } from '../types';
 import { Canvg, RenderingContext2D } from 'canvg';
 import MeasureText from './MeasureText';
 
@@ -40,7 +40,7 @@ class CloudLayout {
 
 	constructor(
 		size: { w: number; h: number },
-		wordArray: Word[],
+		wordArray: WordInstance[],
 		onWord: (draw: d3Cloud.Word) => void,
 		config?: LayoutConfig
 	) {
@@ -54,7 +54,7 @@ class CloudLayout {
 		this.wordArray = this._limit(wordArray, this.config.limit as number);
 		// filter out words with !enabled and pass it to d3Cloud lauyout builder
 		this.enabledWords = this.wordArray.filter((word) => word.enabled === true);
-		this.scale = this._getScalefn(this.wordArray);
+		this.scale = this._getScalefn(this.enabledWords);
 
 		switch (this.config.rotation) {
 			default:
@@ -93,10 +93,14 @@ class CloudLayout {
 	};
 
 	private _layout = () => {
+		const words = this.enabledWords.map((word) => ({
+			text: word.word,
+			size: word.instances,
+		}));
 		return (
 			d3Cloud()
 				.size([this.size.w, this.size.h])
-				.words(this.enabledWords)
+				.words(words)
 				.padding(this.config.padding as number)
 				.rotate(this._getRotation)
 				.font(this.config.font as string)
@@ -106,17 +110,17 @@ class CloudLayout {
 		);
 	};
 
-	private _limit = (words: Word[], limit: number) => {
+	private _limit = (words: WordInstance[], limit: number) => {
 		/* Sort from biggest value to smallest 
     so bigger words show on cloud when limiting array, slice to limit */
-		return words.sort((a, b) => b.size - a.size).slice(0, limit);
+		return words.sort((a, b) => b.instances - a.instances).slice(0, limit);
 	};
 
-	private _getScalefn = (wordsArray: { text: string; size: number }[]) => {
+	private _getScalefn = (wordsArray: WordInstance[]) => {
 		// WORDS MUST BE SORTED
 		/* Make sure biggest word always fits inside given viewbox */
-		const max = wordsArray[0].size;
-		const min = wordsArray[wordsArray.length - 1].size;
+		const max = wordsArray[0].instances;
+		const min = wordsArray[wordsArray.length - 1].instances;
 
 		switch (this.config.scaling) {
 			case 'log':
@@ -143,7 +147,7 @@ class CloudLayout {
 		// Makes sure the biggest word always renders
 
 		let fontSize = 500;
-		const biggesWord = this.enabledWords[0].text;
+		const biggesWord = this.enabledWords[0].word;
 		let wordWidth = this.size.w;
 		const measure = new MeasureText();
 
@@ -154,7 +158,6 @@ class CloudLayout {
 			const font = `${fontSize}px ${this.config.font}`;
 			wordWidth = measure.getTextWidth(biggesWord, font);
 		}
-		console.log(fontSize);
 		return fontSize;
 	};
 
