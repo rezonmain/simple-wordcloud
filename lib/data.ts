@@ -89,6 +89,7 @@ export const demoClouds: Cloud[] = [
 			rotation: 'none',
 		},
 		source: false,
+		textAreaValue: '',
 	},
 	{
 		id: '2',
@@ -110,6 +111,7 @@ export const demoClouds: Cloud[] = [
 			rotation: 'none',
 		},
 		source: false,
+		textAreaValue: '',
 	},
 ];
 
