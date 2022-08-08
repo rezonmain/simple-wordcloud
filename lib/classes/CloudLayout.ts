@@ -2,6 +2,7 @@ import d3Cloud from 'd3-cloud';
 import * as d3 from 'd3';
 import type { Rotation, Word } from '../types';
 import { Canvg, RenderingContext2D } from 'canvg';
+import MeasureText from './MeasureText';
 
 export type LayoutConfig = {
 	font?: string;
@@ -24,6 +25,7 @@ class CloudLayout {
 	rotationsNumber;
 	angleFrom;
 	angleTo;
+	enabledWords;
 
 	static DEFAULT: LayoutConfig = {
 		font: 'Helvetica',
@@ -50,6 +52,8 @@ class CloudLayout {
 			...config,
 		};
 		this.wordArray = this._limit(wordArray, this.config.limit as number);
+		// filter out words with !enabled and pass it to d3Cloud lauyout builder
+		this.enabledWords = this.wordArray.filter((word) => word.enabled === true);
 		this.scale = this._getScalefn(this.wordArray);
 
 		switch (this.config.rotation) {
@@ -89,13 +93,10 @@ class CloudLayout {
 	};
 
 	private _layout = () => {
-		// filter out words with !enabled and pass it to d3Cloud lauyout builder
-		const enabledWords = this.wordArray.filter((word) => word.enabled === true);
-
 		return (
 			d3Cloud()
 				.size([this.size.w, this.size.h])
-				.words(enabledWords)
+				.words(this.enabledWords)
 				.padding(this.config.padding as number)
 				.rotate(this._getRotation)
 				.font(this.config.font as string)
@@ -122,25 +123,39 @@ class CloudLayout {
 				return d3
 					.scaleLog()
 					.domain([min, max])
-					.range([1, this._widthToFSize()]);
+					.range([1, this._getLargestFontSize()]);
 			case 'linear':
 				return d3
 					.scaleLinear()
 					.domain([min, max])
-					.range([10, this._widthToFSize()]);
+					.range([10, this._getLargestFontSize()]);
 			case 'sq':
 				return d3
 					.scalePow()
 					.exponent(2)
 					.domain([min, max])
-					.range([15, this._widthToFSize()]);
+					.range([15, this._getLargestFontSize()]);
 		}
 	};
 
-	private _widthToFSize = () => {
+	private _getLargestFontSize = () => {
 		// This functions scales the font size with the width
 		// Makes sure the biggest word always renders
-		return this.size.w * (5 / 17) - 100 / 17;
+
+		let fontSize = 500;
+		const biggesWord = this.enabledWords[0].text;
+		let wordWidth = this.size.w;
+		const measure = new MeasureText();
+
+		// Loop until wordWidth is half of the word cloud width
+		// Return fontSize that rendered this condition true
+		while (wordWidth / this.size.w >= 0.5) {
+			fontSize -= 1;
+			const font = `${fontSize}px ${this.config.font}`;
+			wordWidth = measure.getTextWidth(biggesWord, font);
+		}
+		console.log(fontSize);
+		return fontSize;
 	};
 
 	private _getRotation = () => {

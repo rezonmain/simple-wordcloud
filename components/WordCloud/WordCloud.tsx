@@ -11,18 +11,12 @@ interface WordCloudProps {
 }
 
 const WordCloud = ({ wordArray, size, config }: WordCloudProps) => {
-	const cl = new CloudLayout(
-		size,
-		wordArray,
-		draw,
-		config || CloudLayout.DEFAULT
-	);
-
+	let cl: CloudLayout;
 	useEffect(() => {
+		cl = new CloudLayout(size, wordArray, draw, config || CloudLayout.DEFAULT);
 		removeCloud();
 		// This calls draw
 		cl.start();
-
 		// Binds the generated svg to the canvas
 		(async () => {
 			await cl.bind();
@@ -57,7 +51,7 @@ const WordCloud = ({ wordArray, size, config }: WordCloudProps) => {
 			.append('text')
 			.attr('text-anchor', 'middle')
 			.attr('transform', (d) => `translate(${[d.x, d.y]})rotate(${d.rotate})`)
-			.style('font-size', '1px')
+			// .style('font-size', '1px')
 			.style('font-size', (d) => d.size + 'px')
 			.style('font-family', (d) => d.font as string)
 			.style('fill', '#262626')
