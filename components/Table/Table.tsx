@@ -6,7 +6,12 @@ import Link from 'next/link';
 const Table = ({ savedClouds }: { savedClouds: Cloud[] }) => {
 	const rows = savedClouds.map((cloud) => {
 		return (
-			<TableRow key={cloud.id} name={cloud.title} date={prettyDate(cloud.ts)} />
+			<TableRow
+				key={cloud.id}
+				id={cloud.id}
+				name={cloud.title}
+				date={prettyDate(cloud.ts)}
+			/>
 		);
 	});
 	return (

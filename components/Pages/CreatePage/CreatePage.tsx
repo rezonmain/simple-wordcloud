@@ -1,9 +1,7 @@
 import { useDisclosure } from '@chakra-ui/react';
 import {
-	ChangeEvent,
 	MutableRefObject,
 	useEffect,
-	useMemo,
 	useReducer,
 	useRef,
 	useState,
@@ -17,30 +15,22 @@ import WordCloudWidget from '../../WordCloudWidget/WordCloudWidget';
 import { CloudContext } from '../../../lib/context/CloudContext';
 import { demoClouds } from '../../../lib/data';
 import cloudReducer from '../../../lib/cloudReducer';
-import TextParser from '../../../lib/classes/TextParser';
 
-const CreatePage = () => {
+const CreatePage = ({ cloudId }: { cloudId: string }) => {
 	// Get initial cloud from initial props (replace demo here)
 	const [cloud, dispatch] = useReducer(cloudReducer, demoClouds[0]);
 	const [refresh, setRefresh] = useState(0);
 	const text = cloud.textAreaValue;
-
+	const lgMedia = useMedia('(min-width: 1024px)');
 	const drawerBtnRef = useRef() as MutableRefObject<HTMLDivElement>;
+
 	const {
 		isOpen: isDrawerOpen,
 		onOpen: onDrawerOpen,
 		onClose: onDrawerClose,
 	} = useDisclosure();
 
-	const lgMedia = useMedia('(min-width: 1024px)');
-
 	const onApply = () => {
-		// Calculate wordArray if text is select as source
-		if (!cloud.source) {
-			const tp = new TextParser();
-			const wordArray = tp.getWordArrayFromText(text);
-			dispatch({ type: 'updateWordArray', payload: wordArray });
-		}
 		// Updating refresh state regenerates the wordcloud with updated state
 		setRefresh((prev) => prev + 1);
 	};

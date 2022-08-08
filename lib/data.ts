@@ -2,7 +2,7 @@ import { Cloud } from './types';
 
 export const demoClouds: Cloud[] = [
 	{
-		id: '1',
+		id: 'Tf9nyUR880oPMsHq2V2PI',
 		title: 'Demo',
 		ts: 1658759075787,
 		wordArray: [
@@ -92,7 +92,7 @@ export const demoClouds: Cloud[] = [
 		textAreaValue: '',
 	},
 	{
-		id: '2',
+		id: 'SE3Ma-O4yS1utE9WFwF8B',
 		title: 'untitled-1',
 		ts: 1658766285510,
 		wordArray: [
