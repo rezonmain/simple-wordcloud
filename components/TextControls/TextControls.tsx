@@ -6,7 +6,7 @@ import Switch from '../Switch/Switch';
 
 const TextControls = () => {
 	const {
-		cloud: { source, textArea },
+		cloud: { source, textAreaValue },
 		dispatch,
 	} = useCloudContext();
 
@@ -34,7 +34,7 @@ const TextControls = () => {
 						bgColor={'#f5f5f5'}
 						resize={'vertical'}
 						maxHeight={300}
-						value={textArea}
+						value={textAreaValue}
 						onChange={onTextAreaChange}
 					></Textarea>
 				)}
