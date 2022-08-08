@@ -1,6 +1,6 @@
 import mammoth from 'mammoth';
 import * as pdfjs from 'pdfjs-dist';
-import { Word } from '../types';
+import { WordInstance } from '../types';
 
 class TextParser {
 	static readonly acceptedStr =
@@ -15,18 +15,20 @@ class TextParser {
 	async getWordArrayFromFile(file: Blob) {
 		const words = await this._getWordsFromFile(file);
 		const wordCount = this.countWordInstance(words);
-		return this._toWordArray(wordCount);
+		return this._toWordInstanceArray(wordCount);
 	}
 
 	getWordArrayFromText(text: string) {
 		const wordCount = this.countWordInstance(this._trim(text));
-		return this._toWordArray(wordCount);
+		return this._toWordInstanceArray(wordCount);
 	}
 
-	private _toWordArray(wordCount: { [name: string]: number }): Word[] {
+	private _toWordInstanceArray(wordCount: {
+		[name: string]: number;
+	}): WordInstance[] {
 		return Object.entries(wordCount).map((entry) => ({
-			text: entry[0],
-			size: entry[1],
+			word: entry[0],
+			instances: entry[1],
 			enabled: true,
 		}));
 	}

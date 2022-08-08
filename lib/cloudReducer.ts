@@ -1,4 +1,4 @@
-import type { Cloud, Rotation, Word } from './types';
+import type { Cloud, Rotation, WordInstance } from './types';
 
 export type Action = {
 	type:
@@ -19,9 +19,9 @@ const cloudReducer = (state: Cloud, action: Action): Cloud => {
 		case 'updateTitle':
 			return { ...state, title: payload as string };
 		case 'updateTextArea':
-			return { ...state, textArea: payload as string };
+			return { ...state, textAreaValue: payload as string };
 		case 'updateWordArray': {
-			return { ...state, wordArray: payload as Word[] };
+			return { ...state, wordArray: payload as WordInstance[] };
 		}
 		case 'toggleWord':
 			return { ...state, wordArray: payload };

@@ -23,17 +23,7 @@ const CreatePage = () => {
 	// Get initial cloud from initial props (replace demo here)
 	const [cloud, dispatch] = useReducer(cloudReducer, demoClouds[0]);
 	const [refresh, setRefresh] = useState(0);
-	const text = cloud.textArea;
-
-	// Only recalculate wordArray if text area changes
-	const wordArray = useMemo(() => {
-		// FIX: this is a check for empty text area, MAKE IT CLEANER
-		if (!cloud.textArea) {
-			return;
-		}
-		const tp = new TextParser();
-		return tp.getWordArrayFromText(cloud.textArea as string);
-	}, [text]);
+	const text = cloud.textAreaValue;
 
 	const drawerBtnRef = useRef() as MutableRefObject<HTMLDivElement>;
 	const {
@@ -47,6 +37,8 @@ const CreatePage = () => {
 	const onApply = () => {
 		// Calculate wordArray if text is select as source
 		if (!cloud.source) {
+			const tp = new TextParser();
+			const wordArray = tp.getWordArrayFromText(text);
 			dispatch({ type: 'updateWordArray', payload: wordArray });
 		}
 		// Updating refresh state regenerates the wordcloud with updated state
@@ -57,6 +49,8 @@ const CreatePage = () => {
 	useEffect(() => {
 		lgMedia && onDrawerClose();
 	}, [lgMedia, onDrawerClose]);
+
+	console.log(cloud);
 
 	return (
 		<CloudContext.Provider value={{ cloud: cloud, dispatch: dispatch }}>
