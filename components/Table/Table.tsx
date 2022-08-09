@@ -39,7 +39,7 @@ const Table = () => {
 					{savedClouds.length > 0 ? (
 						rows
 					) : (
-						<div className='text-center my-7 mx-auto max-w-[20ch]'>
+						<div className='text-center my-7 mx-auto max-w-[20ch] text-neutral-800'>
 							<h3 className='font-semibold text-lg'>😯 No saved clouds</h3>
 							<p className=''>Create a new cloud by clicking on the + icon</p>
 						</div>

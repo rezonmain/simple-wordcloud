@@ -22,8 +22,8 @@ const HomePage = () => {
 					<Link href={'/create'}>
 						<Button type='action' text='Create New' />
 					</Link>
-					<span className='font-serif'>or</span>
-					<Button type='upload' text='Upload'></Button>
+					{/* <span className='font-serif'>or</span>
+					<Button type='upload' text='Upload'></Button> */}
 				</div>
 				<Table />
 			</main>

@@ -30,6 +30,7 @@ const TextControls = () => {
 					<FileDropper onFile={() => {}} />
 				) : (
 					<Textarea
+						fontFamily={'Maitree'}
 						height={180}
 						bgColor={'#f5f5f5'}
 						resize={'vertical'}

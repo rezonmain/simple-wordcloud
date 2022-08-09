@@ -2,7 +2,7 @@ import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import CreatePage from '../components/Pages/CreatePage/CreatePage';
-import { demoClouds } from '../lib/data';
+import Cloud from '../lib/classes/Cloud';
 
 const Create = ({
 	id,
@@ -13,8 +13,7 @@ const Create = ({
 	useEffect(() => {
 		const initialCloud = id
 			? JSON.parse(localStorage.getItem(id) as string)
-			: //TODO: Replace demo cloud with new cloud
-			  demoClouds[0];
+			: new Cloud();
 		setCloud(initialCloud);
 	}, []);
 
