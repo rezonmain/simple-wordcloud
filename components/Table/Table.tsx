@@ -55,5 +55,7 @@ const prettyDate = (ts: number) => {
 	const hr = date.getHours();
 	const min = date.getMinutes();
 	const s = date.getSeconds();
-	return `${m} ${d} ${y} ${hr}:${min}:${s}`;
+	return `${m} ${d} ${y} ${hr}:${min < 9 ? '0' + min : min}:${
+		s < 9 ? '0' + s : s
+	}`;
 };

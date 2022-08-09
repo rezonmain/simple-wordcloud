@@ -15,11 +15,13 @@ const TableRow = ({ id, name, date }: TableRowProps) => {
 				<div id='table-icons' className='flex flex-row gap-4 px-4'>
 					<BsTrashFill size={'1.7rem'} className='control' color='#262626' />
 					<Link href={{ pathname: '/create', query: { id } }}>
-						<BsFillArrowRightSquareFill
-							size={'1.7rem'}
-							className='control'
-							color='#262626'
-						/>
+						<a>
+							<BsFillArrowRightSquareFill
+								size={'1.7rem'}
+								className='control'
+								color='#262626'
+							/>
+						</a>
 					</Link>
 				</div>
 			</td>

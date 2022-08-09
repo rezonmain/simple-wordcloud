@@ -14,15 +14,15 @@ import { IoChevronDown } from 'react-icons/io5';
 import { useLocalStorage } from 'react-use';
 import Downloader from '../../lib/classes/Downloader';
 import { useCloudContext } from '../../lib/context/CloudContext';
+import useSaveCloud from '../../lib/hooks/useSaveCloud';
 
 const MenuBar = ({ as }: { as: 'toolbar' | 'drawer' }) => {
 	const {
-		cloud: { title, id },
+		cloud: { title },
 		cloud,
-		dispatch,
 	} = useCloudContext();
 
-	const [, setValue] = useLocalStorage(id);
+	const saveCloud = useSaveCloud(cloud);
 
 	const buttonStylesProps = {
 		color: '#f5f5f5',
@@ -58,7 +58,7 @@ const MenuBar = ({ as }: { as: 'toolbar' | 'drawer' }) => {
 		const d = new Downloader();
 		switch (e.currentTarget.name) {
 			case 'save':
-				setValue(cloud);
+				saveCloud();
 				break;
 			case 'svg':
 				d.asSVG(title);

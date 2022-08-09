@@ -15,7 +15,6 @@ import WordCloudWidget from '../../WordCloudWidget/WordCloudWidget';
 import { CloudContext } from '../../../lib/context/CloudContext';
 import cloudReducer from '../../../lib/cloudReducer';
 import useStorage from '../../../lib/hooks/useStorage';
-import saveData from '../../../lib/helpers/localstorage';
 import { demoClouds } from '../../../lib/data';
 import { Cloud } from '../../../lib/types';
 
@@ -40,8 +39,6 @@ const CreatePage = ({ cloudId }: { cloudId: string }) => {
 	// Close drawer when lgMedia is true
 	useEffect(() => {
 		lgMedia && onDrawerClose();
-		// TODO: Debug
-		// saveData();
 	}, [lgMedia, onDrawerClose]);
 
 	return (
