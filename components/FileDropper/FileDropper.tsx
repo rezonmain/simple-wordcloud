@@ -7,7 +7,7 @@ import { BsCloudUpload } from 'react-icons/bs';
 	[ ] Interface error handling
  */
 
-const FileDropper = ({ onFile }: { onFile: (file: Blob) => void }) => {
+const FileDropper = ({ onFile }: { onFile: (f: Blob) => void }) => {
 	const onDrop = useCallback(
 		(acceptedFiles: File[]) => {
 			onFile(acceptedFiles[0]);

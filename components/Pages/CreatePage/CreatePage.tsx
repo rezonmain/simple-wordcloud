@@ -37,6 +37,13 @@ const CreatePage = ({ initialCloud }: { initialCloud: Cloud }) => {
 		setRefresh((prev) => prev + 1);
 	};
 
+	const onFile = async (f: Blob) => {
+		const tp = new TextParser();
+		const wordArray = await tp.getWordArrayFromFile(f);
+		dispatch({ type: 'updateWordArray', payload: wordArray });
+		setRefresh((prev) => prev + 1);
+	};
+
 	// Update word list when textarea changes
 	useEffect(() => {
 		// If source is text
@@ -45,7 +52,7 @@ const CreatePage = ({ initialCloud }: { initialCloud: Cloud }) => {
 			const wordArray = tp.getWordArrayFromText(text);
 			dispatch({ type: 'updateWordArray', payload: wordArray });
 		}
-	}, [text]);
+	}, [text, cloud.source]);
 
 	// Close drawer when lgMedia is true
 	useEffect(() => {
@@ -58,7 +65,7 @@ const CreatePage = ({ initialCloud }: { initialCloud: Cloud }) => {
 			<SideDrawer isOpen={isDrawerOpen} onClose={onDrawerClose} />
 			<main className='w-[97vw] mx-auto my-3 flex flex-col justify-center gap-3 min-w-[330px] max-w-[510px] lg:max-w-[960px] lg:w-full'>
 				<div className='flex flex-col gap-3 lg:flex-row '>
-					<TextControls />
+					<TextControls onFile={onFile} />
 					<OptionControls onRefresh={onApply} />
 				</div>
 				{cloud.wordArray.length > 0 ? (

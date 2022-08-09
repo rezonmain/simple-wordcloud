@@ -4,7 +4,7 @@ import { useCloudContext } from '../../lib/context/CloudContext';
 import FileDropper from '../FileDropper/FileDropper';
 import Switch from '../Switch/Switch';
 
-const TextControls = () => {
+const TextControls = ({ onFile }: { onFile: (f: Blob) => void }) => {
 	const {
 		cloud: { source, textAreaValue },
 		dispatch,
@@ -27,7 +27,7 @@ const TextControls = () => {
 			</div>
 			<div className='bg-neutral-300 p-3'>
 				{source ? (
-					<FileDropper onFile={() => {}} />
+					<FileDropper onFile={onFile} />
 				) : (
 					<Textarea
 						fontFamily={'Maitree'}

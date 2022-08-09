@@ -32,9 +32,9 @@ Generate simple wordclouds from text file or text input. It uses D3.js to genera
 
 - [x] Make 'create' page
 - [x] Make landing page
-- [ ] Implement chart saving to LS functionality
+- [x] Implement chart saving to LS functionality
 - [x] Style pages according to desgin
-- [ ] Add user friendly animations
+- [x] Add user friendly animations
 
 ### FIX:
 

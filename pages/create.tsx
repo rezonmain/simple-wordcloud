@@ -15,7 +15,7 @@ const Create = ({
 			? JSON.parse(localStorage.getItem(id) as string)
 			: new Cloud();
 		setCloud(initialCloud);
-	}, []);
+	}, [id]);
 
 	return (
 		<>

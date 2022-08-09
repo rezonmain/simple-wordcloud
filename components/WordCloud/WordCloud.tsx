@@ -11,9 +11,13 @@ interface WordCloudProps {
 }
 
 const WordCloud = ({ wordArray, size, config }: WordCloudProps) => {
-	let cl: CloudLayout;
+	let cl = new CloudLayout(
+		size,
+		wordArray,
+		draw,
+		config || CloudLayout.DEFAULT
+	);
 	useEffect(() => {
-		cl = new CloudLayout(size, wordArray, draw, config || CloudLayout.DEFAULT);
 		removeCloud();
 		// This calls draw
 		cl.start();
