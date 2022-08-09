@@ -9,7 +9,8 @@ export type Action = {
 		| 'changeFont'
 		| 'changeLimit'
 		| 'changeRotation'
-		| 'toggleSource';
+		| 'toggleSource'
+		| 'setTimestamp';
 	payload?: any;
 };
 
@@ -53,6 +54,11 @@ const cloudReducer = (state: Cloud, action: Action): Cloud => {
 			return {
 				...state,
 				source: !state.source,
+			};
+		case 'setTimestamp':
+			return {
+				...state,
+				ts: Date.now(),
 			};
 		default:
 			return state;

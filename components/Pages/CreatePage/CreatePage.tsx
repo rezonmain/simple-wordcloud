@@ -13,15 +13,15 @@ import SideDrawer from '../../SideDrawer/SideDrawer';
 import Toolbar from '../../Toolbar/Toolbar';
 import WordCloudWidget from '../../WordCloudWidget/WordCloudWidget';
 import { CloudContext } from '../../../lib/context/CloudContext';
-import { demoClouds } from '../../../lib/data';
 import cloudReducer from '../../../lib/cloudReducer';
 import useStorage from '../../../lib/hooks/useStorage';
+import saveData from '../../../lib/helpers/localstorage';
+import { demoClouds } from '../../../lib/data';
 import { Cloud } from '../../../lib/types';
 
 const CreatePage = ({ cloudId }: { cloudId: string }) => {
-	// TODO: Get cloud from localstorage with cloud id, if id is undefined use demo cloud
-	const savedCloud = useStorage(cloudId) as Cloud;
-	const [cloud, dispatch] = useReducer(cloudReducer, savedCloud);
+	const initialCloud = cloudId ? useStorage<Cloud>(cloudId) : demoClouds[0];
+	const [cloud, dispatch] = useReducer(cloudReducer, initialCloud);
 	const [refresh, setRefresh] = useState(0);
 	const lgMedia = useMedia('(min-width: 1024px)');
 	const drawerBtnRef = useRef() as MutableRefObject<HTMLDivElement>;

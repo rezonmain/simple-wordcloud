@@ -3,10 +3,11 @@ import Button from '../../Button/Button';
 import Header from '../../Header/Header';
 import Hero from '../../Hero/Hero';
 import Table from '../../Table/Table';
-import { demoClouds } from '../../../lib/data';
 import Link from 'next/link';
+import useSavedClouds from '../../../lib/hooks/useSavedClouds';
 
 const HomePage = () => {
+	const savedClouds = useSavedClouds();
 	return (
 		<>
 			<Head>
@@ -25,7 +26,7 @@ const HomePage = () => {
 					<span className='font-serif'>or</span>
 					<Button type='upload' text='Upload'></Button>
 				</div>
-				<Table savedClouds={demoClouds} />
+				<Table savedClouds={savedClouds} />
 			</main>
 		</>
 	);
