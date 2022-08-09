@@ -1,9 +1,16 @@
 import { BsPlusCircleFill } from 'react-icons/bs';
-import { Cloud } from '../../lib/types';
 import TableRow from './TableRow';
 import Link from 'next/link';
+import useSavedClouds from '../../lib/hooks/useSavedClouds';
+import useDeleteCloud from '../../lib/hooks/useDeleteCloud';
 
-const Table = ({ savedClouds }: { savedClouds: Cloud[] }) => {
+const Table = () => {
+	const [savedClouds, setSaveClouds] = useSavedClouds();
+	const deleteCloud = useDeleteCloud();
+	const onDelete = (id: string) => {
+		setSaveClouds((prev) => prev.filter((cloud) => cloud.id !== id));
+		deleteCloud(id);
+	};
 	const rows = savedClouds.map((cloud) => {
 		return (
 			<TableRow
@@ -11,6 +18,7 @@ const Table = ({ savedClouds }: { savedClouds: Cloud[] }) => {
 				id={cloud.id}
 				name={cloud.title}
 				date={prettyDate(cloud.ts)}
+				onDelete={onDelete}
 			/>
 		);
 	});

@@ -7,7 +7,6 @@ import Link from 'next/link';
 import useSavedClouds from '../../../lib/hooks/useSavedClouds';
 
 const HomePage = () => {
-	const savedClouds = useSavedClouds();
 	return (
 		<>
 			<Head>
@@ -26,7 +25,7 @@ const HomePage = () => {
 					<span className='font-serif'>or</span>
 					<Button type='upload' text='Upload'></Button>
 				</div>
-				<Table savedClouds={savedClouds} />
+				<Table />
 			</main>
 		</>
 	);

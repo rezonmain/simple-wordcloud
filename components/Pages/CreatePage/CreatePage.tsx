@@ -15,8 +15,10 @@ import WordCloudWidget from '../../WordCloudWidget/WordCloudWidget';
 import { CloudContext } from '../../../lib/context/CloudContext';
 import cloudReducer from '../../../lib/cloudReducer';
 import { Cloud } from '../../../lib/types';
+import saveData from '../../../lib/helpers/localstorage';
 
 const CreatePage = ({ initialCloud }: { initialCloud: Cloud }) => {
+	saveData();
 	const [cloud, dispatch] = useReducer(cloudReducer, initialCloud);
 	const [refresh, setRefresh] = useState(0);
 	const lgMedia = useMedia('(min-width: 1024px)');

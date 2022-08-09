@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { demoClouds } from '../data';
 import { Cloud } from '../types';
 
-const useSavedClouds = () => {
+const useSavedClouds = (): [Cloud[], Dispatch<SetStateAction<Cloud[]>>] => {
 	const [savedClouds, setSavedClouds] = useState<Cloud[]>(demoClouds);
 	useEffect(() => {
 		const ids = JSON.parse(localStorage.getItem('ids') as string) as string[];
@@ -17,7 +17,7 @@ const useSavedClouds = () => {
 		);
 		setSavedClouds(savedClouds);
 	}, []);
-	return savedClouds;
+	return [savedClouds, setSavedClouds];
 };
 
 export default useSavedClouds;

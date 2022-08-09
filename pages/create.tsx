@@ -7,13 +7,14 @@ import { demoClouds } from '../lib/data';
 const Create = ({
 	id,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-	// If I don't do this, when /create refreshed it loses context
+	// If I don't do this, when /create is refreshed it loses context
 	const [cloud, setCloud] = useState();
 
 	useEffect(() => {
 		const initialCloud = id
 			? JSON.parse(localStorage.getItem(id) as string)
-			: demoClouds[0];
+			: //TODO: Replace demo cloud with new cloud
+			  demoClouds[0];
 		setCloud(initialCloud);
 	}, []);
 
