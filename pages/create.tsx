@@ -1,10 +1,22 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import Head from 'next/head';
+import { useEffect, useState } from 'react';
 import CreatePage from '../components/Pages/CreatePage/CreatePage';
+import { demoClouds } from '../lib/data';
 
 const Create = ({
 	id,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+	// If I don't do this, when /create refreshed it loses context
+	const [cloud, setCloud] = useState();
+
+	useEffect(() => {
+		const initialCloud = id
+			? JSON.parse(localStorage.getItem(id) as string)
+			: demoClouds[0];
+		setCloud(initialCloud);
+	}, []);
+
 	return (
 		<>
 			<Head>
@@ -15,7 +27,7 @@ const Create = ({
 				/>
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
-			<CreatePage cloudId={id} />
+			{cloud && <CreatePage initialCloud={cloud} />}
 		</>
 	);
 };

@@ -3,7 +3,12 @@ import { Cloud } from '../types';
 
 const useSaveCloud = (cloud: Cloud) => {
 	return useCallback(() => {
-		const ids = JSON.parse(localStorage.getItem('ids') as string) as string[];
+		let ids = JSON.parse(localStorage.getItem('ids') as string) as string[];
+
+		// if there is no ids store, initialize it
+		if (!ids) {
+			ids = [];
+		}
 		// If cloud is new, store its id
 		if (!ids.includes(cloud.id)) {
 			ids.push(cloud.id);

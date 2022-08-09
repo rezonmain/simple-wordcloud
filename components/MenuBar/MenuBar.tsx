@@ -11,7 +11,6 @@ import {
 import { MouseEvent } from 'react';
 import { IoChevronForward } from 'react-icons/io5';
 import { IoChevronDown } from 'react-icons/io5';
-import { useLocalStorage } from 'react-use';
 import Downloader from '../../lib/classes/Downloader';
 import { useCloudContext } from '../../lib/context/CloudContext';
 import useSaveCloud from '../../lib/hooks/useSaveCloud';

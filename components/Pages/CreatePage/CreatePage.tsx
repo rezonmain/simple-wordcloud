@@ -14,22 +14,19 @@ import Toolbar from '../../Toolbar/Toolbar';
 import WordCloudWidget from '../../WordCloudWidget/WordCloudWidget';
 import { CloudContext } from '../../../lib/context/CloudContext';
 import cloudReducer from '../../../lib/cloudReducer';
-import useStorage from '../../../lib/hooks/useStorage';
-import { demoClouds } from '../../../lib/data';
 import { Cloud } from '../../../lib/types';
 
-const CreatePage = ({ cloudId }: { cloudId: string }) => {
-	const initialCloud = cloudId ? useStorage<Cloud>(cloudId) : demoClouds[0];
+const CreatePage = ({ initialCloud }: { initialCloud: Cloud }) => {
 	const [cloud, dispatch] = useReducer(cloudReducer, initialCloud);
 	const [refresh, setRefresh] = useState(0);
 	const lgMedia = useMedia('(min-width: 1024px)');
 	const drawerBtnRef = useRef() as MutableRefObject<HTMLDivElement>;
-
 	const {
 		isOpen: isDrawerOpen,
 		onOpen: onDrawerOpen,
 		onClose: onDrawerClose,
 	} = useDisclosure();
+	let toolBar: JSX.Element | undefined = undefined;
 
 	const onApply = () => {
 		// Updating refresh state regenerates the wordcloud with updated state
