@@ -15,12 +15,14 @@ import WordCloudWidget from '../../WordCloudWidget/WordCloudWidget';
 import { CloudContext } from '../../../lib/context/CloudContext';
 import { demoClouds } from '../../../lib/data';
 import cloudReducer from '../../../lib/cloudReducer';
+import saveData from '../../../lib/helpers/localstorage';
+import { useLocalStorage } from 'react-use';
 
 const CreatePage = ({ cloudId }: { cloudId: string }) => {
-	// Get initial cloud from initial props (replace demo here)
+	// TODO: Get cloud from localstorage with cloud id, if id is undefined use demo cloud
+	const savedCloud = useLocalStorage(cloudId);
 	const [cloud, dispatch] = useReducer(cloudReducer, demoClouds[0]);
 	const [refresh, setRefresh] = useState(0);
-	const text = cloud.textAreaValue;
 	const lgMedia = useMedia('(min-width: 1024px)');
 	const drawerBtnRef = useRef() as MutableRefObject<HTMLDivElement>;
 
@@ -38,6 +40,8 @@ const CreatePage = ({ cloudId }: { cloudId: string }) => {
 	// Close drawer when lgMedia is true
 	useEffect(() => {
 		lgMedia && onDrawerClose();
+		// TODO: Debug
+		// saveData();
 	}, [lgMedia, onDrawerClose]);
 
 	return (
