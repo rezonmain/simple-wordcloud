@@ -1,4 +1,5 @@
 import { nanoid } from 'nanoid';
+import defaultText from '../data';
 import CloudLayout from './CloudLayout';
 
 class Cloud {
@@ -7,11 +8,11 @@ class Cloud {
 			id: nanoid(),
 			title: 'untitled',
 			ts: Date.now(),
-			wordArray: [{ word: 'create', instances: 90, enabled: true }],
+			wordArray: [],
 			layout: CloudLayout.DEFAULT,
 			// true for file, false for text
 			source: false,
-			textAreaValue: 'hello',
+			textAreaValue: defaultText,
 		};
 	}
 }

@@ -33,17 +33,10 @@ class TextParser {
 		}));
 	}
 
-	// TODO: using default settings on stop words
-	countWordInstance(
-		text: string,
-		options = { stopWords: false, lang: 'eng' }
-	): { [name: string]: number } {
+	countWordInstance(text: string): { [name: string]: number } {
 		let wordInstance: { [name: string]: number } = {};
 		const { removeStopwords } = require('stopword');
-		// TODO: Let user specify what to langauge use for stop words
-		text = options.stopWords
-			? text
-			: removeStopwords(text.split(' ')).join(' ');
+		text = removeStopwords(text.split(' ')).join(' ');
 
 		text.split(' ').forEach((word) => {
 			wordInstance[word] = wordInstance[word] ? ++wordInstance[word] : 1;

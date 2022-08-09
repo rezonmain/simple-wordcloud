@@ -115,8 +115,66 @@ export const demoClouds: Cloud[] = [
 	},
 ];
 
-export const text = `She travelling acceptance men unpleasant her especially entreaties law. Law forth but end any arise chief arose. Old her say learn these large. Joy fond many ham high seen this. Few preferred continual sir led incommode neglected. Discovered too old insensible collecting unpleasant but invitation.
-Made last it seen went no just when of by. Occasional entreaties comparison me difficulty so themselves. At brother inquiry of offices without do my service. As particular to companions at sentiments. Weather however luckily enquire so certain do. Aware did stood was day under ask. Dearest affixed enquire on explain opinion he. Reached who the mrs joy offices pleased. Towards did colonel article any parties.
-Shewing met parties gravity husband sex pleased. On to no kind do next feel held walk. Last own loud and knew give gay four. Sentiments motionless or principles preference excellence am. Literature surrounded insensible at indulgence or to admiration remarkably. Matter future lovers desire marked boy use. Chamber reached do he nothing be. `;
-
-export default text;
+export const defaultText = `Here is Edward Bear, coming downstairs now, bump,
+bump, bump, on the back of his head, behind
+Christopher Robin. It is, as far as he knows, the only
+way of coming downstairs, but sometimes he feels that
+there really is another way, if only he could stop bumping
+for a moment and think of it. And then he feels that
+perhaps there isn't. Anyhow, here he is at the bottom,
+and ready to be introduced to you. Winnie-the-Pooh.
+When I first heard his name, I said, just as you are
+going to say, 'But I thought he was a boy?'
+'So did I,' said Christopher Robin.
+'Then you can't call him Winnie?'
+'I don't.'
+'But you said'
+'He's Winnie-ther-Pooh. Don't you know what “ther”
+means?'
+'Ah, yes, now I do,' I said quickly; and I hope you do
+too, because it is all the explanation you are going to get.
+Sometimes Winnie-the-Pooh likes a game of some
+sort when he comes downstairs, and sometimes he likes
+to sit quietly in front of the fire and listen to a story.
+This evening
+'What about a story?' said Christopher Robin.
+'What about a story?' I said.
+'Could you very sweetly tell Winnie-the-Pooh one?'
+'I suppose I could,' I said. 'What sort of stories does
+he like?'
+'About himself. Because he's that sort of Bear.'
+'Oh, I see.'
+'So could you very sweetly?'
+'I'll try,' I said. So I tried.
+Once upon a time, a very long time ago now, about last
+Friday, Winnie-the-Pooh lived in a forest all by himself
+under the name of Sanders.
+('What does “under the name” mean?' asked Christopher
+Robin.
+'It means he had the name over the door in gold letters
+and lived under it.'
+'Winnie-the-Pooh wasn't quite sure,' said Christopher
+Robin.
+'Now I am,' said a growly voice.
+'Then I will go on,' said I.)
+One day when he was out walking, he came to an
+open place in the middle of the forest, and in the middle
+of this place was a large oak-tree, and, from the top of
+the tree, there came a loud buzzing-noise.
+Winnie-the-Pooh sat down at the foot of the tree, put
+his head between his paws, and began to think.
+First of all he said to himself: That buzzing-noise
+means something. You don't get a buzzing-noise like
+that, just buzzing and buzzing, without its meaning
+something. If there's a buzzing-noise, somebody's
+making a buzzing-noise, and the only reason for making
+a buzzing-noise that I know of is because you're a bee.
+Then he thought another long time, and said: 'And
+the only reason for being a bee that I know of is making
+honey.'
+And then he got up, and said: 'And the only reason for
+making honey is so as I can eat it.' So he began to climb
+the tree.
+He climbed and he climbed and he climbed, and as
+he climbed he sang a little song to himself.`;
+export default defaultText;
