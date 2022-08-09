@@ -35,7 +35,16 @@ const Table = () => {
 						</th>
 					</tr>
 				</thead>
-				<tbody>{rows}</tbody>
+				<tbody>
+					{savedClouds.length > 0 ? (
+						rows
+					) : (
+						<div className='text-center my-7 mx-auto max-w-[20ch]'>
+							<h3 className='font-semibold text-lg'>😯 No saved clouds</h3>
+							<p className=''>Create a new cloud by clicking on the + icon</p>
+						</div>
+					)}
+				</tbody>
 			</table>
 			<div id='add-icon' className='flex justify-end p-4'>
 				<Link href={'/create'}>

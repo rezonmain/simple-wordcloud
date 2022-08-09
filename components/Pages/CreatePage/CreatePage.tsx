@@ -18,7 +18,6 @@ import { Cloud } from '../../../lib/types';
 import saveData from '../../../lib/helpers/localstorage';
 
 const CreatePage = ({ initialCloud }: { initialCloud: Cloud }) => {
-	saveData();
 	const [cloud, dispatch] = useReducer(cloudReducer, initialCloud);
 	const [refresh, setRefresh] = useState(0);
 	const lgMedia = useMedia('(min-width: 1024px)');
@@ -28,7 +27,6 @@ const CreatePage = ({ initialCloud }: { initialCloud: Cloud }) => {
 		onOpen: onDrawerOpen,
 		onClose: onDrawerClose,
 	} = useDisclosure();
-	let toolBar: JSX.Element | undefined = undefined;
 
 	const onApply = () => {
 		// Updating refresh state regenerates the wordcloud with updated state
