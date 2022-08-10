@@ -4,7 +4,7 @@ import Link from 'next/link';
 import useSavedClouds from '../../lib/hooks/useSavedClouds';
 import useDeleteCloud from '../../lib/hooks/useDeleteCloud';
 
-const Table = () => {
+const Table = ({ as }: { as: 'homepage' | 'modal' }) => {
 	const [savedClouds, setSaveClouds] = useSavedClouds();
 	const deleteCloud = useDeleteCloud();
 	const onDelete = (id: string) => {
@@ -19,6 +19,7 @@ const Table = () => {
 				name={cloud.title}
 				date={prettyDate(cloud.ts)}
 				onDelete={onDelete}
+				as={as}
 			/>
 		);
 	});
@@ -28,14 +29,25 @@ const Table = () => {
 			className='font-serif w-full flex flex-col max-h-80 rounded-lg'
 		>
 			<table>
-				<thead className='bg-neutral-800 text-neutral-100 text-lg'>
-					<tr>
-						<th colSpan={3} className='font-normal p-2 rounded-t-lg'>
-							Saved word clouds
-						</th>
-					</tr>
-				</thead>
-				<tbody className='bg-neutral-200'>
+				{as === 'modal' ? (
+					<thead>
+						<tr className=' border-b border-neutral-400'>
+							<td className='px-4'>Name</td>
+							<td>Last saved</td>
+							<td>Delete | Open</td>
+						</tr>
+					</thead>
+				) : (
+					<thead className='bg-neutral-800 text-neutral-100 text-lg'>
+						<tr>
+							<th colSpan={3} className='font-normal p-2 rounded-t-lg'>
+								Saved word clouds
+							</th>
+						</tr>
+					</thead>
+				)}
+
+				<tbody className={as === 'modal' ? 'bg-white' : 'bg-neutral-200'}>
 					{savedClouds.length > 0 ? (
 						rows
 					) : (
@@ -54,9 +66,11 @@ const Table = () => {
 			</table>
 			<div
 				id='add-icon'
-				className='flex justify-end p-4 bg-neutral-200 rounded-b-lg pt-20'
+				className={`flex justify-end p-4 bg-${
+					as === 'modal' ? 'white' : 'neutral-200'
+				} rounded-b-lg pt-20`}
 			>
-				<Link href={'/create'}>
+				<Link href={'/create/new'}>
 					<div>
 						<BsPlusCircleFill
 							size={'2.25rem'}

@@ -24,7 +24,7 @@ Generate simple wordclouds from text file or text input. It uses D3.js to genera
   - [ ] Settings reset
   - [ ] Open cloud from menu bar
   - [ ] Save as functionality
-  - [ ] Open new cloud from menu bar
+  - [x] Open new cloud from menu bar
 
 - [ ] Add configurability:
 

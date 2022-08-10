@@ -1,16 +1,22 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { BsFillArrowRightSquareFill, BsTrashFill } from 'react-icons/bs';
-import useDeleteCloud from '../../lib/hooks/useDeleteCloud';
 
 interface TableRowProps {
 	id: string;
 	name: string;
 	date: string;
 	onDelete: (id: string) => void;
+	as: 'homepage' | 'modal';
 }
-const TableRow = ({ id, name, date, onDelete }: TableRowProps) => {
+const TableRow = ({ id, name, date, onDelete, as }: TableRowProps) => {
+	const router = useRouter();
 	return (
-		<tr className='border-b border-neutral-800 h-10'>
+		<tr
+			className={`border-b border-neutral-${
+				as === 'modal' ? '400' : '800'
+			} h-10`}
+		>
 			<td className='text-md px-4'>{name}</td>
 			<td className='text-md'>{date}</td>
 			<td width='8%'>

@@ -7,6 +7,7 @@ import {
 	Flex,
 	MenuDivider,
 	PlacementWithLogical,
+	useDisclosure,
 } from '@chakra-ui/react';
 import { dispatch } from 'd3';
 import { useRouter } from 'next/router';
@@ -17,15 +18,19 @@ import Cloud from '../../lib/classes/Cloud';
 import Downloader from '../../lib/classes/Downloader';
 import { useCloudContext } from '../../lib/context/CloudContext';
 import useSaveCloud from '../../lib/hooks/useSaveCloud';
+import useSavedClouds from '../../lib/hooks/useSavedClouds';
+import ReusableModal from '../ReusableModal/ReusableModal';
+import Table from '../Table/Table';
 
 const MenuBar = ({ as }: { as: 'toolbar' | 'drawer' }) => {
 	const {
 		cloud: { title },
 		cloud,
-		dispatch,
 	} = useCloudContext();
 
 	const saveCloud = useSaveCloud(cloud);
+	const [savedClouds] = useSavedClouds();
+	const { isOpen, onOpen, onClose } = useDisclosure();
 	const router = useRouter();
 
 	const buttonStylesProps = {
@@ -65,7 +70,7 @@ const MenuBar = ({ as }: { as: 'toolbar' | 'drawer' }) => {
 				router.push('/create/new');
 				break;
 			case 'openCloud':
-				// render open cloud modal
+				onOpen();
 				break;
 			case 'save':
 				saveCloud();
@@ -83,87 +88,95 @@ const MenuBar = ({ as }: { as: 'toolbar' | 'drawer' }) => {
 	};
 
 	return (
-		<Flex gap={'0.1rem'} direction={as === 'toolbar' ? 'row' : 'column'}>
-			<Menu {...menuStyleProps}>
-				<MenuButton {...buttonStylesProps}>File</MenuButton>
-				<MenuList>
-					<MenuItem
-						name='openCloud'
-						{...menuItemStylesProps}
-						onClick={(e) => handleClick(e)}
-					>
-						Open cloud...
-					</MenuItem>
-					<MenuDivider />
-					<MenuItem
-						name='save'
-						{...menuItemStylesProps}
-						onClick={(e) => handleClick(e)}
-					>
-						Save...
-					</MenuItem>
-					<MenuItem
-						name='saveAs'
-						{...menuItemStylesProps}
-						onClick={(e) => handleClick(e)}
-					>
-						Save as...
-					</MenuItem>
-					<MenuItem
-						name='newCloud'
-						{...menuItemStylesProps}
-						onClick={(e) => handleClick(e)}
-					>
-						New cloud
-					</MenuItem>
-				</MenuList>
-			</Menu>
-			<Menu {...menuStyleProps}>
-				<MenuButton {...buttonStylesProps}>Download</MenuButton>
-				<MenuList>
-					<MenuItem
-						name='svg'
-						{...menuItemStylesProps}
-						onClick={(e) => handleClick(e)}
-					>
-						as SVG
-					</MenuItem>
-					<MenuItem
-						name='png'
-						{...menuItemStylesProps}
-						onClick={(e) => handleClick(e)}
-					>
-						as PNG
-					</MenuItem>
-					<MenuItem
-						name='jpg'
-						{...menuItemStylesProps}
-						onClick={(e) => handleClick(e)}
-					>
-						as JPG
-					</MenuItem>
-				</MenuList>
-			</Menu>
-			<Menu {...menuStyleProps}>
-				<MenuButton {...buttonStylesProps}>Adv. Options</MenuButton>
-				<MenuList>
-					<MenuItem
-						name='scalingMethod'
-						{...menuItemStylesProps}
-						onClick={(e) => handleClick(e)}
-					>
-						Scaling method...
-					</MenuItem>
-					<MenuItem
-						name='wordSpacing'
-						{...menuItemStylesProps}
-						onClick={(e) => handleClick(e)}
-					>
-						Word spacing...
-					</MenuItem>
-				</MenuList>
-			</Menu>
-		</Flex>
+		<>
+			<Flex gap={'0.1rem'} direction={as === 'toolbar' ? 'row' : 'column'}>
+				<Menu {...menuStyleProps}>
+					<MenuButton {...buttonStylesProps}>File</MenuButton>
+					<MenuList>
+						<MenuItem
+							isDisabled={savedClouds.length <= 0}
+							name='openCloud'
+							{...menuItemStylesProps}
+							onClick={(e) => {
+								handleClick(e);
+							}}
+						>
+							Open cloud...
+						</MenuItem>
+						<MenuDivider />
+						<MenuItem
+							name='save'
+							{...menuItemStylesProps}
+							onClick={(e) => handleClick(e)}
+						>
+							Save...
+						</MenuItem>
+						<MenuItem
+							name='saveAs'
+							{...menuItemStylesProps}
+							onClick={(e) => handleClick(e)}
+						>
+							Save as...
+						</MenuItem>
+						<MenuItem
+							name='newCloud'
+							{...menuItemStylesProps}
+							onClick={(e) => handleClick(e)}
+						>
+							New cloud
+						</MenuItem>
+					</MenuList>
+				</Menu>
+				<Menu {...menuStyleProps}>
+					<MenuButton {...buttonStylesProps}>Download</MenuButton>
+					<MenuList>
+						<MenuItem
+							name='svg'
+							{...menuItemStylesProps}
+							onClick={(e) => handleClick(e)}
+						>
+							as SVG
+						</MenuItem>
+						<MenuItem
+							name='png'
+							{...menuItemStylesProps}
+							onClick={(e) => handleClick(e)}
+						>
+							as PNG
+						</MenuItem>
+						<MenuItem
+							name='jpg'
+							{...menuItemStylesProps}
+							onClick={(e) => handleClick(e)}
+						>
+							as JPG
+						</MenuItem>
+					</MenuList>
+				</Menu>
+				<Menu {...menuStyleProps}>
+					<MenuButton {...buttonStylesProps}>Adv. Options</MenuButton>
+					<MenuList>
+						<MenuItem
+							name='scalingMethod'
+							{...menuItemStylesProps}
+							onClick={(e) => handleClick(e)}
+						>
+							Scaling method...
+						</MenuItem>
+						<MenuItem
+							name='wordSpacing'
+							{...menuItemStylesProps}
+							onClick={(e) => handleClick(e)}
+						>
+							Word spacing...
+						</MenuItem>
+					</MenuList>
+				</Menu>
+			</Flex>
+			<ReusableModal title='Open Cloud' isOpen={isOpen} onClose={onClose}>
+				<Table as='modal' />
+			</ReusableModal>
+		</>
 	);
 };
 export default MenuBar;

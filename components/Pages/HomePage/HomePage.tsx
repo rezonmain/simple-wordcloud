@@ -4,7 +4,6 @@ import Header from '../../Header/Header';
 import Hero from '../../Hero/Hero';
 import Table from '../../Table/Table';
 import Link from 'next/link';
-import useSavedClouds from '../../../lib/hooks/useSavedClouds';
 
 const HomePage = () => {
 	return (
@@ -22,10 +21,8 @@ const HomePage = () => {
 					<Link href={'/create'}>
 						<Button type='action' text='Create New' />
 					</Link>
-					{/* <span className='font-serif'>or</span>
-					<Button type='upload' text='Upload'></Button> */}
 				</div>
-				<Table />
+				<Table as='homepage' />
 			</main>
 		</>
 	);

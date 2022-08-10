@@ -1,12 +1,14 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import CreatePage from '../../components/Pages/CreatePage/CreatePage';
-import Cloud from '../../lib/classes/Cloud';
+import CreatePage from '../components/Pages/CreatePage/CreatePage';
+import Cloud from '../lib/classes/Cloud';
 
 const Create = ({
 	id,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+	const router = useRouter();
 	// If I don't do this, when /create is refreshed it loses context
 	const [cloud, setCloud] = useState();
 
@@ -15,7 +17,7 @@ const Create = ({
 			? JSON.parse(localStorage.getItem(id) as string)
 			: new Cloud();
 		setCloud(initialCloud);
-	}, [id]);
+	}, [id, router.query.slug]);
 
 	return (
 		<>

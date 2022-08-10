@@ -2,7 +2,6 @@ import { useDisclosure } from '@chakra-ui/react';
 import {
 	MutableRefObject,
 	useEffect,
-	useMemo,
 	useReducer,
 	useRef,
 	useState,
@@ -19,7 +18,6 @@ import { Cloud } from '../../../lib/types';
 import TextParser from '../../../lib/classes/TextParser';
 
 const CreatePage = ({ initialCloud }: { initialCloud: Cloud }) => {
-	// TODO: generate cloud from text area
 	const [cloud, dispatch] = useReducer(cloudReducer, initialCloud);
 	const text = cloud.textAreaValue;
 	const [refresh, setRefresh] = useState(0);
