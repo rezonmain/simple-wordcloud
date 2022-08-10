@@ -9,12 +9,10 @@ import {
 	PlacementWithLogical,
 	useDisclosure,
 } from '@chakra-ui/react';
-import { dispatch } from 'd3';
 import { useRouter } from 'next/router';
 import { MouseEvent } from 'react';
 import { IoChevronForward } from 'react-icons/io5';
 import { IoChevronDown } from 'react-icons/io5';
-import Cloud from '../../lib/classes/Cloud';
 import Downloader from '../../lib/classes/Downloader';
 import { useCloudContext } from '../../lib/context/CloudContext';
 import useSaveCloud from '../../lib/hooks/useSaveCloud';

@@ -1,33 +1,45 @@
-import { ChangeEvent } from 'react';
-
-export type WordListRowProps = {
-	index: number;
-	word: string;
-	value: number;
-	enabled: boolean;
-	onChange: (e: ChangeEvent<HTMLInputElement>, word: string) => void;
-};
+import { ChangeEvent, CSSProperties } from 'react';
+import { useCloudContext } from '../../lib/context/CloudContext';
 
 const WordListRow = ({
 	index,
-	word,
-	value,
-	enabled,
-	onChange,
-}: WordListRowProps) => {
+	style,
+}: {
+	index: number;
+	style: CSSProperties;
+}) => {
+	const {
+		cloud: { wordArray },
+		dispatch,
+	} = useCloudContext();
+
+	const wordInstance = wordArray[index];
+
+	// Update global state on checkbox toggle
+	const onChange = (e: ChangeEvent<HTMLInputElement>, word: string) => {
+		const state = e.target.checked;
+		const newArray = structuredClone(wordArray);
+		const index = newArray.findIndex((el) => el.word === word);
+		newArray[index].enabled = state;
+		dispatch({ type: 'toggleWord', payload: newArray });
+	};
+
 	return (
-		<tr className='items-center hover:bg-neutral-100 active:bg-neutral-100'>
-			<td className='text-neutral-400 border-b border-r'>{index}</td>
-			<td className=' pl-4 border-b'>
+		<div
+			style={style}
+			className='flex flex-row justify-start hover:bg-neutral-100 active:bg-neutral-100 border-b border-neutral-300'
+		>
+			<div className='text-neutral-400 w-[5ch]'>{index + 1}</div>
+			<div className=' pl-4 w-[25%]'>
 				<input
 					type={'checkbox'}
-					checked={enabled}
-					onChange={(e) => onChange(e, word)}
+					checked={wordInstance.enabled}
+					onChange={(e) => onChange(e, wordInstance.word)}
 				/>
-			</td>
-			<td className='border-b text-lg pr-10'>{word}</td>
-			<td className='border-b pr-10'>{value}</td>
-		</tr>
+			</div>
+			<div className=' text-lg pr-10 w-[40%]'>{wordInstance.word}</div>
+			<div className=' pr-10'>{wordInstance.instances}</div>
+		</div>
 	);
 };
 
