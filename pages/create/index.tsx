@@ -1,8 +1,8 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
-import CreatePage from '../components/Pages/CreatePage/CreatePage';
-import Cloud from '../lib/classes/Cloud';
+import CreatePage from '../../components/Pages/CreatePage/CreatePage';
+import Cloud from '../../lib/classes/Cloud';
 
 const Create = ({
 	id,
