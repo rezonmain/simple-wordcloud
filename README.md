@@ -21,12 +21,18 @@ Generate simple wordclouds from text file or text input. It uses D3.js to genera
   - [ ] Mouse over shows value of word
   - [x] Populate animation
   - [ ] Rotate animation
+  - [ ] Settings reset
+  - [ ] Open cloud from menu bar
+  - [ ] Save as functionality
+  - [ ] Open new cloud from menu bar
 
 - [ ] Add configurability:
 
   - [x] Word angles
   - [x] Word fonts
   - [x] Word limits
+  - [ ] Word scaling
+  - [ ] Word padding
   - [ ] Word colors and fading
   - [ ] Option to keep stop words and pronouns (eng, fre, esp)
 
@@ -38,10 +44,13 @@ Generate simple wordclouds from text file or text input. It uses D3.js to genera
 
 ### FIX:
 
-The conversion of svg to bitmap is done using a OffscreenCanvas which is currently only fully supported in Chromium browsers, so download to png fails in Firefox and Safari:
-to fix:
+- The conversion of svg to bitmap is done using a OffscreenCanvas which is currently only fully supported in Chromium browsers, so download to png fails in Firefox and Safari:
+  to fix:
 
 - [x] Render svg to a canvas, get blob using native canvas calls
+- [ ] Lazy load wordlist modal!!!
+- [ ] Page loading state to avoid pops
+- [ ] Cloud loading on settings apply
 
 ### Design files
 
