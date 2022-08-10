@@ -10,7 +10,7 @@ interface TableRowProps {
 }
 const TableRow = ({ id, name, date, onDelete }: TableRowProps) => {
 	return (
-		<tr className='border-b border-b-black h-10'>
+		<tr className='border-b border-neutral-800 h-10'>
 			<td className='text-md px-4'>{name}</td>
 			<td className='text-md'>{date}</td>
 			<td width='8%'>

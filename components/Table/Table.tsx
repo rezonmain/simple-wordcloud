@@ -25,23 +25,23 @@ const Table = () => {
 	return (
 		<div
 			id='table'
-			className='font-serif w-full flex flex-col border border-black max-h-80 rounded-lg'
+			className='font-serif w-full flex flex-col max-h-80 rounded-lg'
 		>
 			<table>
-				<thead className='bg-neutral-800 text-neutral-100 text-lg '>
+				<thead className='bg-neutral-800 text-neutral-100 text-lg'>
 					<tr>
 						<th colSpan={3} className='font-normal p-2 rounded-t-lg'>
-							Your saved word clouds
+							Saved word clouds
 						</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody className='bg-neutral-200'>
 					{savedClouds.length > 0 ? (
 						rows
 					) : (
 						<tr>
 							<td>
-								<div className='text-center my-7 mx-auto w-[20ch] text-neutral-800'>
+								<div className='text-center mt-7 mx-auto w-[20ch] text-neutral-800'>
 									<h3 className='font-semibold text-lg'>😯 No saved clouds</h3>
 									<p className=''>
 										Create a new cloud by clicking on the + icon
@@ -52,7 +52,10 @@ const Table = () => {
 					)}
 				</tbody>
 			</table>
-			<div id='add-icon' className='flex justify-end p-4'>
+			<div
+				id='add-icon'
+				className='flex justify-end p-4 bg-neutral-200 rounded-b-lg pt-20'
+			>
 				<Link href={'/create'}>
 					<div>
 						<BsPlusCircleFill
