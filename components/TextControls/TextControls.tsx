@@ -1,7 +1,9 @@
 import { Textarea } from '@chakra-ui/react';
 import { ChangeEvent } from 'react';
 import { useCloudContext } from '../../lib/context/CloudContext';
+import Button from '../Button/Button';
 import FileDropper from '../FileDropper/FileDropper';
+import OptionButton from '../OptionControls/OptionButton';
 import Switch from '../Switch/Switch';
 
 const TextControls = ({ onFile }: { onFile: (f: Blob) => void }) => {
@@ -29,15 +31,26 @@ const TextControls = ({ onFile }: { onFile: (f: Blob) => void }) => {
 				{source ? (
 					<FileDropper onFile={onFile} />
 				) : (
-					<Textarea
-						fontFamily={'Maitree'}
-						height={180}
-						bgColor={'#f5f5f5'}
-						resize={'vertical'}
-						maxHeight={300}
-						value={textAreaValue}
-						onChange={onTextAreaChange}
-					></Textarea>
+					<div className='flex flex-col gap-2'>
+						<Textarea
+							fontFamily={'Maitree'}
+							height={180}
+							bgColor={'#f5f5f5'}
+							resize={'vertical'}
+							maxHeight={300}
+							value={textAreaValue}
+							onChange={onTextAreaChange}
+						></Textarea>
+						<div className='self-end'>
+							<OptionButton
+								text='Clear'
+								onClick={() =>
+									dispatch({ type: 'updateTextArea', payload: '' })
+								}
+								highlight={true}
+							/>
+						</div>
+					</div>
 				)}
 			</div>
 		</section>
