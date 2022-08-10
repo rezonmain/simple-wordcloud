@@ -13,10 +13,12 @@ const Create = ({
 	const [cloud, setCloud] = useState();
 
 	useEffect(() => {
-		const initialCloud = id
-			? JSON.parse(localStorage.getItem(id) as string)
-			: new Cloud();
-		setCloud(initialCloud);
+		const initialCloud = JSON.parse(localStorage.getItem(id) as string);
+		// If initial cloud is undefined (id not found) open /create with new cloud
+		setCloud(initialCloud || new Cloud());
+		if (!initialCloud) {
+			router.push('/create', '/create/new');
+		}
 	}, [id, router.query.slug]);
 
 	return (
