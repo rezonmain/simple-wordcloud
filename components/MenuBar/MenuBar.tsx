@@ -67,7 +67,7 @@ const MenuBar = ({ as }: { as: 'toolbar' | 'drawer' }) => {
 		const d = new Downloader();
 		switch (e.currentTarget.name) {
 			case 'newCloud':
-				router.push('/create/new');
+				router.push('/create');
 				break;
 			case 'openCloud':
 				onOpen();
