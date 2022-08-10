@@ -1,17 +1,17 @@
-import { Rotation } from '../../lib/types';
-
-const RotationCard = ({
+const RadioCard = ({
 	children,
 	title,
 	value,
-	rotation,
+	currentValue,
+	description,
 	onClick,
 }: {
 	children: JSX.Element;
 	title: string;
-	value: Rotation;
-	rotation: Rotation;
-	onClick: (rotation: Rotation) => void;
+	value: string;
+	currentValue: string | undefined;
+	description?: string;
+	onClick: (value: string) => void;
 }) => {
 	const selected = {
 		borderBottom: '3px solid #3182ce',
@@ -19,15 +19,16 @@ const RotationCard = ({
 	return (
 		<div
 			onClick={() => onClick(value)}
-			style={value === rotation ? selected : {}}
+			style={value === currentValue ? selected : {}}
 			className='rounded-sm p-1 w-fit font-serif cursor-pointer hover:scale-[1.03] active:scale-[1.03] transition-transform'
 		>
 			<h3>{title}</h3>
 			<div className='border border-neutral-300 shadow-sm rounded-lg'>
 				{children}
 			</div>
+			{description && <p>{description}</p>}
 		</div>
 	);
 };
 
-export default RotationCard;
+export default RadioCard;

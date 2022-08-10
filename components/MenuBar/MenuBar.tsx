@@ -19,6 +19,7 @@ import useSaveCloud from '../../lib/hooks/useSaveCloud';
 import useSavedClouds from '../../lib/hooks/useSavedClouds';
 import ReusableModal from '../ReusableModal/ReusableModal';
 import Table from '../Table/Table';
+import WordScaling from '../WordScaling/WordScaling';
 
 const MenuBar = ({ as }: { as: 'toolbar' | 'drawer' }) => {
 	const {
@@ -29,6 +30,11 @@ const MenuBar = ({ as }: { as: 'toolbar' | 'drawer' }) => {
 	const saveCloud = useSaveCloud(cloud);
 	const [savedClouds] = useSavedClouds();
 	const { isOpen, onOpen, onClose } = useDisclosure();
+	const {
+		isOpen: isScalingOpen,
+		onOpen: onScalingOpen,
+		onClose: onScalingClose,
+	} = useDisclosure();
 	const router = useRouter();
 
 	const buttonStylesProps = {
@@ -85,6 +91,9 @@ const MenuBar = ({ as }: { as: 'toolbar' | 'drawer' }) => {
 				break;
 			case 'jpg':
 				d.asJPG(title);
+				break;
+			case 'scalingMethod':
+				onScalingOpen();
 				break;
 		}
 	};
@@ -177,6 +186,13 @@ const MenuBar = ({ as }: { as: 'toolbar' | 'drawer' }) => {
 			</Flex>
 			<ReusableModal title='Open Cloud' isOpen={isOpen} onClose={onClose}>
 				<Table as='modal' />
+			</ReusableModal>
+			<ReusableModal
+				title='Set Word Scaling'
+				isOpen={isScalingOpen}
+				onClose={onScalingClose}
+			>
+				<WordScaling />
 			</ReusableModal>
 		</>
 	);

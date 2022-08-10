@@ -127,7 +127,7 @@ class CloudLayout {
 				return d3
 					.scaleLog()
 					.domain([min, max])
-					.range([1, this._getLargestWordFontSize()]);
+					.range([10, this._getLargestWordFontSize()]);
 			case 'linear':
 				return d3
 					.scaleLinear()
@@ -138,7 +138,7 @@ class CloudLayout {
 					.scalePow()
 					.exponent(2)
 					.domain([min, max])
-					.range([15, this._getLargestWordFontSize()]);
+					.range([1, this._getLargestWordFontSize()]);
 		}
 	};
 

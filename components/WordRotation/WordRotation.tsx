@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { useCloudContext } from '../../lib/context/CloudContext';
-import { Rotation } from '../../lib/types';
-import RotationCard from './RotationCard';
+import RadioCard from '../RadioCard/RadioCard';
 
 const WordRotation = () => {
 	const {
@@ -11,16 +10,16 @@ const WordRotation = () => {
 		dispatch,
 	} = useCloudContext();
 
-	const onClick = (rotation: Rotation) => {
+	const onClick = (rotation: string) => {
 		dispatch({ type: 'changeRotation', payload: rotation });
 	};
 	const imgSize = 200;
 	return (
 		<section className='flex flex-row p-1 gap-4 mx-auto w-fit'>
-			<RotationCard
+			<RadioCard
 				title='No rotation'
 				value='none'
-				rotation={rotation}
+				currentValue={rotation}
 				onClick={onClick}
 			>
 				<Image
@@ -29,11 +28,11 @@ const WordRotation = () => {
 					src={'/norotation.svg'}
 					alt='no rotation'
 				/>
-			</RotationCard>
-			<RotationCard
+			</RadioCard>
+			<RadioCard
 				title='Righ angles'
 				value='right'
-				rotation={rotation}
+				currentValue={rotation}
 				onClick={onClick}
 			>
 				<Image
@@ -42,11 +41,11 @@ const WordRotation = () => {
 					src={'/rightangle.svg'}
 					alt='right angles'
 				/>
-			</RotationCard>
-			<RotationCard
+			</RadioCard>
+			<RadioCard
 				title='Random'
 				value='random'
-				rotation={rotation}
+				currentValue={rotation}
 				onClick={onClick}
 			>
 				<Image
@@ -55,7 +54,7 @@ const WordRotation = () => {
 					src={'/random.svg'}
 					alt='random angles'
 				/>
-			</RotationCard>
+			</RadioCard>
 		</section>
 	);
 };

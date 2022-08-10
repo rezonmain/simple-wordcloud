@@ -9,6 +9,7 @@ export type Action = {
 		| 'changeFont'
 		| 'changeLimit'
 		| 'changeRotation'
+		| 'changeScaling'
 		| 'toggleSource'
 		| 'setTimestamp';
 	payload?: any;
@@ -48,6 +49,14 @@ const cloudReducer = (state: Cloud, action: Action): Cloud => {
 				layout: {
 					...state.layout,
 					rotation: payload as Rotation,
+				},
+			};
+		case 'changeScaling':
+			return {
+				...state,
+				layout: {
+					...state.layout,
+					scaling: payload,
 				},
 			};
 		case 'toggleSource':
