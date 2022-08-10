@@ -70,7 +70,7 @@ const Table = ({ as }: { as: 'homepage' | 'modal' }) => {
 					as === 'modal' ? 'white' : 'neutral-200'
 				} rounded-b-lg pt-20`}
 			>
-				<Link href={'/create/'}>
+				<Link href={'/create'}>
 					<div>
 						<BsPlusCircleFill
 							size={'2.25rem'}

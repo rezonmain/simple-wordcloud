@@ -74,6 +74,10 @@ const MenuBar = ({ as }: { as: 'toolbar' | 'drawer' }) => {
 				break;
 			case 'save':
 				saveCloud();
+				router.push({
+					pathname: '/create',
+					query: { id: cloud.id },
+				});
 				break;
 			case 'svg':
 				d.asSVG(title);

@@ -22,7 +22,7 @@ Generate simple wordclouds from text file or text input. It uses D3.js to genera
   - [x] Populate animation
   - [ ] Rotate animation
   - [ ] Settings reset
-  - [ ] Open cloud from menu bar
+  - [x] Open cloud from menu bar
   - [ ] Save as functionality
   - [x] Open new cloud from menu bar
 
