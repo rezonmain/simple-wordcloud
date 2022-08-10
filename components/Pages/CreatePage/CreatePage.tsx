@@ -16,7 +16,6 @@ import WordCloudWidget from '../../WordCloudWidget/WordCloudWidget';
 import { CloudContext } from '../../../lib/context/CloudContext';
 import cloudReducer from '../../../lib/cloudReducer';
 import { Cloud } from '../../../lib/types';
-import saveData from '../../../lib/helpers/localstorage';
 import TextParser from '../../../lib/classes/TextParser';
 
 const CreatePage = ({ initialCloud }: { initialCloud: Cloud }) => {

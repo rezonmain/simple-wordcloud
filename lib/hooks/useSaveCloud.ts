@@ -2,10 +2,12 @@ import { useCallback } from 'react';
 import { Cloud } from '../types';
 
 const useSaveCloud = (cloud: Cloud) => {
+	/* Returns a callback that enables component to save a cloud
+		 do not save if cloud did not change */
+	// FIX: cloud does saves even if it's not changed
 	return useCallback(() => {
 		let ids = JSON.parse(localStorage.getItem('ids') as string) as string[];
-
-		// if there is no ids store, initialize it
+		// If there is no ids store, initialize it
 		if (!ids) {
 			ids = [];
 		}

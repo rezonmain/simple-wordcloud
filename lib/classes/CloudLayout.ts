@@ -117,8 +117,8 @@ class CloudLayout {
 	};
 
 	private _getScalefn = (wordsArray: WordInstance[]) => {
-		// WORDS MUST BE SORTED
-		/* Make sure biggest word always fits inside given viewbox */
+		// ***INPUT WORDSARRAY MUST BE SORTED***
+
 		const max = wordsArray[0].instances;
 		const min = wordsArray[wordsArray.length - 1].instances;
 
@@ -127,27 +127,29 @@ class CloudLayout {
 				return d3
 					.scaleLog()
 					.domain([min, max])
-					.range([1, this._getLargestFontSize()]);
+					.range([1, this._getLargestWordFontSize()]);
 			case 'linear':
 				return d3
 					.scaleLinear()
 					.domain([min, max])
-					.range([10, this._getLargestFontSize()]);
+					.range([10, this._getLargestWordFontSize()]);
 			case 'sq':
 				return d3
 					.scalePow()
 					.exponent(2)
 					.domain([min, max])
-					.range([15, this._getLargestFontSize()]);
+					.range([15, this._getLargestWordFontSize()]);
 		}
 	};
 
-	private _getLargestFontSize = () => {
-		// This functions scales the font size with the width
-		// Makes sure the biggest word always renders
+	private _getLargestWordFontSize = () => {
+		/* This functions returns the ideal font size for the biggest word
+		this is done because d3-cloud does not render a word if it doesn't fit in 
+		the viewbox */
 
 		let fontSize = 500;
 		const biggesWord = this.enabledWords[0].word;
+		// Set word witdth as the size of the canvas for now
 		let wordWidth = this.size.w;
 		const measure = new MeasureText();
 

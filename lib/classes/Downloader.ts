@@ -40,8 +40,10 @@ class Downloader {
 	}
 
 	private _downloadAction(href: string, name: string) {
+		// Create hidden <a> element and click it to download file
 		const a = document.createElement('a');
 		a.href = href;
+		// The download attribute sets the name of the file
 		a.download = name;
 		document.body.appendChild(a);
 		a.click();
