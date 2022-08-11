@@ -54,11 +54,12 @@ const CreatePage = ({ initialCloud }: { initialCloud: Cloud }) => {
 		try {
 			setLoading(true);
 			wordArray = await tp.getWordArrayFromFile(f);
-			setLoading(false);
 		} catch {
+			setLoading(false);
 			toast();
 			return;
 		}
+		setLoading(false);
 		dispatch({ type: 'updateWordArray', payload: wordArray });
 		setRefresh((prev) => prev + 1);
 	};

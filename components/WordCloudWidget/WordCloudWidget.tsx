@@ -1,14 +1,6 @@
 import WordCloud from '../WordCloud/WordCloud';
 import { useGesture } from '@use-gesture/react';
-import {
-	Dispatch,
-	RefObject,
-	SetStateAction,
-	useEffect,
-	useMemo,
-	useRef,
-	useState,
-} from 'react';
+import { RefObject, useEffect, useMemo, useRef, useState } from 'react';
 import { useCloudContext } from '../../lib/context/CloudContext';
 import useWindow from '../../lib/hooks/useWindow';
 import { Spinner } from '@chakra-ui/react';
