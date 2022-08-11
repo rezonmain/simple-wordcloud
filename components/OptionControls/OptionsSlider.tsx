@@ -5,7 +5,7 @@ import {
 	SliderFilledTrack,
 	Box,
 } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useCloudContext } from '../../lib/context/CloudContext';
 
 const OptionSlider = () => {
@@ -16,6 +16,12 @@ const OptionSlider = () => {
 		dispatch,
 	} = useCloudContext();
 	const [sliderValue, setSliderValue] = useState(limit);
+
+	// Set local state to limit on re-render
+	// This is necesary for the settings reset to work
+	useEffect(() => {
+		setSliderValue(limit);
+	}, [limit]);
 
 	const onChangeEnd = (value: number) => {
 		dispatch({ type: 'changeLimit', payload: value });

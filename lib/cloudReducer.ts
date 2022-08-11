@@ -1,3 +1,4 @@
+import CloudLayout from './classes/CloudLayout';
 import type { Cloud, Rotation, WordInstance } from './types';
 
 export type Action = {
@@ -11,6 +12,7 @@ export type Action = {
 		| 'changeRotation'
 		| 'changeScaling'
 		| 'toggleSource'
+		| 'resetLayout'
 		| 'setTimestamp';
 	payload?: any;
 };
@@ -63,6 +65,11 @@ const cloudReducer = (state: Cloud, action: Action): Cloud => {
 			return {
 				...state,
 				source: !state.source,
+			};
+		case 'resetLayout':
+			return {
+				...state,
+				layout: CloudLayout.DEFAULT,
 			};
 		case 'setTimestamp':
 			return {

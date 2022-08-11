@@ -123,13 +123,6 @@ const MenuBar = ({ as }: { as: 'toolbar' | 'drawer' }) => {
 							Save...
 						</MenuItem>
 						<MenuItem
-							name='saveAs'
-							{...menuItemStylesProps}
-							onClick={(e) => handleClick(e)}
-						>
-							Save as...
-						</MenuItem>
-						<MenuItem
 							name='newCloud'
 							{...menuItemStylesProps}
 							onClick={(e) => handleClick(e)}

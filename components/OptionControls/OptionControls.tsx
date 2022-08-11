@@ -1,5 +1,6 @@
 import { useDisclosure } from '@chakra-ui/react';
 import { BsGear } from 'react-icons/bs';
+import { useCloudContext } from '../../lib/context/CloudContext';
 import ReusableModal from '../ReusableModal/ReusableModal';
 import WordList from '../WordList/WordList';
 import WordRotation from '../WordRotation/WordRotation';
@@ -8,6 +9,7 @@ import OptionSelect from './OptionSelect';
 import OptionSlider from './OptionsSlider';
 
 const OptionControls = ({ onRefresh }: { onRefresh: () => void }) => {
+	const { dispatch } = useCloudContext();
 	const {
 		isOpen: isListOpen,
 		onOpen: onListOpen,
@@ -23,15 +25,18 @@ const OptionControls = ({ onRefresh }: { onRefresh: () => void }) => {
 	const handleOption = (e: React.MouseEvent, option: string) => {
 		e.preventDefault();
 		switch (option) {
+			case 'reset':
+				dispatch({ type: 'resetLayout' });
+				break;
 			case 'refresh':
 				onRefresh();
-				return;
+				break;
 			case 'wordlist':
 				onListOpen();
-				return;
+				break;
 			case 'rotation':
 				onRotationOpen();
-				return;
+				break;
 		}
 	};
 	return (
@@ -68,11 +73,13 @@ const OptionControls = ({ onRefresh }: { onRefresh: () => void }) => {
 						className='flex flex-row justify-end gap-2'
 					>
 						<input
+							onClick={(e) => handleOption(e, 'reset')}
+							value='Reset settings'
 							type='reset'
-							className='control-base bg-neutral-100 border border-neutral-400 font-serif p-2 rounded-md active:'
+							className='control-base bg-neutral-100 border border-neutral-400 font-serif p-2 rounded-md active:border-neutral-800'
 						/>
 						<OptionButton
-							text={'Apply settings'}
+							text='Apply settings'
 							onClick={(e) => handleOption(e, 'refresh')}
 							highlight={true}
 						/>
