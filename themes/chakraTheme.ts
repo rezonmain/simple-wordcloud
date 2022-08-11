@@ -8,9 +8,22 @@ const Drawer: ComponentStyleConfig = {
 	},
 };
 
+// Toast implements Alert
+const Alert: ComponentStyleConfig = {
+	baseStyle: {
+		title: {
+			fontFamily: 'Maitree',
+		},
+		description: {
+			fontFamily: 'Maitree',
+		},
+	},
+};
+
 const theme = extendTheme({
 	components: {
 		Drawer,
+		Alert,
 	},
 });
 
