@@ -2,10 +2,15 @@ import Head from 'next/head';
 import Button from '../../Button/Button';
 import Header from '../../Header/Header';
 import Hero from '../../Hero/Hero';
-import Table from '../../Table/Table';
+import { Skeleton, Stack } from '@chakra-ui/react';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
+import { Suspense } from 'react';
 
 const HomePage = () => {
+	const SavedCloudsTable = dynamic(() => import('../../Table/Table'), {
+		suspense: true,
+	});
 	return (
 		<>
 			<Head>
@@ -21,7 +26,17 @@ const HomePage = () => {
 						<Button type='action' text='Create New' />
 					</Link>
 				</div>
-				<Table as='homepage' />
+				<Suspense
+					fallback={
+						<Stack>
+							<Skeleton height='50px' />
+							<Skeleton height='20px' />
+							<Skeleton height='20px' />
+						</Stack>
+					}
+				>
+					<SavedCloudsTable as='homepage' />
+				</Suspense>
 			</main>
 		</>
 	);
