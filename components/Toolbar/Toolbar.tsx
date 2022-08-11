@@ -29,7 +29,7 @@ const Toolbar = ({
 				id='burger-button'
 				className='control-base py-1 px-2 bg-neutral-700 rounded-lg active:brightness-75 lg:hidden'
 			>
-				<IoMenuSharp size={'1.50rem'} />
+				<IoMenuSharp size={'24px'} />
 			</div>
 			<div className='w-fit'>
 				<EditableTitle />

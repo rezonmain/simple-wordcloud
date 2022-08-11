@@ -27,7 +27,7 @@ const FileDropper = ({ onFile }: { onFile: (f: Blob) => void }) => {
 		>
 			<input {...getInputProps()} />
 			<div className=' max-w-[30ch] text-center flex flex-col items-center'>
-				<BsCloudUpload size={'2.5rem'} />
+				<BsCloudUpload size={'40px'} />
 				{isDragActive ? 'Let go!' : 'Drop file here, or tap to browse.'}
 			</div>
 		</div>

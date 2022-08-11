@@ -16,7 +16,6 @@ const HomePage = () => {
 			<Header />
 			<main className='flex flex-col items-center justify-center mx-auto gap-14 my-10 min-w-[330px] w-[90vw] max-w-[480px]'>
 				<Hero />
-
 				<div id='button-group' className='flex flex-row gap-2 items-center'>
 					<Link href={'/create'}>
 						<Button type='action' text='Create New' />
