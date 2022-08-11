@@ -4,7 +4,7 @@ const Footer = () => {
 	return (
 		<footer className='bg-neutral-800 font-serif font-neutral-100 text-neutral-100 flex flex-col items-center justify-center gap-3 py-5'>
 			<div id='footer-icon-group' className='flex flex-row gap-5'>
-				<a href='https://github.com/rezonmain'>
+				<a href='https://github.com/rezonmain/simple-wordcloud'>
 					<BsGithub size='2rem' fill='#f5f5f5' />
 				</a>
 				<a href='https://twitter.com/rezonmain'>
