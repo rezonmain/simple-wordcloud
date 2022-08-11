@@ -23,7 +23,7 @@ Generate simple wordclouds from text file or text input. It uses D3.js to genera
   - [ ] Rotate animation
   - [ ] Settings reset
   - [x] Open cloud from menu bar
-  - [ ] Save as functionality
+  - ~[ ] Save as functionality~ Confusing feauture; not implementing it
   - [x] Open new cloud from menu bar
 
 - [ ] Add configurability:
@@ -33,8 +33,8 @@ Generate simple wordclouds from text file or text input. It uses D3.js to genera
   - [x] Word limits
   - [x] Word scaling
   - [ ] Word padding
-  - [ ] Word colors and fading
-  - [ ] Option to keep stop words and pronouns (eng, fre, esp)
+  - ~[ ] Word colors and fading~
+  - ~[ ] Option to keep stop words and pronouns (eng, fre, esp)~
 
 - [x] Make 'create' page
 - [x] Make landing page
@@ -48,7 +48,7 @@ Generate simple wordclouds from text file or text input. It uses D3.js to genera
   to fix:
 
 - [x] Render svg to a canvas, get blob using native canvas calls
-- [x] Lazy load wordlist modal ~DONE BABY!!!!~
+- [x] Lazy load wordlist modal
 - [x] Page loading state to avoid pops
 - [ ] Cloud loading on settings apply
 
