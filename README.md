@@ -49,8 +49,8 @@ Generate simple wordclouds from text file or text input. It uses D3.js to genera
 - [x] Implement chart saving to LS functionality
 - [x] Style pages according to desgin
 - [x] Add user friendly animations
-- [ ] On succesful save alert
-- [ ] Unsupported file type alert
+- [x] On succesful save alert
+- [x] Unsupported file type alert
 - [ ] More font options, and make it work on all browsers
 - [ ] Unsaved changes alert on exit
 - [ ] Buttons tooltips

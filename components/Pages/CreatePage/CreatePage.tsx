@@ -1,4 +1,4 @@
-import { useDisclosure } from '@chakra-ui/react';
+import { useDisclosure, useToast } from '@chakra-ui/react';
 import {
 	MutableRefObject,
 	useEffect,
@@ -14,7 +14,7 @@ import Toolbar from '../../Toolbar/Toolbar';
 import WordCloudWidget from '../../WordCloudWidget/WordCloudWidget';
 import { CloudContext } from '../../../lib/context/CloudContext';
 import cloudReducer from '../../../lib/cloudReducer';
-import { Cloud } from '../../../lib/types';
+import { Cloud, WordInstance } from '../../../lib/types';
 import TextParser from '../../../lib/classes/TextParser';
 
 const CreatePage = ({ initialCloud }: { initialCloud: Cloud }) => {
@@ -29,6 +29,15 @@ const CreatePage = ({ initialCloud }: { initialCloud: Cloud }) => {
 		onClose: onDrawerClose,
 	} = useDisclosure();
 
+	const toast = useToast({
+		title: 'Unsupported File',
+		description: 'Only .txt, .docx and .pdf are supported',
+		position: 'top-right',
+		status: 'error',
+		duration: 4500,
+		isClosable: true,
+	});
+
 	const onApply = () => {
 		// Updating refresh state regenerates the wordcloud with updated state
 		setRefresh((prev) => prev + 1);
@@ -36,7 +45,13 @@ const CreatePage = ({ initialCloud }: { initialCloud: Cloud }) => {
 
 	const onFile = async (f: Blob) => {
 		const tp = new TextParser();
-		const wordArray = await tp.getWordArrayFromFile(f);
+		let wordArray: WordInstance[] = [];
+		try {
+			wordArray = await tp.getWordArrayFromFile(f);
+		} catch {
+			toast();
+			return;
+		}
 		dispatch({ type: 'updateWordArray', payload: wordArray });
 		setRefresh((prev) => prev + 1);
 	};
