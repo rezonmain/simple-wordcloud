@@ -56,14 +56,14 @@ const CreatePage = ({ initialCloud }: { initialCloud: Cloud }) => {
 		const tp = new TextParser();
 		let wordArray: WordInstance[] = [];
 		try {
-			setLoading(true);
+			onLoadStart();
 			wordArray = await tp.getWordArrayFromFile(f);
 		} catch {
 			setLoading(false);
 			toast();
 			return;
 		}
-		setLoading(false);
+		onLoadEnd();
 		dispatch({ type: 'updateWordArray', payload: wordArray });
 		setRefresh((prev) => prev + 1);
 	};
