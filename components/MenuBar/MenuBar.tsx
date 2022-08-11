@@ -99,6 +99,7 @@ const MenuBar = ({ as }: { as: 'toolbar' | 'drawer' }) => {
 				break;
 			case 'scalingMethod':
 				onScalingOpen();
+				break;
 			case 'wordSpacing':
 				onSpacingOpen();
 				break;
