@@ -4,12 +4,10 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import CreatePage from '../components/Pages/CreatePage/CreatePage';
 import Cloud from '../lib/classes/Cloud';
-import FontPreloader from '../lib/classes/FontPreloader';
 
 const Create = ({
 	id,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-	new FontPreloader();
 	const router = useRouter();
 	// If I don't do this, when /create is refreshed it loses context
 	const [cloud, setCloud] = useState();

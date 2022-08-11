@@ -22,10 +22,11 @@ const WordCloud = ({ wordArray, size, config, onLoadEnd }: WordCloudProps) => {
 	useEffect(() => {
 		removeCloud();
 		wordCount.current = 0;
-		// This calls draw
-		cl.start();
-		// Binds the generated svg to the canvas
+
 		(async () => {
+			// This calls draw
+			await cl.start();
+			// Binds the generated svg to the canvas
 			await cl.bind();
 		})();
 		onLoadEnd();
