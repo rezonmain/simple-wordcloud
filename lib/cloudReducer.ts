@@ -11,6 +11,7 @@ export type Action = {
 		| 'changeLimit'
 		| 'changeRotation'
 		| 'changeScaling'
+		| 'changePadding'
 		| 'toggleSource'
 		| 'resetLayout'
 		| 'setTimestamp';
@@ -59,6 +60,14 @@ const cloudReducer = (state: Cloud, action: Action): Cloud => {
 				layout: {
 					...state.layout,
 					scaling: payload,
+				},
+			};
+		case 'changePadding':
+			return {
+				...state,
+				layout: {
+					...state.layout,
+					padding: payload as number,
 				},
 			};
 		case 'toggleSource':

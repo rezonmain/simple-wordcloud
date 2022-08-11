@@ -10,7 +10,7 @@ const WordScaling = () => {
 		dispatch,
 	} = useCloudContext();
 
-	const onClick = (scaling: string) => {
+	const onClick = (scaling: string | number) => {
 		dispatch({ type: 'changeScaling', payload: scaling });
 	};
 	const imgSize = 200;

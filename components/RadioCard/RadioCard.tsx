@@ -8,10 +8,10 @@ const RadioCard = ({
 }: {
 	children: JSX.Element;
 	title: string;
-	value: string;
-	currentValue: string | undefined;
+	value: string | number;
+	currentValue: string | number | undefined;
 	description?: string;
-	onClick: (value: string) => void;
+	onClick: (value: string | number) => void;
 }) => {
 	const selected = {
 		borderBottom: '3px solid #3182ce',

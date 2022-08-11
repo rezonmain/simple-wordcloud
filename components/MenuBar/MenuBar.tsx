@@ -20,13 +20,14 @@ import useSavedClouds from '../../lib/hooks/useSavedClouds';
 import ReusableModal from '../ReusableModal/ReusableModal';
 import Table from '../Table/Table';
 import WordScaling from '../WordScaling/WordScaling';
+import WordSpacing from '../WordSpacing/WordSpacing';
 
 const MenuBar = ({ as }: { as: 'toolbar' | 'drawer' }) => {
 	const {
 		cloud: { title },
 		cloud,
 	} = useCloudContext();
-
+	const router = useRouter();
 	const saveCloud = useSaveCloud(cloud);
 	const [savedClouds] = useSavedClouds();
 	const { isOpen, onOpen, onClose } = useDisclosure();
@@ -35,7 +36,11 @@ const MenuBar = ({ as }: { as: 'toolbar' | 'drawer' }) => {
 		onOpen: onScalingOpen,
 		onClose: onScalingClose,
 	} = useDisclosure();
-	const router = useRouter();
+	const {
+		isOpen: isSpacingOpen,
+		onOpen: onSpacingOpen,
+		onClose: onSpacingClose,
+	} = useDisclosure();
 
 	const buttonStylesProps = {
 		color: '#f5f5f5',
@@ -94,6 +99,8 @@ const MenuBar = ({ as }: { as: 'toolbar' | 'drawer' }) => {
 				break;
 			case 'scalingMethod':
 				onScalingOpen();
+			case 'wordSpacing':
+				onSpacingOpen();
 				break;
 		}
 	};
@@ -186,6 +193,13 @@ const MenuBar = ({ as }: { as: 'toolbar' | 'drawer' }) => {
 				onClose={onScalingClose}
 			>
 				<WordScaling />
+			</ReusableModal>
+			<ReusableModal
+				title='Set Word Spacing'
+				isOpen={isSpacingOpen}
+				onClose={onSpacingClose}
+			>
+				<WordSpacing />
 			</ReusableModal>
 		</>
 	);

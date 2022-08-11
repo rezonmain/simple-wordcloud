@@ -2,61 +2,61 @@ import Image from 'next/image';
 import { useCloudContext } from '../../lib/context/CloudContext';
 import RadioCard from '../RadioCard/RadioCard';
 
-const WordRotation = () => {
+const WordSpacing = () => {
 	const {
 		cloud: {
-			layout: { rotation },
+			layout: { padding },
 		},
 		dispatch,
 	} = useCloudContext();
 
-	const onClick = (rotation: string | number) => {
-		dispatch({ type: 'changeRotation', payload: rotation });
+	const onClick = (padding: string | number) => {
+		dispatch({ type: 'changePadding', payload: padding });
 	};
 	const imgSize = 200;
 	return (
 		<section className='flex flex-row p-1 gap-4 mx-auto w-fit'>
 			<RadioCard
-				title='No rotation'
-				value='none'
-				currentValue={rotation}
+				title='Defualt spacing'
+				value={1}
+				currentValue={padding}
 				onClick={onClick}
 			>
 				<Image
 					width={imgSize}
 					height={imgSize}
-					src={'/norotation.svg'}
-					alt='no rotation'
+					src={'/nospacing.svg'}
+					alt='default spacing'
 				/>
 			</RadioCard>
 			<RadioCard
-				title='Righ angles'
-				value='right'
-				currentValue={rotation}
+				title='Medium'
+				value={5}
+				currentValue={padding}
 				onClick={onClick}
 			>
 				<Image
 					width={imgSize}
 					height={imgSize}
-					src={'/rightangle.svg'}
-					alt='right angles'
+					src={'/medium.svg'}
+					alt='medium spacing'
 				/>
 			</RadioCard>
 			<RadioCard
-				title='Random'
-				value='random'
-				currentValue={rotation}
+				title='Large'
+				value={10}
+				currentValue={padding}
 				onClick={onClick}
 			>
 				<Image
 					width={imgSize}
 					height={imgSize}
-					src={'/random.svg'}
-					alt='random angles'
+					src={'/large.svg'}
+					alt='largespacing'
 				/>
 			</RadioCard>
 		</section>
 	);
 };
 
-export default WordRotation;
+export default WordSpacing;
