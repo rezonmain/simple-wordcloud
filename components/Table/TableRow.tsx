@@ -23,14 +23,14 @@ const TableRow = ({ id, name, date, onDelete, as }: TableRowProps) => {
 				<div id='table-icons' className='flex flex-row gap-4 px-4'>
 					<BsTrashFill
 						onClick={() => onDelete(id)}
-						size={'1.7rem'}
+						size={'27.2px'}
 						className='control'
 						color='#262626'
 					/>
 					<Link href={{ pathname: '/create', query: { id } }}>
 						<a>
 							<BsFillArrowRightSquareFill
-								size={'1.7rem'}
+								size={'27.2px'}
 								className='control'
 								color='#262626'
 							/>

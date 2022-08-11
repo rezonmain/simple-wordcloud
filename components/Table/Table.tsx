@@ -28,7 +28,7 @@ const Table = ({ as }: { as: 'homepage' | 'modal' }) => {
 			id='table'
 			className='font-serif w-full flex flex-col max-h-80 rounded-lg'
 		>
-			<table>
+			<table className='rounded-t-lg'>
 				{as === 'modal' ? (
 					<thead>
 						<tr className=' border-b border-neutral-400'>
@@ -38,7 +38,7 @@ const Table = ({ as }: { as: 'homepage' | 'modal' }) => {
 						</tr>
 					</thead>
 				) : (
-					<thead className='bg-neutral-800 text-neutral-100 text-lg'>
+					<thead className='bg-neutral-800 text-neutral-100 text-lg rounded-t-lg'>
 						<tr>
 							<th colSpan={3} className='font-normal p-2 rounded-t-lg'>
 								Saved word clouds
@@ -73,7 +73,7 @@ const Table = ({ as }: { as: 'homepage' | 'modal' }) => {
 				<Link href={'/create'}>
 					<div>
 						<BsPlusCircleFill
-							size={'2.25rem'}
+							size={'36px'}
 							className='control'
 							color='#262626'
 						/>
