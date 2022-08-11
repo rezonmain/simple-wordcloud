@@ -8,10 +8,12 @@ import { Spinner } from '@chakra-ui/react';
 const WordCloudWidget = ({
 	refresh,
 	loading,
+	onLoadStart,
 	onLoadEnd,
 }: {
 	refresh: number;
 	loading: boolean;
+	onLoadStart: () => void;
 	onLoadEnd: () => void;
 }) => {
 	const [pan, setPan] = useState({ x: 0, y: 0, scale: 1 });
@@ -31,6 +33,7 @@ const WordCloudWidget = ({
 				size={{ w: 1000, h: 1000 }}
 				wordArray={wordArray}
 				config={layout}
+				onLoadStart={onLoadStart}
 				onLoadEnd={onLoadEnd}
 			/>
 		),

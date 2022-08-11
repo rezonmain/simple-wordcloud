@@ -79,12 +79,7 @@ class CloudLayout {
 
 	/* Returns the d3Cloud layout object and runs start method on it,
   which initialiazes the word placement algorithm from d3Cloud */
-	start = async () => {
-		/* Wait for web fonts to load, so as not to render the cloud with a fallback font
-		which messes with the word positioning */
-		await document.fonts.ready;
-		this._layout().start();
-	};
+	start = () => this._layout().start();
 
 	bind = async () => {
 		const svg = document.getElementById('wc-svg')?.outerHTML as string;

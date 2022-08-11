@@ -30,6 +30,10 @@ const CreatePage = ({ initialCloud }: { initialCloud: Cloud }) => {
 		onClose: onDrawerClose,
 	} = useDisclosure();
 
+	const onLoadStart = () => {
+		setLoading(true);
+	};
+
 	const onLoadEnd = () => {
 		setLoading(false);
 	};
@@ -92,6 +96,7 @@ const CreatePage = ({ initialCloud }: { initialCloud: Cloud }) => {
 					<WordCloudWidget
 						loading={loading}
 						refresh={refresh}
+						onLoadStart={onLoadStart}
 						onLoadEnd={onLoadEnd}
 					/>
 				) : null}
