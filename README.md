@@ -26,13 +26,13 @@ Generate simple wordclouds from text file or text input. It uses D3.js to genera
   - ~[ ] Save as functionality~ Confusing feauture; not implementing it
   - [x] Open new cloud from menu bar
 
-- [ ] Add configurability:
+- [x] Add configurability:
 
   - [x] Word angles
   - [x] Word fonts
   - [x] Word limits
   - [x] Word scaling
-  - [ ] Word padding
+  - [x] Word padding
   - ~[ ] Word colors and fading~
   - ~[ ] Option to keep stop words and pronouns (eng, fre, esp)~
 
