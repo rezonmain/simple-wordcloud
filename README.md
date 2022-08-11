@@ -51,7 +51,7 @@ Generate simple wordclouds from text file or text input. It uses D3.js to genera
 - [x] Add user friendly animations
 - [x] On succesful save alert
 - [x] Unsupported file type alert
-- [ ] More font options, and make it work on all browsers
+- [x] More font options, and make it work on all browsers
 - [ ] Unsaved changes alert on exit
 - ~[ ] Buttons tooltips~
 

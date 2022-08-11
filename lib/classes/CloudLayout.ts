@@ -3,6 +3,7 @@ import * as d3 from 'd3';
 import type { Rotation, WordInstance } from '../types';
 import { Canvg, RenderingContext2D } from 'canvg';
 import MeasureText from './MeasureText';
+import FontPreloader from './FontPreloader';
 
 export type LayoutConfig = {
 	font?: string;
