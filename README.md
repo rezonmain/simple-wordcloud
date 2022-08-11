@@ -2,6 +2,14 @@
 
 Generate simple wordclouds from text file or text input. It uses D3.js to generate the cloud.
 
+## Technologies used:
+
+[<img width="40px" src="https://raw.githubusercontent.com/Pedro-Murilo/icons-for-readme/main/.github/react-icon.svg" alt="ReactJS Icon" />](https://reactjs.org/)
+[<img width="40px" src="https://raw.githubusercontent.com/Pedro-Murilo/icons-for-readme/main/.github/typescript-icon.svg" alt="Typescript Icon" />](https://www.typescriptlang.org/)
+[<img width="40px" src="https://raw.githubusercontent.com/Pedro-Murilo/icons-for-readme/main/.github/nextjs-icon.svg" alt="NextJS Icon" />](https://nextjs.org)
+[<img width="40px" src="https://raw.githubusercontent.com/d3/d3-logo/master/d3.png" alt="D3 Icon" />](https://d3js.org/)
+[<img width="40px" src="https://www.nstinfotech.com/wp-content/uploads/2020/10/tailwind-logo.png" alt="Tailwind css Icon" />](https://tailwindcss.com/)
+
 ### TODO
 
 - [x] Get MVP with basic functionality done:
