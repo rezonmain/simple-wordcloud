@@ -19,7 +19,7 @@ class CloudLayout {
 	size;
 	config: LayoutConfig;
 	wordArray;
-	onWord;
+	onEnd;
 	scale;
 	angles;
 	rotationsNumber;
@@ -41,11 +41,11 @@ class CloudLayout {
 	constructor(
 		size: { w: number; h: number },
 		wordArray: WordInstance[],
-		onWord: (draw: d3Cloud.Word) => void,
+		onEnd: (word: d3Cloud.Word) => void,
 		config?: LayoutConfig
 	) {
 		this.size = size;
-		this.onWord = onWord;
+		this.onEnd = onEnd;
 		// If config object is provided override the default configuration parameters
 		this.config = {
 			...CloudLayout.DEFAULT,
@@ -106,7 +106,7 @@ class CloudLayout {
 				.font(this.config.font as string)
 				// @ts-ignore
 				.fontSize((d) => this.scale(d.size))
-				.on('end', this.onWord)
+				.on('end', this.onEnd)
 		);
 	};
 

@@ -1,10 +1,27 @@
 import WordCloud from '../WordCloud/WordCloud';
 import { useGesture } from '@use-gesture/react';
-import { RefObject, useEffect, useMemo, useRef, useState } from 'react';
+import {
+	Dispatch,
+	RefObject,
+	SetStateAction,
+	useEffect,
+	useMemo,
+	useRef,
+	useState,
+} from 'react';
 import { useCloudContext } from '../../lib/context/CloudContext';
 import useWindow from '../../lib/hooks/useWindow';
+import { Spinner } from '@chakra-ui/react';
 
-const WordCloudWidget = ({ refresh }: { refresh: number }) => {
+const WordCloudWidget = ({
+	refresh,
+	loading,
+	onLoadEnd,
+}: {
+	refresh: number;
+	loading: boolean;
+	onLoadEnd: () => void;
+}) => {
 	const [pan, setPan] = useState({ x: 0, y: 0, scale: 1 });
 	// TODO: Handle gestures according to type of input
 	// const isTouch = useMedia('(hover: none) and (pointer: coarse)');
@@ -22,6 +39,7 @@ const WordCloudWidget = ({ refresh }: { refresh: number }) => {
 				size={{ w: 1000, h: 1000 }}
 				wordArray={wordArray}
 				config={layout}
+				onLoadEnd={onLoadEnd}
 			/>
 		),
 		[refresh]
@@ -42,6 +60,17 @@ const WordCloudWidget = ({ refresh }: { refresh: number }) => {
 
 	return (
 		<div className='overflow-hidden border border-neutral-800 aspect-square'>
+			{loading && (
+				<div className='w-full h-full flex flex-col justify-center items-center'>
+					<Spinner
+						thickness='4px'
+						speed='0.65s'
+						emptyColor='gray.200'
+						color='black'
+						size='xl'
+					/>
+				</div>
+			)}
 			<div
 				{...bind()}
 				ref={divRef}

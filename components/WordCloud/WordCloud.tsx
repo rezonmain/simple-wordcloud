@@ -1,16 +1,18 @@
 import CloudLayout, { LayoutConfig } from '../../lib/classes/CloudLayout';
 import * as d3 from 'd3';
 import d3Cloud from 'd3-cloud';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { WordInstance } from '../../lib/types';
 
 interface WordCloudProps {
 	wordArray: WordInstance[];
 	size: { w: number; h: number };
 	config?: LayoutConfig;
+	onLoadEnd: () => void;
 }
 
-const WordCloud = ({ wordArray, size, config }: WordCloudProps) => {
+const WordCloud = ({ wordArray, size, config, onLoadEnd }: WordCloudProps) => {
+	const wordCount = useRef(0);
 	let cl = new CloudLayout(
 		size,
 		wordArray,
@@ -19,12 +21,14 @@ const WordCloud = ({ wordArray, size, config }: WordCloudProps) => {
 	);
 	useEffect(() => {
 		removeCloud();
+		wordCount.current = 0;
 		// This calls draw
 		cl.start();
 		// Binds the generated svg to the canvas
 		(async () => {
 			await cl.bind();
 		})();
+		onLoadEnd();
 	});
 
 	function removeCloud() {

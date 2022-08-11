@@ -63,7 +63,7 @@ Generate simple wordclouds from text file or text input. It uses D3.js to genera
 - [x] Render svg to a canvas, get blob using native canvas calls
 - [x] Lazy load wordlist modal
 - [x] Page loading state to avoid pops
-- [ ] Cloud loading on settings apply
+- [x] Cloud loading on settings apply
 
 ### Design files
 

@@ -19,6 +19,7 @@ import TextParser from '../../../lib/classes/TextParser';
 
 const CreatePage = ({ initialCloud }: { initialCloud: Cloud }) => {
 	const [cloud, dispatch] = useReducer(cloudReducer, initialCloud);
+	const [loading, setLoading] = useState<boolean>(true);
 	const text = cloud.textAreaValue;
 	const [refresh, setRefresh] = useState(0);
 	const lgMedia = useMedia('(min-width: 1024px)');
@@ -29,9 +30,13 @@ const CreatePage = ({ initialCloud }: { initialCloud: Cloud }) => {
 		onClose: onDrawerClose,
 	} = useDisclosure();
 
+	const onLoadEnd = () => {
+		setLoading(false);
+	};
+
 	const toast = useToast({
 		title: 'Unsupported File',
-		description: 'Only .txt, .docx and .pdf are supported',
+		description: 'Only .txt, .docx and .pdf files are supported',
 		position: 'top-right',
 		status: 'error',
 		duration: 4500,
@@ -47,7 +52,9 @@ const CreatePage = ({ initialCloud }: { initialCloud: Cloud }) => {
 		const tp = new TextParser();
 		let wordArray: WordInstance[] = [];
 		try {
+			setLoading(true);
 			wordArray = await tp.getWordArrayFromFile(f);
+			setLoading(false);
 		} catch {
 			toast();
 			return;
@@ -81,7 +88,11 @@ const CreatePage = ({ initialCloud }: { initialCloud: Cloud }) => {
 					<OptionControls onRefresh={onApply} />
 				</div>
 				{cloud.wordArray.length > 0 ? (
-					<WordCloudWidget refresh={refresh} />
+					<WordCloudWidget
+						loading={loading}
+						refresh={refresh}
+						onLoadEnd={onLoadEnd}
+					/>
 				) : null}
 			</main>
 		</CloudContext.Provider>
