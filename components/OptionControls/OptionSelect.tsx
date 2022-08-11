@@ -28,7 +28,10 @@ const OptionSelect = () => {
 				value={font}
 			>
 				<option value='Helvetica'>Helvetica</option>
-				<option value='Impact'>Impact</option>
+				<option value='Roboto'>Roboto</option>
+				<option value='Anton'>Impact</option>
+				<option value='Roboto Mono'>Monospace</option>
+				<option value='Kalam'>Cursive</option>
 			</Select>
 		</div>
 	);
