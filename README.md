@@ -10,7 +10,7 @@ Generate simple wordclouds from text file or text input. It uses D3.js to genera
 [<img width="40px" src="https://raw.githubusercontent.com/d3/d3-logo/master/d3.png" alt="D3 Icon" />](https://d3js.org/)
 [<img width="40px" src="https://www.nstinfotech.com/wp-content/uploads/2020/10/tailwind-logo.png" alt="Tailwind css Icon" />](https://tailwindcss.com/)
 
-### TODO
+# TODO ✅
 
 - [x] Get MVP with basic functionality done:
 
@@ -19,7 +19,7 @@ Generate simple wordclouds from text file or text input. It uses D3.js to genera
     - [x] Use text processing library to give option to ignore stop words and calculate word count
   - [x] Write wordcloud component that generates chart from given data
 
-- [ ] Advanced functionality:
+- [x] Advanced functionality:
 
   - [x] Responsive layout
   - [x] Autorange layout of words
@@ -31,7 +31,6 @@ Generate simple wordclouds from text file or text input. It uses D3.js to genera
   - [ ] Rotate animation (Not implemeting due to bug see 'Fix' section)
   - [x] Settings reset
   - [x] Open cloud from menu bar
-  - ~[ ] Save as functionality~ Confusing feauture; not implementing it
   - [x] Open new cloud from menu bar
 
 - [x] Add configurability:
@@ -41,8 +40,6 @@ Generate simple wordclouds from text file or text input. It uses D3.js to genera
   - [x] Word limits
   - [x] Word scaling
   - [x] Word padding
-  - ~[ ] Word colors and fading~
-  - ~[ ] Option to keep stop words and pronouns (eng, fre, esp)~
 
 - [x] Make 'create' page
 - [x] Make landing page
@@ -52,18 +49,15 @@ Generate simple wordclouds from text file or text input. It uses D3.js to genera
 - [x] On succesful save alert
 - [x] Unsupported file type alert
 - [x] More font options, and make it work on all browsers
-- [ ] Unsaved changes alert on exit
-- ~[ ] Buttons tooltips~
+- [x] Render svg to a canvas, get blob using native canvas calls
+- [x] Lazy load wordlist modal
+- [x] Page loading state to avoid pops
+- [x] Cloud loading on settings apply
 
 ### FIX:
 
 - The conversion of svg to bitmap is done using a OffscreenCanvas which is currently only fully supported in Chromium browsers, so download to png fails in Firefox and Safari:
   to fix:
-
-- [x] Render svg to a canvas, get blob using native canvas calls
-- [x] Lazy load wordlist modal
-- [x] Page loading state to avoid pops
-- [x] Cloud loading on settings apply
 
 ### Design files
 
